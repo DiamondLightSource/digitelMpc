@@ -1,0 +1,344 @@
+# simulation digitelMpc-tsp.db
+# Template database for a simulated digitel MPC - Titanium Sublimation Pump
+# Pete Owens - 13/10/03
+#
+# This file is the same as digitalMpcTsp.db  with DTYP, INP and OUT fields commented out
+# Records with subsystem :SIM: are to simulate the hardware
+#
+# substitutions:
+# device  - device name
+# port    - seral port number (from device manager table)
+# unit    - unit number for multi-drop serial (5 by default)
+################################################################################
+# Simulate cycles left
+#
+record(calc, "$(device):SIM:LEFT")
+{
+    field(DESC, "Simulated Time Left")
+    field(CALC, "B=1?D:(C<=0?0:C-(A=0?0:(A=1?E:F)))")
+    field(SCAN, "1 second")
+    field(INPA, "$(device):SETMODE")
+    field(INPB, "$(device):SETDEGAS")
+    field(INPC, "$(device):SIM:LEFT.VAL")
+    field(INPD, "$(device):SETCYCL")
+    field(INPE, "0.001")
+    field(INPF, "0.01")
+}
+################################################################################
+# Simulate time used
+#
+record(calc, "$(device):SIM:F1")
+{
+    field(DESC, "Simulated Time Used")
+    field(CALC, "B=1?0:D+(A=0||C#0?0:(A=1?E:F))")
+    field(SCAN, "1 second")
+    field(INPA, "$(device):SETMODE")
+    field(INPB, "$(device):SETDEGAS")
+    field(INPC, "$(device):SETFIL")
+    field(INPD, "$(device):SIM:F1.VAL")
+    field(INPE, "0.001")
+    field(INPF, "0.01")
+}
+record(calc, "$(device):SIM:F2")
+{
+    field(DESC, "Simulated Time Used")
+    field(CALC, "B=1?0:D+(A=0||C#1?0:(A=1?E:F))")
+    field(SCAN, "1 second")
+    field(INPA, "$(device):SETMODE")
+    field(INPB, "$(device):SETDEGAS")
+    field(INPC, "$(device):SETFIL")
+    field(INPD, "$(device):SIM:F2.VAL")
+    field(INPE, "0.001")
+    field(INPF, "0.01")
+}
+record(calc, "$(device):SIM:F3")
+{
+    field(DESC, "Simulated Time Used")
+    field(CALC, "B=1?0:D+(A=0||C#2?0:(A=1?E:F))")
+    field(SCAN, "1 second")
+    field(INPA, "$(device):SETMODE")
+    field(INPB, "$(device):SETDEGAS")
+    field(INPC, "$(device):SETFIL")
+    field(INPD, "$(device):SIM:F3.VAL")
+    field(INPE, "0.001")
+    field(INPF, "0.01")
+}
+record(calc, "$(device):SIM:F4")
+{
+    field(DESC, "Simulated Time Used")
+    field(CALC, "B=1?0:D+(A=0||C#3?0:(A=1?E:F))")
+    field(SCAN, "1 second")
+    field(INPA, "$(device):SETMODE")
+    field(INPB, "$(device):SETDEGAS")
+    field(INPC, "$(device):SETFIL")
+    field(INPD, "$(device):SIM:F4.VAL")
+    field(INPE, "0.001")
+    field(INPF, "0.01")
+}
+################################################################################
+# TSP operating mode
+#
+#% archiver 10 Monitor
+#% controldesk Operating Mode scon
+#
+record(mbbo, "$(device):SETMODE")
+{
+    field(DESC, "Operating Mode")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc mode p=1 u=$(port) m=$(unit)")
+    field(ZRST, "Off")
+    field(ONST, "Timed")
+    field(TWST, "Continuous")
+    field(THST, "Degas")
+    field(DOL,  "0")
+    field(PINI, "YES")
+}
+################################################################################
+# Timed mode parameters
+#
+#% archiver 10 Monitor
+#% controldesk Period Between Firing setpoint
+#
+record(ao, "$(device):SETPER") 
+{
+    field(DESC, "Period")
+    field(FLNK, "$(device):CALPER")
+    field(EGU,  "min")
+    field(DRVL, "0")
+    field(DRVH, "999")
+    field(LOPR, "0")
+    field(HOPR, "999")
+    field(PREC, "0")
+    field(DOL,  "60")
+    field(PINI, "YES")
+}
+#
+#% archiver 10 Monitor
+#
+record(calcout, "$(device):CALPER") 
+{
+    field(DESC, "Period")
+    field(OUT,  "$(device):OUTPER PP")
+    field(CALC, "A>(1+B/60)?A:(1+B/60)")
+    field(INPA, "$(device):SETPER")
+    field(INPB, "$(device):SBL:SETTIM")
+}
+record(ao, "$(device):OUTPER") 
+{
+    field(DESC, "Period")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc period p=1 u=$(port) m=$(unit)")
+    field(EGU,  "min")
+    field(DRVL, "0")
+    field(DRVH, "999")
+    field(LOPR, "0")
+    field(HOPR, "999")
+    field(PREC, "0")
+    field(DOL,  "60")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Number of Cycles setpoint
+#
+record(ao, "$(device):SETCYCL") 
+{
+    field(DESC, "Cycles")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc cycles p=1 u=$(port) m=$(unit)")
+    field(DRVL, "0")
+    field(DRVH, "999")
+    field(LOPR, "0")
+    field(HOPR, "999")
+    field(PREC, "0")
+    field(DOL,  "10")
+    field(PINI, "YES")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Pressure Threshold setpoint
+#
+record(ao, "$(device):SETPTHR") 
+{
+    field(DESC, "Pressure Threshold")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc threshold p=1 u=$(port) m=$(unit)")
+    field(EGU,  "mbar")
+    field(DRVL, "1.0e-10")
+    field(DRVH, "0.01")
+    field(LOPR, "0.0")
+    field(HOPR, "0.01")
+    field(PREC, "1")
+    field(DOL,  "1.0e-9")
+    field(PINI, "YES")
+}
+################################################################################
+# Filament active (for timed mode)
+#
+#% archiver 10 Monitor
+#% controldesk Active Filament scon
+#
+record(mbbo, "$(device):SETFIL")
+{
+    field(DESC, "Filament Active")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc filament p=1 u=$(port) m=$(unit)")
+    field(ZRST, "Filament 1")
+    field(ONST, "Filament 2")
+    field(TWST, "Filament 3")
+#    field(THST, "Filament 4")
+}
+################################################################################
+# TSP status
+#
+#% archiver 10 Monitor
+#% controldesk Cycles Left readback
+#
+record(longin, "$(device):LEFT")
+{
+    field(DESC, "Cycles Left")
+#   field(DTYP, "ornlSerial")
+#   field(INP,  "@digitel mpc left u=$(port) m=$(unit)")
+field(INP,"$(device):SIM:LEFT")
+    field(SCAN, "10 second")
+    field(LOPR, "0")
+    field(HOPR, "999")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Filament 1 Minutes Used readback
+#
+record(longin, "$(device):FIL1:USED")
+{
+    field(DESC, "Minutes used")
+#   field(DTYP, "ornlSerial")
+#   field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=1")
+field(INP, "$(device):SIM:F1")
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Filament 2 Minutes Used readback
+#
+record(longin, "$(device):FIL2:USED")
+{
+    field(DESC, "Minutes used")
+#   field(DTYP, "ornlSerial")
+#   field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=2")
+field(INP, "$(device):SIM:F2")
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Filament 3 Minutes Used readback
+#
+record(longin, "$(device):FIL3:USED")
+{
+    field(DESC, "Minutes used")
+#   field(DTYP, "ornlSerial")
+#   field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=3")
+field(INP, "$(device):SIM:F3")
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+record(longin, "$(device):FIL4:USED")
+{
+    field(DESC, "Minutes used")
+#   field(DTYP, "ornlSerial")
+#   field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=4")
+field(INP, "$(device):SIM:F4")
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+################################################################################
+# Clear filaments
+#
+#% archiver 10 Monitor
+#% controldesk Clear Filaments scon
+#
+record(bo, "$(device):CLEAR")
+{
+    field(DESC, "Clear Filaments")
+#    field(DTYP, "ornlSerial")
+#    field(OUT,  "@digitel mpc clear p=1 u=$(port) m=$(unit)")
+    field(ZNAM, "Clear")
+    field(ONAM, "Clear")
+}
+################################################################################
+# Automatically Advance Filaments
+#
+#% archiver 10 Monitor
+#% controldesk Auto Advance Filaments scon
+#
+record(bo, "$(device):SETAUTOFIL")
+{
+    field(DESC, "Auto Advance")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc autofil p=1 u=$(port) m=$(unit)")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+    field(DOL,  "1")
+    field(PINI, "YES")
+}
+################################################################################
+# Sublimation level
+#
+#% archiver 10 Monitor
+#% controldesk Sublimation Level setpoint
+#
+record(ao, "$(device):SBL:SETLEV") {
+    field(DESC, "Sublimation Level")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc sbllev p=1 u=$(port) m=$(unit)")
+    field(DRVL, "0")
+    field(DRVH, "500")
+    field(LOPR, "0")
+    field(HOPR, "500")
+    field(PREC, "0")
+    field(DOL,  "230")
+    field(PINI, "YES")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Sublimation Parameter scon
+#
+record(bo, "$(device):SBL:SETPRM")
+{
+    field(DESC, "Sublimation Parameter")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc sblprm p=1 u=$(port) m=$(unit)")
+    field(ZNAM, "Amps")
+    field(ONAM, "Watts")
+    field(DOL,  "1")
+    field(PINI, "YES")
+}
+#
+#% archiver 10 Monitor
+#% controldesk Sublimation Time setpoint
+#
+record(ao, "$(device):SBL:SETTIM") {
+    field(DESC, "Sublimation Time")
+#   field(DTYP, "ornlSerial")
+#   field(OUT,  "@digitel mpc sbltim p=1 u=$(port) m=$(unit)")
+    field(FLNK, "$(device):CALPER")
+    field(EGU,  "s")
+    field(DRVL, "0")
+    field(DRVH, "255")
+    field(LOPR, "0")
+    field(HOPR, "255")
+    field(PREC, "0")
+    field(DOL,  "120")
+    field(PINI, "YES")
+}
+################################################################################
+
+

@@ -1,0 +1,383 @@
+# digitelMpcTspGroup.db
+# Template database for a group of up to 8 digitel MPC TSPs
+# Pete Owens - 11/4/05
+#
+# substitutions:
+# device  - device name
+# tsp1-8  - names of TSPs in group
+################################################################################
+# TSP operating mode
+#
+record(mbbo, "$(device):SETMODE")
+{
+    field(DESC, "Operating Mode")
+    field(FLNK, "$(device):SEQMODE")
+    field(ZRST, "Off")
+    field(ONST, "Timed")
+    field(TWST, "Continuous")
+    field(THST, "Degas")
+    field(DOL,  "0")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SEQMODE")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETMODE")
+    field(DOL2, "$(device):SETMODE")
+    field(DOL3, "$(device):SETMODE")
+    field(DOL4, "$(device):SETMODE")
+    field(DOL5, "$(device):SETMODE")
+    field(DOL6, "$(device):SETMODE")
+    field(DOL7, "$(device):SETMODE")
+    field(DOL8, "$(device):SETMODE")
+    field(LNK1, "$(tsp1):SETMODE CA")
+    field(LNK2, "$(tsp2):SETMODE CA")
+    field(LNK3, "$(tsp3):SETMODE CA")
+    field(LNK4, "$(tsp4):SETMODE CA")
+    field(LNK5, "$(tsp5):SETMODE CA")
+    field(LNK6, "$(tsp6):SETMODE CA")
+    field(LNK7, "$(tsp7):SETMODE CA")
+    field(LNK8, "$(tsp8):SETMODE CA")
+}
+################################################################################
+# Timed mode parameters
+#
+record(ao, "$(device):SETPER") 
+{
+    field(DESC, "Period")
+    field(FLNK, "$(device):SEQPER")
+    field(EGU,  "min")
+    field(DRVL, "0")
+    field(DRVH, "999")
+    field(LOPR, "0")
+    field(HOPR, "999")
+    field(PREC, "0")
+    field(DOL,  "60")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SEQPER")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETPER")
+    field(DOL2, "$(device):SETPER")
+    field(DOL3, "$(device):SETPER")
+    field(DOL4, "$(device):SETPER")
+    field(DOL5, "$(device):SETPER")
+    field(DOL6, "$(device):SETPER")
+    field(DOL7, "$(device):SETPER")
+    field(DOL8, "$(device):SETPER")
+    field(LNK1, "$(tsp1):SETPER CA")
+    field(LNK2, "$(tsp2):SETPER CA")
+    field(LNK3, "$(tsp3):SETPER CA")
+    field(LNK4, "$(tsp4):SETPER CA")
+    field(LNK5, "$(tsp5):SETPER CA")
+    field(LNK6, "$(tsp6):SETPER CA")
+    field(LNK7, "$(tsp7):SETPER CA")
+    field(LNK8, "$(tsp8):SETPER CA")
+}
+record(ao, "$(device):SETCYCL") 
+{
+    field(DESC, "Cycles")
+    field(FLNK, "$(device):SEQCYCL")
+    field(DRVL, "0")
+    field(DRVH, "999")
+    field(LOPR, "0")
+    field(HOPR, "999")
+    field(PREC, "0")
+    field(DOL,  "10")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SEQCYCL")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETCYCL")
+    field(DOL2, "$(device):SETCYCL")
+    field(DOL3, "$(device):SETCYCL")
+    field(DOL4, "$(device):SETCYCL")
+    field(DOL5, "$(device):SETCYCL")
+    field(DOL6, "$(device):SETCYCL")
+    field(DOL7, "$(device):SETCYCL")
+    field(DOL8, "$(device):SETCYCL")
+    field(LNK1, "$(tsp1):SETCYCL CA")
+    field(LNK2, "$(tsp2):SETCYCL CA")
+    field(LNK3, "$(tsp3):SETCYCL CA")
+    field(LNK4, "$(tsp4):SETCYCL CA")
+    field(LNK5, "$(tsp5):SETCYCL CA")
+    field(LNK6, "$(tsp6):SETCYCL CA")
+    field(LNK7, "$(tsp7):SETCYCL CA")
+    field(LNK8, "$(tsp8):SETCYCL CA")
+}
+record(ao, "$(device):SETPTHR") 
+{
+    field(DESC, "Pressure Threshold")
+    field(FLNK, "$(device):SEQPTHR")
+    field(EGU,  "mbar")
+    field(DRVL, "1.0e-10")
+    field(DRVH, "0.01")
+    field(LOPR, "0.0")
+    field(HOPR, "0.01")
+    field(PREC, "1")
+    field(DOL,  "1.0e-9")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SEQPTHR")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETPTHR")
+    field(DOL2, "$(device):SETPTHR")
+    field(DOL3, "$(device):SETPTHR")
+    field(DOL4, "$(device):SETPTHR")
+    field(DOL5, "$(device):SETPTHR")
+    field(DOL6, "$(device):SETPTHR")
+    field(DOL7, "$(device):SETPTHR")
+    field(DOL8, "$(device):SETPTHR")
+    field(LNK1, "$(tsp1):SETPTHR CA")
+    field(LNK2, "$(tsp2):SETPTHR CA")
+    field(LNK3, "$(tsp3):SETPTHR CA")
+    field(LNK4, "$(tsp4):SETPTHR CA")
+    field(LNK5, "$(tsp5):SETPTHR CA")
+    field(LNK6, "$(tsp6):SETPTHR CA")
+    field(LNK7, "$(tsp7):SETPTHR CA")
+    field(LNK8, "$(tsp8):SETPTHR CA")
+}
+################################################################################
+# Filament active (for timed mode)
+#
+record(mbbo, "$(device):SETFIL")
+{
+    field(DESC, "Filament Active")
+    field(FLNK, "$(device):SEQFIL")
+    field(ZRST, "Filament 1")
+    field(ONST, "Filament 2")
+    field(TWST, "Filament 3")
+#    field(THST, "Filament 4")
+}
+record(seq, "$(device):SEQFIL")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETFIL")
+    field(DOL2, "$(device):SETFIL")
+    field(DOL3, "$(device):SETFIL")
+    field(DOL4, "$(device):SETFIL")
+    field(DOL5, "$(device):SETFIL")
+    field(DOL6, "$(device):SETFIL")
+    field(DOL7, "$(device):SETFIL")
+    field(DOL8, "$(device):SETFIL")
+    field(LNK1, "$(tsp1):SETFIL CA")
+    field(LNK2, "$(tsp2):SETFIL CA")
+    field(LNK3, "$(tsp3):SETFIL CA")
+    field(LNK4, "$(tsp4):SETFIL CA")
+    field(LNK5, "$(tsp5):SETFIL CA")
+    field(LNK6, "$(tsp6):SETFIL CA")
+    field(LNK7, "$(tsp7):SETFIL CA")
+    field(LNK8, "$(tsp8):SETFIL CA")
+}
+################################################################################
+# TSP status 
+# Just takes status of $(tsp1)
+#
+record(longin, "$(device):LEFT")
+{
+    field(DESC, "Cycles Left")
+    field(INP,  "$(tsp1):LEFT")    
+    field(SCAN, "1 second")
+    field(LOPR, "0")
+    field(HOPR, "999")
+}
+record(longin, "$(device):FIL1:USED")
+{
+    field(DESC, "Minutes used")
+    field(INP,  "$(tsp1):FIL1:USED")    
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+record(longin, "$(device):FIL2:USED")
+{
+    field(DESC, "Minutes used")
+    field(INP,  "$(tsp1):FIL2:USED")    
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+record(longin, "$(device):FIL3:USED")
+{
+    field(DESC, "Minutes used")
+    field(INP,  "$(tsp1):FIL3:USED")    
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+record(longin, "$(device):FIL4:USED")
+{
+    field(DESC, "Minutes used")
+    field(INP,  "$(tsp1):FIL4:USED")    
+    field(SCAN, "10 second")
+    field(EGU,  "min")
+    field(LOPR, "0")
+    field(HOPR, "9999")
+}
+################################################################################
+# Clear filaments
+#
+record(bo, "$(device):CLEAR")
+{
+    field(DESC, "Clear Filaments")
+    field(FLNK, "$(device):SEQCLEAR")
+    field(ZNAM, "Clear")
+    field(ONAM, "Clear")
+}
+record(seq, "$(device):SEQCLEAR")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):CLEAR")
+    field(DOL2, "$(device):CLEAR")
+    field(DOL3, "$(device):CLEAR")
+    field(DOL4, "$(device):CLEAR")
+    field(DOL5, "$(device):CLEAR")
+    field(DOL6, "$(device):CLEAR")
+    field(DOL7, "$(device):CLEAR")
+    field(DOL8, "$(device):CLEAR")
+    field(LNK1, "$(tsp1):CLEAR CA")
+    field(LNK2, "$(tsp2):CLEAR CA")
+    field(LNK3, "$(tsp3):CLEAR CA")
+    field(LNK4, "$(tsp4):CLEAR CA")
+    field(LNK5, "$(tsp5):CLEAR CA")
+    field(LNK6, "$(tsp6):CLEAR CA")
+    field(LNK7, "$(tsp7):CLEAR CA")
+    field(LNK8, "$(tsp8):CLEAR CA")
+}
+################################################################################
+# Automatically Advance Filaments
+#
+record(bo, "$(device):SETAUTOFIL")
+{
+    field(DESC, "Auto Advance")
+    field(FLNK, "$(device):SEQAUTOFIL")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+    field(DOL,  "1")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SEQAUTOFIL")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SETAUTOFIL")
+    field(DOL2, "$(device):SETAUTOFIL")
+    field(DOL3, "$(device):SETAUTOFIL")
+    field(DOL4, "$(device):SETAUTOFIL")
+    field(DOL5, "$(device):SETAUTOFIL")
+    field(DOL6, "$(device):SETAUTOFIL")
+    field(DOL7, "$(device):SETAUTOFIL")
+    field(DOL8, "$(device):SETAUTOFIL")
+    field(LNK1, "$(tsp1):SETAUTOFIL CA")
+    field(LNK2, "$(tsp2):SETAUTOFIL CA")
+    field(LNK3, "$(tsp3):SETAUTOFIL CA")
+    field(LNK4, "$(tsp4):SETAUTOFIL CA")
+    field(LNK5, "$(tsp5):SETAUTOFIL CA")
+    field(LNK6, "$(tsp6):SETAUTOFIL CA")
+    field(LNK7, "$(tsp7):SETAUTOFIL CA")
+    field(LNK8, "$(tsp8):SETAUTOFIL CA")
+}
+################################################################################
+# Sublimation level
+#
+record(ao, "$(device):SBL:SETLEV") 
+{
+    field(DESC, "Sublimation Level")
+    field(FLNK, "$(device):SBL:SEQLEV")
+    field(DRVL, "0")
+    field(DRVH, "500")
+    field(LOPR, "0")
+    field(HOPR, "500")
+    field(PREC, "0")
+    field(DOL,  "230")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SBL:SEQLEV")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SBL:SETLEV")
+    field(DOL2, "$(device):SBL:SETLEV")
+    field(DOL3, "$(device):SBL:SETLEV")
+    field(DOL4, "$(device):SBL:SETLEV")
+    field(DOL5, "$(device):SBL:SETLEV")
+    field(DOL6, "$(device):SBL:SETLEV")
+    field(DOL7, "$(device):SBL:SETLEV")
+    field(DOL8, "$(device):SBL:SETLEV")
+    field(LNK1, "$(tsp1):SBL:SETLEV CA")
+    field(LNK2, "$(tsp2):SBL:SETLEV CA")
+    field(LNK3, "$(tsp3):SBL:SETLEV CA")
+    field(LNK4, "$(tsp4):SBL:SETLEV CA")
+    field(LNK5, "$(tsp5):SBL:SETLEV CA")
+    field(LNK6, "$(tsp6):SBL:SETLEV CA")
+    field(LNK7, "$(tsp7):SBL:SETLEV CA")
+    field(LNK8, "$(tsp8):SBL:SETLEV CA")
+}
+record(bo, "$(device):SBL:SETPRM")
+{
+    field(DESC, "Sublimation Parameter")
+    field(FLNK, "$(device):SBL:SEQPRM")
+    field(ZNAM, "Amps")
+    field(ONAM, "Watts")
+    field(DOL,  "1")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SBL:SEQPRM")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SBL:SETPRM")
+    field(DOL2, "$(device):SBL:SETPRM")
+    field(DOL3, "$(device):SBL:SETPRM")
+    field(DOL4, "$(device):SBL:SETPRM")
+    field(DOL5, "$(device):SBL:SETPRM")
+    field(DOL6, "$(device):SBL:SETPRM")
+    field(DOL7, "$(device):SBL:SETPRM")
+    field(DOL8, "$(device):SBL:SETPRM")
+    field(LNK1, "$(tsp1):SBL:SETPRM CA")
+    field(LNK2, "$(tsp2):SBL:SETPRM CA")
+    field(LNK3, "$(tsp3):SBL:SETPRM CA")
+    field(LNK4, "$(tsp4):SBL:SETPRM CA")
+    field(LNK5, "$(tsp5):SBL:SETPRM CA")
+    field(LNK6, "$(tsp6):SBL:SETPRM CA")
+    field(LNK7, "$(tsp7):SBL:SETPRM CA")
+    field(LNK8, "$(tsp8):SBL:SETPRM CA")
+}
+record(ao, "$(device):SBL:SETTIM") {
+    field(DESC, "Sublimation Time")
+    field(FLNK, "$(device):SBL:SEQTIM")
+    field(EGU,  "s")
+    field(DRVL, "0")
+    field(DRVH, "255")
+    field(LOPR, "0")
+    field(HOPR, "255")
+    field(PREC, "0")
+    field(DOL,  "120")
+    field(PINI, "YES")
+}
+record(seq, "$(device):SBL:SEQTIM")
+{
+    field(SELM, "All")
+    field(DOL1, "$(device):SBL:SETTIM")
+    field(DOL2, "$(device):SBL:SETTIM")
+    field(DOL3, "$(device):SBL:SETTIM")
+    field(DOL4, "$(device):SBL:SETTIM")
+    field(DOL5, "$(device):SBL:SETTIM")
+    field(DOL6, "$(device):SBL:SETTIM")
+    field(DOL7, "$(device):SBL:SETTIM")
+    field(DOL8, "$(device):SBL:SETTIM")
+    field(LNK1, "$(tsp1):SBL:SETTIM CA")
+    field(LNK2, "$(tsp2):SBL:SETTIM CA")
+    field(LNK3, "$(tsp3):SBL:SETTIM CA")
+    field(LNK4, "$(tsp4):SBL:SETTIM CA")
+    field(LNK5, "$(tsp5):SBL:SETTIM CA")
+    field(LNK6, "$(tsp6):SBL:SETTIM CA")
+    field(LNK7, "$(tsp7):SBL:SETTIM CA")
+    field(LNK8, "$(tsp8):SBL:SETTIM CA")
+}
+################################################################################
+
+

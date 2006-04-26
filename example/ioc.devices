@@ -1,0 +1,11 @@
+serial ornlSerial {
+# Digitel MPC
+0 {
+    device_name /ty/mpc/0
+    baud 9600
+    data_bits 8
+    stop_bits 1
+    parity N
+    flow N
+  }
+}

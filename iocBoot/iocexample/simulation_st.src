@@ -1,0 +1,37 @@
+#!$(INSTALL)/bin/$(ARCH)/simulation
+
+## You may have to change example to something else
+## everywhere it appears in this file
+
+cd "$(INSTALL)"
+
+# Allow use of Backspace in vxWorks monitor
+$(VXWORKS_ONLY)tyBackspaceSet(127)
+
+$(LINUX_ONLY)epicsEnvSet(EPICS_CA_REPEATER_PORT,"6065")
+$(LINUX_ONLY)epicsEnvSet(EPICS_CA_SERVER_PORT,"6064")
+$(VXWORKS_ONLY)putenv("EPICS_CA_SERVER_PORT=6064")
+$(VXWORKS_ONLY)putenv("EPICS_CA_REPEATER_PORT=6065")
+
+
+# Load binaries on architectures that need to do so.
+# VXWORKS_ONLY, LINUX_ONLY and RTEMS_ONLY are macros that resolve
+# to a comment symbol on architectures that are not the current
+# build architecture, so they can be used liberally to do architecture
+# specific things. Alternatively, you can include an architecture
+# specific file.
+$(VXWORKS_ONLY)ld < bin/$(ARCH)/simulation.munch
+
+## This drvTS initializer is needed if the IOC has a hardware event system
+#TSinit
+
+## Register all support components
+dbLoadDatabase("dbd/simulation.dbd")
+simulation_registerRecordDeviceDriver(pdbbase)
+
+
+## Load record instances
+cd "example"
+dbLoadTemplate "simulation_digitelMpc.substitutions"
+
+iocInit()

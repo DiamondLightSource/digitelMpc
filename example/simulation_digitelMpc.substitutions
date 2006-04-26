@@ -1,0 +1,52 @@
+# simulation_digitelMpc.sub
+# Initialise templates for a simulated Digitel Multi Pump Controller
+# Pete Owens - 6/2/04
+#
+# Based on digitelMpc.sub 
+#
+# substitutions:
+# device  - device name
+# port    - serial port (device manager port number)
+# unit    - unit number for multi-drop serial (5 by default)
+# pump    - ion pump number (1 or 2)
+#################################################################
+# Controller
+#
+file ../db/simulation_digitelMpc.template
+{
+pattern {    device   , port, unit }
+        { TS-VA-MPC-01,  0  ,  1   } 
+}
+#################################################################
+# 2 Ion pumps
+#
+file ../db/simulation_digitelMpcIonp.template
+{
+pattern {    device    , port, unit, pump, size }
+        { TS-VA-IONP-01,  0  ,  1  ,  1  ,  40  }    
+        { TS-VA-IONP-02,  0  ,  1  ,  2  ,  40  }
+}
+file ../db/digitelMpcIonpGroup.template
+{
+pattern { device, delay,
+          ionp1, ionp2, ionp3, ionp4,
+          ionp5, ionp6, ionp7, ionp8 }
+        { TS-VA-IONP-99,  5,
+          TS-VA-IONP-01, TS-VA-IONP-01, TS-VA-IONP-01, TS-VA-IONP-01, 
+          TS-VA-IONP-01, TS-VA-IONP-02, TS-VA-IONP-02, TS-VA-IONP-02 }
+}
+#################################################################
+# TSP
+#
+file ../db/simulation_digitelMpcTsp.template
+{
+pattern {   device    , port, unit }
+        { TS-VA-TSP-01,  0  ,  1   }    
+        { TS-VA-TSP-02,  0  ,  1   } 
+}
+file ../db/digitelMpcTspGroup.template
+{
+pattern {   device     , tsp1, tsp2, tsp3, tsp4, tsp5, tsp6, tsp7, tsp8 }
+        { TS-VA-TSP-99, TS-VA-TSP-01, TS-VA-TSP-02, TS-VA-TSP-01, TS-VA-TSP-01, TS-VA-TSP-01, TS-VA-TSP-01, TS-VA-TSP-01, TS-VA-TSP-01 }    
+}
+#################################################################

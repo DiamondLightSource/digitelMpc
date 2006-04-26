@@ -1,0 +1,35 @@
+# digitelMpc.substitutions
+# Initialise templates for a Digitel Multi Pump Controller
+# Pete Owens - 1/10/03
+#
+# substitutions:
+# device  - device name
+# port    - serial port (device manager port number)
+# unit    - unit number for multi-drop serial (5 by default)
+# pump    - ion pump number (1 or 2)
+#################################################################
+# Controller
+#
+file ../db/digitelMpc.template
+{
+pattern {    device   , port, unit }
+        { TS-VA-MPC-01,  ty_mpc_0 ,  1   } 
+}
+#################################################################
+# 2 Ion pumps
+#
+file ../db/digitelMpcIonp.template
+{
+pattern {    device    , port, unit, pump, size }
+        { TS-VA-IONP-01,  ty_mpc_0  ,  1  ,  1  ,  40  }    
+        { TS-VA-IONP-02,  ty_mpc_0  ,  1  ,  2  ,  40  }
+}
+#################################################################
+# TSP
+#
+file ../db/digitelMpcTsp.template
+{
+pattern {   device    , port, unit }
+        { TS-VA-TSP-01,  ty_mpc_0  ,  1   }    
+}
+#################################################################

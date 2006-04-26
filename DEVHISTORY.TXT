@@ -1,0 +1,28 @@
+rga - Pete Owens 24-6-2004
+    Application to control an RGA controller via stream device
+
+Release 2_0
+PHO 26-7-04 :
+   Initial version for EPICS_3_13_9 
+
+Pre-requisite:
+    Stream device version 1.5 or later must be used.
+
+The Application consists of the following files:
+    rga.protocol    - Stream device protocol file
+    rga.db          - EPICS database 
+    rga.edl         - EDM panel  
+    rga-symbol.edl  - EDM symbol  
+
+
+The example directory has files to show the application in action:
+    st.cmd         - VxWorks startup script to initialise an IOC
+    rga.sub        - substitution files to instantiate the records
+    rga-launch.edl - EDM pannel to launch panels for the RGA 
+    startgui       - script to start off the user interface
+
+Simulation consists of the equivalent files:
+    simulation_st.cmd
+    simulation_rga.sub
+    simulation_rga.db
+

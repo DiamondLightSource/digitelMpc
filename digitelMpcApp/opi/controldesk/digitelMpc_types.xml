@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<types>
+  <device name="VA-MPC">
+    <property name="Model Number"      readback=":MODEL"   />
+    <property name="Firmware Revision" readback=":VERSION" />
+    <property name="Line Voltage"      readback=":V"       />
+    <property name="Line Frequency"    readback=":F"       />
+    <property name="Auto Restart"          smon=":AUTOST"  />
+    <property name="Fan"                   smon=":SETFAN"  />
+  </device>  
+  <device name="VA-IONP">
+    <property name="Pressure"                               readback=":P"    />
+    <property name="Supply Status"          scon=":START"       smon=":STA"  />
+    <property name="Current"                                readback=":I"    />
+    <property name="Voltage"                                readback=":V"    />
+    <property name="HV Strapping"                           readback=":HV"   />
+    <property name="Error Code"                                 smon=":ERR"  />
+    <property name="Pump Size"          setpoint=":SETSIZE" readback=":SIZE" />
+    <property name="Calibration Factor" setpoint=":SETCAL"  readback=":CAL"  />
+    <property name="Setpoint 1"         setpoint=":SETSP1"  readback=":SP1"  />    
+    <property name="Setpoint 2"         setpoint=":SETSP2"  readback=":SP2"  />    
+  </device>  
+  <device name="VA-TSP">
+    <property name="Operating Mode"              scon=":SETMODE"    />
+    <property name="Active Filament"             scon=":SETFIL"     />
+    <property name="Clear Filaments"             scon=":CLEAR"      />
+    <property name="Auto Advance Filaments"      scon=":SETAUTOFIL" />
+    <property name="Pressure Threshold"      setpoint=":SETPTHR"    />
+    <property name="Period Between Firing"   setpoint=":SETPER"     />
+    <property name="Number of Cycles"        setpoint=":SETCYC"     />
+    <property name="Sublimation Level"       setpoint=":SBL:SETLEV" />
+    <property name="Sublimation Parameter"        scon=":SBL:SETPRM" />   
+    <property name="Sublimation Time"        setpoint=":SBL:SETTIM" />   
+    <property name="Cycles Left"             readback=":LEFT"       />
+    <property name="Filament 1 Minutes Used" readback=":FIL1:USED"  />
+    <property name="Filament 2 Minutes Used" readback=":FIL2:USED"  /> 
+    <property name="Filament 3 Minutes Used" readback=":FIL3:USED"  />
+  </device>
+</types>
