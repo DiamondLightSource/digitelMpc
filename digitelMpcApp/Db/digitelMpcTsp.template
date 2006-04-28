@@ -138,20 +138,26 @@ record(ao, "$(device):SETPTHR") {
   field(PINI, "YES")
 }
 
-
 record(scalcout, "$(device):TSPTIMED:CMDFMT") {
   field(DESC, "Format TSP Timed Cmd")
+  field(FLNK, "$(device):TSPTIMED:CMDFMT2")
   field(INPA, "$(device):OUTPER")
   field(INPB, "$(device):SETCYCL")
+  field(CALC, "$P('%d,',A)+$P('%d,',B)")
+  field(OOPT, "Never")
+}
+
+record(scalcout, "$(device):TSPTIMED:CMDFMT2") {
+  field(DESC, "Format TSP Timed Cmd 2")
+  field(INAA, "$(device):TSPTIMED:CMDFMT.SVAL")
   field(INPC, "$(device):SETPTHR")
   field(INPD, "$(device):SETMODE.RVAL")
   field(CALC, "D==1")
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
-  field(OCAL, "$P('%d,',A)+$P('%d,',B)+$P('%.1e',C)")
+  field(OCAL, "AA+$P('%3.1e',C)")
   field(OUT, "$(device):TSPTIMED:CMDOUT PP")
 }
-
 
 record(stringout, "$(device):TSPTIMED:CMDOUT") {
   field(DESC, "TSP Timed Cmd Output")
@@ -375,7 +381,6 @@ record(fanout, "$(device):SBL:FAN") {
   field(LNK2, "$(device):CALPER")
 }
 
-
 record(scalcout, "$(device):SBL:CMDFMT") {
   field(DESC, "Format Sbl Cmd")
   field(INPA, "$(device):SBL:SETLEV")
@@ -386,7 +391,6 @@ record(scalcout, "$(device):SBL:CMDFMT") {
   field(CALC, "$P('%d,',A)+(B==0?'A':'B')+$P(',%d',C)")
   field(OUT, "$(device):SBL:CMDOUT PP")
 }
-
 
 record(stringout, "$(device):SBL:CMDOUT") {
   field(DESC, "Sublimation Cmd Output")
@@ -448,18 +452,24 @@ record(calc, "$(device):TSPMODE:CALCSEQSEL") {
 #! Field("$(device):SETPTHR.FLNK",16777215,1,"$(device):SETPTHR.FLNK")
 #! Link("$(device):SETPTHR.FLNK","$(device):TSPTIMED:CMDFMT")
 #! Field("$(device):SETPTHR.VAL",16777215,1,"$(device):SETPTHR.VAL")
-#! Record("$(device):TSPTIMED:CMDFMT",1260,600,0,0,"$(device):TSPTIMED:CMDFMT")
+#! Record("$(device):TSPTIMED:CMDFMT",1260,599,0,0,"$(device):TSPTIMED:CMDFMT")
 #! Field("$(device):TSPTIMED:CMDFMT.INPA",16777215,0,"$(device):TSPTIMED:CMDFMT.INPA")
 #! Link("$(device):TSPTIMED:CMDFMT.INPA","$(device):OUTPER.VAL")
 #! Field("$(device):TSPTIMED:CMDFMT.INPB",16777215,0,"$(device):TSPTIMED:CMDFMT.INPB")
 #! Link("$(device):TSPTIMED:CMDFMT.INPB","$(device):SETCYCL.VAL")
-#! Field("$(device):TSPTIMED:CMDFMT.INPC",16777215,0,"$(device):TSPTIMED:CMDFMT.INPC")
-#! Link("$(device):TSPTIMED:CMDFMT.INPC","$(device):SETPTHR.VAL")
-#! Field("$(device):TSPTIMED:CMDFMT.INPD",16777215,0,"$(device):TSPTIMED:CMDFMT.INPD")
-#! Link("$(device):TSPTIMED:CMDFMT.INPD","$(device):SETMODE.RVAL")
-#! Field("$(device):TSPTIMED:CMDFMT.OUT",16777215,1,"$(device):TSPTIMED:CMDFMT.OUT")
-#! Link("$(device):TSPTIMED:CMDFMT.OUT","$(device):TSPTIMED:CMDOUT.VAL")
-#! Record("$(device):TSPTIMED:CMDOUT",1520,767,0,0,"$(device):TSPTIMED:CMDOUT")
+#! Field("$(device):TSPTIMED:CMDFMT.FLNK",16777215,1,"$(device):TSPTIMED:CMDFMT.FLNK")
+#! Link("$(device):TSPTIMED:CMDFMT.FLNK","$(device):TSPTIMED:CMDFMT2")
+#! Field("$(device):TSPTIMED:CMDFMT.SVAL",16777215,1,"$(device):TSPTIMED:CMDFMT.SVAL")
+#! Record("$(device):TSPTIMED:CMDFMT2",1540,695,0,0,"$(device):TSPTIMED:CMDFMT2")
+#! Field("$(device):TSPTIMED:CMDFMT2.INAA",16777215,0,"$(device):TSPTIMED:CMDFMT2.INAA")
+#! Link("$(device):TSPTIMED:CMDFMT2.INAA","$(device):TSPTIMED:CMDFMT.SVAL")
+#! Field("$(device):TSPTIMED:CMDFMT2.INPC",16777215,0,"$(device):TSPTIMED:CMDFMT2.INPC")
+#! Link("$(device):TSPTIMED:CMDFMT2.INPC","$(device):SETPTHR.VAL")
+#! Field("$(device):TSPTIMED:CMDFMT2.INPD",16777215,0,"$(device):TSPTIMED:CMDFMT2.INPD")
+#! Link("$(device):TSPTIMED:CMDFMT2.INPD","$(device):SETMODE.RVAL")
+#! Field("$(device):TSPTIMED:CMDFMT2.OUT",16777215,1,"$(device):TSPTIMED:CMDFMT2.OUT")
+#! Link("$(device):TSPTIMED:CMDFMT2.OUT","$(device):TSPTIMED:CMDOUT.VAL")
+#! Record("$(device):TSPTIMED:CMDOUT",1560,1007,0,0,"$(device):TSPTIMED:CMDOUT")
 #! Field("$(device):TSPTIMED:CMDOUT.VAL",16777215,1,"$(device):TSPTIMED:CMDOUT.VAL")
 #! Record("$(device):SETFIL",1540,55,0,0,"$(device):SETFIL")
 #! Record("$(device):LEFT",2360,582,0,0,"$(device):LEFT")
