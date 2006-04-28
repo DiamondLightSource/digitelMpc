@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 35
-y 564
+x 86
+y 217
 w 232
-h 312
+h 310
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -35,85 +35,12 @@ x 0
 y 0
 w 232
 h 32
-font "arial-bold-r-16.0"
+font "arial-bold-r-18.0"
 fontAlign "center"
 fgColor index 14
 bgColor index 53
 value {
   "$(device)"
-}
-endObjectProperties
-
-# (Exit Button)
-object activeExitButtonClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 160
-y 280
-w 64
-h 24
-fgColor index 46
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-label "Exit"
-font "arial-medium-r-14.0"
-3d
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 160
-y 216
-w 64
-h 24
-fgColor index 43
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "arial-medium-r-14.0"
-buttonLabel "Control"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "digitelMpcIonpControl.edl"
-}
-menuLabel {
-  0 "Control"
-}
-setPosition {
-  0 "parentWindow"
-}
-symbols {
-  0 "devive=$(device)"
-}
-endObjectProperties
-
-# (Shell Command)
-object shellCmdClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 160
-y 248
-w 64
-h 24
-fgColor index 43
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "arial-medium-r-14.0"
-buttonLabel "Graph"
-numCmds 1
-command {
-  0 "buildStripToolconfig.sh $(device):PLOG log_mbar"
 }
 endObjectProperties
 
@@ -126,7 +53,7 @@ release 0
 x 8
 y 48
 w 216
-h 160
+h 158
 lineColor index 14
 fill
 fillColor index 5
@@ -274,7 +201,7 @@ release 0
 x 96
 y 64
 w 120
-h 24
+h 22
 controlPv "$(device):P"
 displayMode "exp"
 precision 1
@@ -297,7 +224,7 @@ release 0
 x 96
 y 120
 w 120
-h 24
+h 22
 controlPv "$(device):V"
 fgColor index 16
 fgAlarm
@@ -318,7 +245,7 @@ release 0
 x 96
 y 148
 w 120
-h 24
+h 22
 controlPv "$(device):I"
 displayMode "engineer"
 precision 1
@@ -341,7 +268,7 @@ release 0
 x 96
 y 176
 w 120
-h 24
+h 22
 controlPv "$(device):SIZE"
 fgColor index 16
 fgAlarm
@@ -362,12 +289,11 @@ release 0
 x 96
 y 92
 w 120
-h 24
+h 22
 controlPv "$(device):STA"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
 font "arial-bold-r-14.0"
 fontAlign "right"
 endObjectProperties
@@ -405,6 +331,79 @@ lineColor index 14
 fillColor index 3
 endObjectProperties
 
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 160
+y 278
+w 64
+h 24
+fgColor index 46
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "arial-medium-r-14.0"
+3d
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 160
+y 214
+w 64
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Control"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "digitelMpcIonpControl.edl"
+}
+menuLabel {
+  0 "Control"
+}
+setPosition {
+  0 "parentWindow"
+}
+symbols {
+  0 "devive=$(device)"
+}
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 160
+y 246
+w 64
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Graph"
+numCmds 1
+command {
+  0 "buildStripToolconfig.sh $(device):PLOG log_mbar"
+}
+endObjectProperties
+
 # (Group)
 object activeGroupClass
 beginObjectProperties
@@ -412,7 +411,7 @@ major 4
 minor 0
 release 0
 x 8
-y 216
+y 214
 w 136
 h 56
 
@@ -425,7 +424,7 @@ major 4
 minor 0
 release 0
 x 8
-y 224
+y 222
 w 136
 h 48
 lineColor index 14
@@ -440,7 +439,7 @@ major 4
 minor 0
 release 0
 x 80
-y 240
+y 238
 w 56
 h 24
 fgColor index 25
@@ -463,7 +462,7 @@ major 10
 minor 0
 release 0
 x 16
-y 240
+y 238
 w 56
 h 24
 controlPv "$(device):STARTING"
@@ -481,7 +480,7 @@ major 4
 minor 0
 release 0
 x 16
-y 240
+y 238
 w 56
 h 24
 fgColor index 25
@@ -507,7 +506,7 @@ major 4
 minor 1
 release 0
 x 8
-y 216
+y 214
 w 48
 h 16
 font "arial-medium-r-12.0"
@@ -526,7 +525,7 @@ major 4
 minor 0
 release 0
 x 8
-y 216
+y 214
 w 48
 h 16
 lineColor index 14

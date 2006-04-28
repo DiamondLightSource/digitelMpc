@@ -15,23 +15,17 @@ PRODDIR=/home/diamond/R3.14.7/prod/support
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-#If using the sequencer, uncomment this line:
-#SNCSEQ=/home/diamond/R3.14.7/prod/support/seq/2-0-10
-
 # External module definitions (prod release).
-# These are required for building the exampleApp
+# Uncomment the following when building the exampleApp
 #ASYN=$(PRODDIR)/asyn/4-3
 #PRESSARR=$(PRODDIR)/pressArr_subrec/dls2-2
 #IPAC=$(PRODDIR)/ipac/2-8dls4-2
 #HY8515=$(PRODDIR)/Hy8515/3-1
 #UTILITY=$(PRODDIR)/utility/dls2-6
 #IP=/home/pjl45/R3.14.7/synApps/ip/2-6
-#SNCSEQ=/home/pjl45/R3.14.7/synApps/seq/2-0-10
-##SNCSEQ=$(PRODDIR)/seq/2-0-10
-##CALC=$(PRODDIR)/calc/2-4dls2
-#CALC=/home/pjl45/R3.14.7/synApps/calc/2-5
-##SSCAN=$(PRODDIR)/sscan/2-4dls1
-#SSCAN=/home/pjl45/R3.14.7/synApps/sscan/2-5-1
+#SNCSEQ=$(PRODDIR)/seq/2-0-10
+#CALC=$(PRODDIR)/calc/2-4dls2
+#SSCAN=$(PRODDIR)/sscan/2-4dls1
 
 
 # EPICS_BASE usually appears last so other apps can override stuff:

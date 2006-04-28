@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 141
-y 280
+x 91
+y 239
 w 328
-h 472
+h 468
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -32,24 +32,9 @@ major 4
 minor 0
 release 0
 x 8
-y 416
-w 152
-h 48
-lineColor index 14
-fill
-fillColor index 5
-endObjectProperties
-
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 8
 y 48
 w 312
-h 352
+h 348
 lineColor index 14
 fill
 fillColor index 5
@@ -65,32 +50,13 @@ x 0
 y 0
 w 328
 h 32
-font "arial-bold-r-16.0"
+font "arial-bold-r-18.0"
 fontAlign "center"
 fgColor index 14
 bgColor index 53
 value {
   "$(device)"
 }
-endObjectProperties
-
-# (Exit Button)
-object activeExitButtonClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 256
-y 440
-w 64
-h 24
-fgColor index 46
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-label "Exit"
-font "arial-medium-r-14.0"
-3d
 endObjectProperties
 
 # (Static Text)
@@ -162,7 +128,7 @@ release 0
 x 96
 y 64
 w 72
-h 24
+h 22
 controlPv "$(device):P"
 displayMode "exp"
 precision 1
@@ -185,7 +151,7 @@ release 0
 x 96
 y 148
 w 72
-h 24
+h 22
 controlPv "$(device):V"
 fgColor index 16
 fgAlarm
@@ -226,7 +192,7 @@ release 0
 x 96
 y 176
 w 72
-h 24
+h 22
 controlPv "$(device):I"
 displayMode "engineer"
 precision 1
@@ -249,12 +215,11 @@ release 0
 x 96
 y 92
 w 216
-h 24
+h 22
 controlPv "$(device):STA"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
 font "arial-bold-r-14.0"
 endObjectProperties
 
@@ -267,12 +232,11 @@ release 0
 x 96
 y 120
 w 216
-h 24
+h 22
 controlPv "$(device):ERR"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
 font "arial-bold-r-14.0"
 endObjectProperties
 
@@ -305,7 +269,7 @@ release 0
 x 172
 y 64
 w 140
-h 24
+h 22
 indicatorColor index 16
 indicatorAlarm
 fgColor index 14
@@ -319,28 +283,6 @@ border
 limitsFromDb
 precision 0
 scaleFormat "FFloat"
-endObjectProperties
-
-# (Shell Command)
-object shellCmdClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 256
-y 408
-w 64
-h 24
-fgColor index 43
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "arial-medium-r-14.0"
-buttonLabel "Graph"
-numCmds 1
-command {
-  0 "buildStripToolconfig.sh $(device):PLOG log_mbar"
-}
 endObjectProperties
 
 # (Group)
@@ -402,7 +344,7 @@ release 0
 x 96
 y 204
 w 72
-h 24
+h 22
 controlPv "$(device):HV"
 fgColor index 16
 fgAlarm
@@ -434,73 +376,6 @@ value {
 autoSize
 endObjectProperties
 
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 16
-y 432
-w 64
-h 24
-controlPv "$(device):STARTING"
-fgColor index 18
-fgAlarm
-bgColor index 10
-font "arial-bold-r-14.0"
-fontAlign "center"
-endObjectProperties
-
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 16
-y 432
-w 64
-h 24
-fgColor index 25
-onColor index 4
-offColor index 3
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(device):START"
-releaseValue "Start"
-onLabel "Start"
-offLabel "Start"
-3d
-font "arial-medium-r-14.0"
-visPv "$(device):STARTING"
-visMin "0"
-visMax "1"
-endObjectProperties
-
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 88
-y 432
-w 64
-h 24
-fgColor index 25
-onColor index 4
-offColor index 3
-topShadowColor index 1
-botShadowColor index 11
-controlPv "$(device):START"
-pressValue "Stop"
-onLabel "Stop"
-offLabel "Stop"
-3d
-font "arial-medium-r-14.0"
-endObjectProperties
-
 # (Rectangle)
 object activeRectangleClass
 beginObjectProperties
@@ -510,7 +385,7 @@ release 0
 x 208
 y 240
 w 104
-h 152
+h 148
 lineColor index 14
 fill
 fillColor index 3
@@ -525,7 +400,7 @@ release 0
 x 16
 y 240
 w 88
-h 152
+h 148
 lineColor index 14
 fill
 fillColor index 3
@@ -540,7 +415,7 @@ release 0
 x 104
 y 240
 w 104
-h 152
+h 148
 lineColor index 14
 fill
 fillColor index 3
@@ -632,7 +507,7 @@ release 0
 x 112
 y 272
 w 88
-h 24
+h 22
 controlPv "$(device):SIZE"
 fgColor index 16
 fgAlarm
@@ -653,7 +528,7 @@ release 0
 x 216
 y 272
 w 88
-h 24
+h 22
 controlPv "$(device):SETSIZE"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -701,7 +576,7 @@ release 0
 x 112
 y 300
 w 88
-h 24
+h 22
 controlPv "$(device):CAL"
 fgColor index 16
 fgAlarm
@@ -762,7 +637,7 @@ release 0
 x 112
 y 356
 w 88
-h 24
+h 22
 controlPv "$(device):SP2"
 displayMode "exp"
 precision 1
@@ -785,7 +660,7 @@ release 0
 x 112
 y 328
 w 88
-h 24
+h 22
 controlPv "$(device):SP1"
 displayMode "exp"
 precision 1
@@ -808,7 +683,7 @@ release 0
 x 216
 y 300
 w 88
-h 24
+h 22
 controlPv "$(device):SETCAL"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -836,7 +711,7 @@ release 0
 x 216
 y 328
 w 88
-h 24
+h 22
 controlPv "$(device):SETSP1"
 format "exponential"
 font "arial-bold-r-14.0"
@@ -865,7 +740,7 @@ release 0
 x 216
 y 356
 w 88
-h 24
+h 22
 controlPv "$(device):SETSP2"
 format "exponential"
 font "arial-bold-r-14.0"
@@ -927,6 +802,142 @@ lineColor index 14
 fillColor index 3
 endObjectProperties
 
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 8
+y 408
+w 312
+h 56
+
+beginGroup
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 8
+y 412
+w 152
+h 48
+lineColor index 14
+fill
+fillColor index 5
+endObjectProperties
+
+# (Exit Button)
+object activeExitButtonClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 256
+y 436
+w 64
+h 24
+fgColor index 46
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+label "Exit"
+font "arial-medium-r-14.0"
+3d
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 256
+y 404
+w 64
+h 24
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "Graph"
+numCmds 1
+command {
+  0 "buildStripToolconfig.sh $(device):PLOG log_mbar"
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 16
+y 428
+w 64
+h 24
+controlPv "$(device):STARTING"
+fgColor index 18
+fgAlarm
+bgColor index 10
+font "arial-bold-r-14.0"
+fontAlign "center"
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 16
+y 428
+w 64
+h 24
+fgColor index 25
+onColor index 4
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(device):START"
+releaseValue "Start"
+onLabel "Start"
+offLabel "Start"
+3d
+font "arial-medium-r-14.0"
+visPv "$(device):STARTING"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (Message Button)
+object activeMessageButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 88
+y 428
+w 64
+h 24
+fgColor index 25
+onColor index 4
+offColor index 3
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(device):START"
+pressValue "Stop"
+onLabel "Stop"
+offLabel "Stop"
+3d
+font "arial-medium-r-14.0"
+endObjectProperties
+
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -934,7 +945,7 @@ major 4
 minor 1
 release 0
 x 8
-y 408
+y 404
 w 56
 h 16
 font "arial-medium-r-12.0"
@@ -953,10 +964,14 @@ major 4
 minor 0
 release 0
 x 8
-y 408
+y 404
 w 56
 h 16
 lineColor index 14
 fillColor index 3
+endObjectProperties
+
+endGroup
+
 endObjectProperties
 

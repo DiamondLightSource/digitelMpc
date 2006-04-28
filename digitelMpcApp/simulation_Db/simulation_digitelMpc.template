@@ -138,7 +138,7 @@ record(bi, "$(device):AUTOST")
 #   field(DTYP, "ornlSerial")
 #   field(INP,  "@digitel mpc autost u=$(port) m=$(unit)")
 field (INP, "$(device):SETAUTOST")
-    field(SCAN, "1 second")
+    field(SCAN, "10 second")
     field(ZNAM, "No")
     field(ONAM, "Yes")
 }

@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 169
-y 341
+x 91
+y 309
 w 352
 h 456
 font "arial-medium-r-16.0"
@@ -50,7 +50,7 @@ x 0
 y 0
 w 352
 h 32
-font "arial-bold-r-16.0"
+font "arial-bold-r-18.0"
 fontAlign "center"
 fgColor index 14
 bgColor index 53

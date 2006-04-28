@@ -128,7 +128,7 @@ record(bi, "$(device):AUTOST") {
   field(DESC, "Auto Restart")
   field(DTYP, "asyn MPC")
   field(INP, "@asyn($(port) $(unit))GET_AUTO_RESTART")
-  field(SCAN, "1 second")
+  field(SCAN, "10 second")
   field(ZNAM, "No")
   field(ONAM, "Yes")
 }

@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 75
-y 261
+x 403
+y 108
 w 240
-h 248
+h 246
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -35,7 +35,7 @@ x 0
 y 0
 w 240
 h 32
-font "arial-bold-r-16.0"
+font "arial-bold-r-18.0"
 fontAlign "center"
 fgColor index 14
 bgColor index 53
@@ -51,7 +51,7 @@ major 4
 minor 1
 release 0
 x 168
-y 216
+y 214
 w 64
 h 24
 fgColor index 46
@@ -72,7 +72,7 @@ release 0
 x 8
 y 48
 w 224
-h 160
+h 158
 lineColor index 14
 fill
 fillColor index 5
@@ -125,13 +125,12 @@ release 0
 x 16
 y 92
 w 208
-h 24
+h 22
 controlPv "$(device):VERSION"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 fontAlign "right"
 endObjectProperties
 
@@ -144,13 +143,12 @@ release 0
 x 112
 y 120
 w 56
-h 24
+h 22
 controlPv "$(device):V"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 endObjectProperties
 
 # (Static Text)
@@ -181,14 +179,13 @@ release 0
 x 168
 y 120
 w 56
-h 24
+h 22
 controlPv "$(device):F"
 precision 2
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 fontAlign "right"
 endObjectProperties
 
@@ -201,13 +198,12 @@ release 0
 x 112
 y 64
 w 112
-h 24
+h 22
 controlPv "$(device):MODEL"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 fontAlign "right"
 endObjectProperties
 
@@ -239,13 +235,12 @@ release 0
 x 112
 y 148
 w 112
-h 24
+h 22
 controlPv "$(device):AUTOST"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 endObjectProperties
 
 # (Textupdate)
@@ -257,13 +252,12 @@ release 0
 x 112
 y 176
 w 112
-h 24
+h 22
 controlPv "$(device):SETFAN"
-fgColor index 16
+fgColor index 18
 fgAlarm
 bgColor index 10
-fill
-font "arial-medium-r-14.0"
+font "arial-bold-r-14.0"
 endObjectProperties
 
 # (Static Text)
