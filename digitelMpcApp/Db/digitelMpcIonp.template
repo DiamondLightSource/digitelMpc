@@ -418,17 +418,16 @@ record(mbbo, "$(device):NEXT:ERR") {
   field(OUT, "$(device):ERR PP")
 }
 
-
 record(calcout, "$(device):DOPINI") {
   field(SCAN, "5 second")
   field(SDIS, "$(device):DOPINI")
   field(VAL, "-1")
   field(CALC, "A+1")
   field(INPA, "$(device):DOPINI")
-  field(OUT, "$(device):SETSIZE.PROC")
+  field(OUT, "$(device):SETSIZE")
   field(OOPT, "Transition To Non-zero")
   field(DOPT, "Use OCAL")
-  field(OCAL, "1")
+  field(OCAL, "$(size)")
 }
 
 #! Further lines contain data used by VisualDCT
@@ -512,7 +511,7 @@ record(calcout, "$(device):DOPINI") {
 #! Record("$(device):SIZE",300,323,0,0,"$(device):SIZE")
 #! Record("$(device):SETSIZE",40,265,0,0,"$(device):SETSIZE")
 #! Field("$(device):SETSIZE.DOL",16777215,1,"$(device):SETSIZE.DOL")
-#! Field("$(device):SETSIZE.PROC",16777215,1,"$(device):SETSIZE.PROC")
+#! Field("$(device):SETSIZE.VAL",16777215,1,"$(device):SETSIZE.VAL")
 #! Record("$(device):CAL",820,303,0,0,"$(device):CAL")
 #! Record("$(device):SETCAL",540,308,0,0,"$(device):SETCAL")
 #! Record("$(device):START",1040,312,0,0,"$(device):START")
@@ -525,11 +524,11 @@ record(calcout, "$(device):DOPINI") {
 #! Field("$(device):NEXT:ERR.OUT",16777215,1,"$(device):NEXT:ERR.OUT")
 #! Link("$(device):NEXT:ERR.OUT","$(device):ERR.VAL")
 #! Field("$(device):NEXT:ERR.VAL",16777215,1,"$(device):NEXT:ERR.VAL")
-#! Record("$(device):DOPINI",1500,253,0,1,"$(device):DOPINI")
+#! Record("$(device):DOPINI",1440,253,0,1,"$(device):DOPINI")
 #! Field("$(device):DOPINI.VAL",16777215,0,"$(device):DOPINI.VAL")
 #! Field("$(device):DOPINI.INPA",16777215,0,"$(device):DOPINI.INPA")
 #! Link("$(device):DOPINI.INPA","$(device):DOPINI.VAL")
 #! Field("$(device):DOPINI.SDIS",16777215,0,"$(device):DOPINI.SDIS")
 #! Link("$(device):DOPINI.SDIS","$(device):DOPINI.VAL")
 #! Field("$(device):DOPINI.OUT",16777215,0,"$(device):DOPINI.OUT")
-#! Link("$(device):DOPINI.OUT","$(device):SETSIZE.PROC")
+#! Link("$(device):DOPINI.OUT","$(device):SETSIZE.VAL")
