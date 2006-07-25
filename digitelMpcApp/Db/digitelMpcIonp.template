@@ -424,7 +424,7 @@ record(calcout, "$(device):DOPINI") {
   field(VAL, "-1")
   field(CALC, "A+1")
   field(INPA, "$(device):DOPINI")
-  field(OUT, "$(device):SETSIZE")
+  field(OUT, "$(device):SETSIZE PP")
   field(OOPT, "Transition To Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "$(size)")
