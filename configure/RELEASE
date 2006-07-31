@@ -9,7 +9,8 @@
 # module defined in the RELEASE file is rebuilt.
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-PRODDIR=/home/diamond/R3.14.7/prod/support
+SUPPORT=/home/diamond/R3.14.8.2/prod/support
+WORK=/home/diamond/R3.14.8.2/work/support
 
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION_APP here
@@ -17,19 +18,19 @@ PRODDIR=/home/diamond/R3.14.7/prod/support
 
 # External module definitions (prod release).
 # Uncomment the following when building the exampleApp
-#ASYN=$(PRODDIR)/asyn/4-3
-#PRESSARR=$(PRODDIR)/pressArr_subrec/dls2-2
-#IPAC=$(PRODDIR)/ipac/2-8dls4-2
-#HY8515=$(PRODDIR)/Hy8515/3-1
-#UTILITY=$(PRODDIR)/utility/dls2-6
-#IP=$(PRODDIR)/ip/2-6dls1-0
-#SNCSEQ=$(PRODDIR)/seq/2-0-10
-#CALC=$(PRODDIR)/calc/2-4dls2
-#SSCAN=$(PRODDIR)/sscan/2-4dls1
+#ASYN=		$(SUPPORT)/asyn/4-6
+#PRESSARR=	$(WORK)/pressArr_subrec
+#IPAC=		$(WORK)/ipac
+#HY8515=	$(WORK)/Hy8515
+#UTILITY=	$(WORK)/utility
+#IP=		$(WORK)/ip
+#SNCSEQ=	$(SUPPORT)/seq/2-0-11dls1
+#CALC=		$(WORK)/calc
+#SSCAN=		$(WORK)/sscan
 
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/home/epics/R3.14.7/base
+EPICS_BASE=/home/epics/R3.14.8.2/base
 
 #Capfast users may need the following definitions
 #CAPFAST_TEMPLATES=
