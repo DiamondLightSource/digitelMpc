@@ -18,6 +18,7 @@ DB += digitelMpcIonp.template
 DB += digitelMpcTsp.template
 DB += digitelMpcIonpGroup.template
 DB += digitelMpcTspGroup.template
+DB += dummyIonp.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
