@@ -133,18 +133,33 @@ record(bi, "$(device):AUTOST") {
   field(ONAM, "Yes")
 }
 
+record(mbbo, "$(device):SETUNIT") {
+  field(DESC, "Set units")
+  field(PINI, "YES")
+  field(DTYP, "asyn MPC")
+  field(VAL, "1")
+  field(OUT, "@asyn($(port) $(unit))SET_UNIT")
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(ZRST, "Torr")
+  field(ONST, "MBAR")
+  field(TWST, "PA")
+}
+
 #! Further lines contain data used by VisualDCT
 #! View(0,0,1.0)
 #! Record("$(device):MODEL",20,28,0,0,"$(device):MODEL")
-#! Record("$(device):VERSION",260,28,0,0,"$(device):VERSION")
+#! Record("$(device):VERSION",700,208,0,0,"$(device):VERSION")
 #! Record("$(device):V",20,161,0,0,"$(device):V")
 #! Field("$(device):V.FLNK",16777215,1,"$(device):V.FLNK")
 #! Link("$(device):V.FLNK","$(device):OUTV")
 #! Field("$(device):V.VAL",16777215,1,"$(device):V.VAL")
-#! Record("$(device):OUTV",300,185,0,0,"$(device):OUTV")
+#! Record("$(device):OUTV",280,265,0,0,"$(device):OUTV")
 #! Field("$(device):OUTV.DOL",16777215,0,"$(device):OUTV.DOL")
 #! Link("$(device):OUTV.DOL","$(device):V.VAL")
 #! Record("$(device):F",500,35,0,0,"$(device):F")
 #! Record("$(device):SETFAN",700,26,0,0,"$(device):SETFAN")
 #! Record("$(device):SETAUTOST",500,326,0,0,"$(device):SETAUTOST")
 #! Record("$(device):AUTOST",700,340,0,0,"$(device):AUTOST")
+#! Record("$(device):SETUNIT",280,31,0,0,"$(device):SETUNIT")
