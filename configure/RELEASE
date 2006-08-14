@@ -16,17 +16,19 @@ WORK=/home/diamond/R3.14.8.2/work/support
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
+# needs this version of ip at run-time, not for building
+IP=		$(SUPPORT)/ip/2-6dls1-2
+
 # External module definitions (prod release).
 # Uncomment the following when building the exampleApp
 #ASYN=		$(SUPPORT)/asyn/4-6
-#PRESSARR=	$(WORK)/pressArr_subrec
-#IPAC=		$(WORK)/ipac
-#HY8515=	$(WORK)/Hy8515
-#UTILITY=	$(WORK)/utility
-#IP=		$(WORK)/ip
+#PRESSARR=	$(SUPPORT)/pressArr_subrec/dls2-3
+#IPAC=		$(SUPPORT)/ipac/2-8dls4-3
+#HY8515=	$(SUPPORT)/Hy8515/3-2
+#UTILITY=	$(SUPPORT)/utility/dls2-7
 #SNCSEQ=	$(SUPPORT)/seq/2-0-11dls1
-#CALC=		$(WORK)/calc
-#SSCAN=		$(WORK)/sscan
+#CALC=		$(SUPPORT)/calc/2-6-1dls1
+#SSCAN=		$(SUPPORT)/sscan/2-5-2dls1
 
 
 # EPICS_BASE usually appears last so other apps can override stuff:

@@ -16,10 +16,13 @@
 record(mbbi, "$(device):STA") {
   field(DESC, "Supply Status")
   field(DTYP, "Soft Channel")
-  field(ZRST, "Dummy")
+  field(ZRST, "Unknown")
+  field(FRST, "Running")
   field(UNSV, "MAJOR")
-  field(ZRSV, "NO_ALARM")
-  field(VAL, "0")
+  field(ZRSV, "MAJOR")
+  field(FRSV, "NO_ALARM")
+  field(INP, "4")
+  field(PINI, "1")
 }
 
 record(bo, "$(device):START") {
