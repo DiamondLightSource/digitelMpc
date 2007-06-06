@@ -9,19 +9,19 @@
 # module defined in the RELEASE file is rebuilt.
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-SUPPORT=/home/diamond/R3.14.8.2/prod/support
-WORK=/home/diamond/R3.14.8.2/work/support
+SUPPORT=/dls_sw/prod/R3.14.8.2/support
+WORK=/dls_sw/work/R3.14.8.2/support
 
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
 # needs this version of ip at run-time, not for building
-IP=		$(SUPPORT)/ip/2-6dls1-2
+IP=		$(SUPPORT)/ip/2-6dls1-3
 
 # External module definitions (prod release).
 # Uncomment the following when building the exampleApp
-#ASYN=		$(SUPPORT)/asyn/4-6
+#ASYN=		$(SUPPORT)/asyn/4-8
 #PRESSARR=	$(SUPPORT)/pressArr_subrec/dls2-3
 #IPAC=		$(SUPPORT)/ipac/2-8dls4-3
 #HY8515=	$(SUPPORT)/Hy8515/3-2
@@ -32,7 +32,7 @@ IP=		$(SUPPORT)/ip/2-6dls1-2
 
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/home/epics/R3.14.8.2/base
+EPICS_BASE=/dls_sw/epics/R3.14.8.2/base
 
 #Capfast users may need the following definitions
 #CAPFAST_TEMPLATES=
