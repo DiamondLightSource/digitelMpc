@@ -16,8 +16,7 @@ WORK=/dls_sw/work/R3.14.8.2/support
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-# needs this version of ip at run-time, not for building
-IP=		$(SUPPORT)/ip/2-6dls1-3
+STREAMS=	$(SUPPORT)/streamDevice/2-1dls3
 
 # External module definitions (prod release).
 # Uncomment the following when building the exampleApp
