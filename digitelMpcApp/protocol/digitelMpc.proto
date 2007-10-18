@@ -1,0 +1,19 @@
+# Stream Device Protocol for Gamma Vacuum Digitel MPC
+# This protocol uses features defined in Stream Device 2
+#
+# Pete Owens 17-10-07
+#
+# $1 = address: (2 hex digits - default 05)
+
+
+locktimeout = 5000;
+terminator   = CR;
+replytimeout = 1000;
+readtimeout  = 1000;
+extrainput   = Ignore;
+
+
+model { out "~ $1 01 %01<sum8>"; in "$1 OK \?\? %s %0<sum8>"; }
+
+
+
