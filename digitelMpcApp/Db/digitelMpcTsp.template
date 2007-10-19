@@ -235,6 +235,10 @@ record(ao, "$(device):SETPOWER")
 }
 record(ao, "$(device):OUTPOWER") 
 {
+#
+# !!! NOTE !!! need to implement OFF if power = 0
+# !!! NOTE !!! now done in ornlserial driver
+#
     field(DESC, "Power")
     field(DTYP, "ornlSerial")
     field(OUT,  "@digitel mpc power p=1 u=$(port) m=$(unit)")
@@ -877,6 +881,7 @@ record(calcout, "$(device):FIL1:OPEN")
 #% archiver 10 Monitor
 #% controldesk Filament 2 Minutes Used readback
 #
+#!!! NOTE !!! used will get values from left protocol
 record(longin, "$(device):FIL2:USED")
 {
     field(DESC, "Minutes used")
