@@ -61,8 +61,11 @@ tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*i %d %0<sum8>"   
 filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*i %d %0<sum8>"         ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*i %d,W %0<sum8>"       ; }
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*i %{1|2|3|4} %0<sum8>" ; }
-left      { out "~ \$1 DA %01<sum8>"            ; 
-            in "\$1 OK %*i %d,1-%(\$2.VAL)d,2-%(\$3.VAL)d,%(\$4.VAL)d,4-%*d %0<sum8>" ; }
+left      { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*i %d,"
+                                                     "1-%(\$2:FIL1:USED.VAL)d,"
+                                                     "2-%(\$2:FIL2:USED.VAL)d,"
+                                                     "3-%(\$2:FIL3:USED.VAL)d,"
+                                                     "4-%(\$2:FIL4:USED.VAL)d %0<sum8>" ; }
 
 setpower  { out "~ \$1 E2 %d,W %01<sum8>"       ; in "\$1 OK %*i %0<sum8>"            ; }
 autofil   { out "~ \$1 2C %{NO|YES} %01<sum8>"  ; in "\$1 OK %*i %0<sum8>"            ; }

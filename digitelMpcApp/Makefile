@@ -17,6 +17,7 @@ DIRS += $(wildcard *src*)
 DIRS += $(wildcard *Src*)
 DIRS += $(wildcard *db*)
 DIRS += $(wildcard *Db*)
+DIRS += protocol
 include $(TOP)/config/RULES_DIRS
 
 endif
