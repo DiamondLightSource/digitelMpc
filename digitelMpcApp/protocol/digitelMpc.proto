@@ -33,13 +33,13 @@ locktimeout = 5000;
 terminator   = CR;
 replytimeout = 1000;
 readtimeout  = 1000;
-#extrainput   = Ignore;
+extrainput   = Ignore;
 
 #
 # Controller Protocols
 #
-model     { out "~ \$1 01 %01<sum8>"            ; in "\$1 OK %*i %s %0<sum8>"         ; }
-version   { out "~ \$1 02 %01<sum8>"            ; in "\$1 OK %*i %s %0<sum8>"         ; }
+model     { out "~ \$1 01 %01<sum8>"            ; in "\$1 OK %*i %30c"         ; }
+version   { out "~ \$1 02 %01<sum8>"            ; in "\$1 OK %*i %30c"         ; }
 linev     { out "~ \$1 22 %01<sum8>"            ; in "\$1 OK %*i %d %0<sum8>"         ; }
 linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*i %dHZ %0<sum8>"       ; }
 autost    { out "~ \$1 34 %01<sum8>"            ; in "\$1 OK %*i %{NO|YES} %0<sum8>"  ; }
@@ -53,6 +53,19 @@ reset     { out "~ \$1 07 %01<sum8>"            ; }
 #
 # Ion Pump Protocols
 #
+current   { out "~ \$1 0A \$2 %01<sum8>"        ; in "\$1 OK %*i %g AMPS %0<sum8>"    ; }
+pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*i %g %*s %0<sum8>"     ; }
+voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*i %d %0<sum8>"         ; }
+strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*i %d %0<sum8>"         ; }
+status    { out "~ \$1 OD \$2 %01<sum8>"        ; in "\$1 OK %*i %{X|W|ST|SA|R|CO|P|H|I|SH|CA}"  ; }
+error     { out "~ \$1 OD \$2 %01<sum8>"        ; in "\$1 OK %*i %*[^0-9] %d %0<sum8>" ; }
+size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*i %d L/S %0<sum8>"     ; }
+cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*i %f %0<sum8>"         ; }
+
+setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*i %0<sum8>"            ; }
+setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*i %0<sum8>"            ; }
+
+start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*i %0<sum8>"            ; }
 
 #
 # TSP Protocols
