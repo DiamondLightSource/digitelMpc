@@ -83,7 +83,7 @@ left      { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*i %d,"
 setpower  { out "~ \$1 E2 %d,W %01<sum8>"       ; in "\$1 OK %*i %0<sum8>"            ; }
 autofil   { out "~ \$1 2C %{NO|YES} %01<sum8>"  ; in "\$1 OK %*i %0<sum8>"            ; }
 ctlsrc    { out "~ \$1 8B %d %01<sum8>"         ; in "\$1 OK %*i %0<sum8>"            ; }
-thresh    { out "~ \$1 8B %3.1E %01<sum8>"      ; in "\$1 OK %*i %0<sum8>"            ; }
+thresh    { out "~ \$1 EA %3.1E %01<sum8>"      ; in "\$1 OK %*i %0<sum8>"            ; }
 setfil    { out "~ \$1 29 %{1|2|3|4} %01<sum8>" ; in "\$1 OK %*i %0<sum8>"            ; }
 
 tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*i %0<sum8>"            ; }
