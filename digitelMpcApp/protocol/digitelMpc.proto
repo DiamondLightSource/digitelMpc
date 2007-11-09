@@ -58,7 +58,7 @@ pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*i %g %*s %0<sum8>
 voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*i %d %0<sum8>"           ; }
 strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*i %d %0<sum8>"           ; }
 status    { out "~ \$1 OD \$2 %01<sum8>"        ; in "\$1 OK %*i %{X|W|ST|SA|R|CO|P|H|I|SH|CA}"      ; }
-error     { out "~ \$1 OD \$2 %01<sum8>"        ; in "\$1 OK %*i %*[^0-9] %d %0<sum8>"  ; }
+err       { out "~ \$1 OD \$2 %01<sum8>"        ; in "\$1 OK %*i %*[^0-9] %d %0<sum8>"  ; }
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*i %d L/S %0<sum8>"       ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*i %f %0<sum8>"           ; }
 sps       { out "~ \$1 3C \$2 %01<sum8>"        ; in "\$1 OK %*i %*i,%*i,%g,%(\$3:SP2.VAL)g %0<sum8>"; }
