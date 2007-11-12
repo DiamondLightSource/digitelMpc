@@ -60,8 +60,9 @@ record(calcout, "$(device):CALSTA")
 record(mbbi, "$(device):RAWSTA")
 {
     field(DESC, "Raw Status")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc tspsta u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto tspsta($(unit)) $(port)")
+#    field(INP,  "@digitel mpc tspsta u=$(port) m=$(unit)")
     field(SCAN, "1 second")
     field(FLNK, "$(device):CALSTA")
 }
@@ -74,6 +75,9 @@ record(mbbi, "$(device):RAWSTA")
 record(mbbi, "$(device):FIL1:STA")
 {
     field(DESC, "Filament 1 Status")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto filsta($(unit),1) $(port))
+    field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
     field(TWST, "Next Active")
@@ -98,21 +102,21 @@ record(mbbi, "$(device):FIL1:STA")
     field(FTSV, "MAJOR")
     field(FFSV, "MAJOR")
 }
-record(calcout, "$(device):FIL1:CAL")
-{
-    field(DESC, "Calculate Status")
-    field(CALC, "A-1")
-    field(OUT,  "$(device):FIL1:STA PP")
-    field(INPA, "$(device):FIL1:RAW")
-}
-record(mbbi, "$(device):FIL1:RAW")
-{
-    field(DESC, "Raw Status")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=1")
-    field(SCAN, "1 second")
-    field(FLNK, "$(device):FIL1:CAL")
-}
+#record(calcout, "$(device):FIL1:CAL")
+#{
+#    field(DESC, "Calculate Status")
+#    field(CALC, "A-1")
+#    field(OUT,  "$(device):FIL1:STA PP")
+#    field(INPA, "$(device):FIL1:RAW")
+#}
+#record(mbbi, "$(device):FIL1:RAW")
+#{
+#    field(DESC, "Raw Status")
+#    field(DTYP, "stream")
+#    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=1")
+#    field(SCAN, "1 second")
+#    field(FLNK, "$(device):FIL1:CAL")
+#}
 #
 #% archiver 10 Monitor
 #% controldesk Filament 2 Status smon
@@ -120,6 +124,9 @@ record(mbbi, "$(device):FIL1:RAW")
 record(mbbi, "$(device):FIL2:STA")
 {
     field(DESC, "Filament 2 Status")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto filsta($(unit),2) $(port))
+    field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
     field(TWST, "Next Active")
@@ -144,21 +151,21 @@ record(mbbi, "$(device):FIL2:STA")
     field(FTSV, "MAJOR")
     field(FFSV, "MAJOR")
 }
-record(calcout, "$(device):FIL2:CAL")
-{
-    field(DESC, "Calculate Status")
-    field(CALC, "A-1")
-    field(OUT,  "$(device):FIL2:STA PP")
-    field(INPA, "$(device):FIL2:RAW")
-}
-record(mbbi, "$(device):FIL2:RAW")
-{
-    field(DESC, "Raw Status")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=2")
-    field(SCAN, "1 second")
-    field(FLNK, "$(device):FIL2:CAL")
-}
+#record(calcout, "$(device):FIL2:CAL")
+#{
+#    field(DESC, "Calculate Status")
+#    field(CALC, "A-1")
+#    field(OUT,  "$(device):FIL2:STA PP")
+#    field(INPA, "$(device):FIL2:RAW")
+#}
+#record(mbbi, "$(device):FIL2:RAW")
+#{
+#    field(DESC, "Raw Status")
+#    field(DTYP, "stream")
+#    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=2")
+#    field(SCAN, "1 second")
+#    field(FLNK, "$(device):FIL2:CAL")
+#}
 #
 #% archiver 10 Monitor
 #% controldesk Filament 3 Status smon
@@ -166,6 +173,9 @@ record(mbbi, "$(device):FIL2:RAW")
 record(mbbi, "$(device):FIL3:STA")
 {
     field(DESC, "Filament 3 Status")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto filsta($(unit),3) $(port))
+    field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
     field(TWST, "Next Active")
@@ -190,21 +200,21 @@ record(mbbi, "$(device):FIL3:STA")
     field(FTSV, "MAJOR")
     field(FFSV, "MAJOR")
 }
-record(calcout, "$(device):FIL3:CAL")
-{
-    field(DESC, "Calculate Status")
-    field(CALC, "A-1")
-    field(OUT,  "$(device):FIL3:STA PP")
-    field(INPA, "$(device):FIL3:RAW")
-}
-record(mbbi, "$(device):FIL3:RAW")
-{
-    field(DESC, "Raw Status")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=3")
-    field(SCAN, "1 second")
-    field(FLNK, "$(device):FIL3:CAL")
-}
+#record(calcout, "$(device):FIL3:CAL")
+#{
+#    field(DESC, "Calculate Status")
+#    field(CALC, "A-1")
+#    field(OUT,  "$(device):FIL3:STA PP")
+#    field(INPA, "$(device):FIL3:RAW")
+#}
+#record(mbbi, "$(device):FIL3:RAW")
+#{
+#    field(DESC, "Raw Status")
+#    field(DTYP, "stream")
+#    field(INP,  "@digitel mpc filsta u=$(port) m=$(unit) p1=3")
+#    field(SCAN, "1 second")
+#    field(FLNK, "$(device):FIL3:CAL")
+#}
 ################################################################################
 # Power
 #
@@ -214,8 +224,9 @@ record(mbbi, "$(device):FIL3:RAW")
 record(ai, "$(device):POWER")
 {
     field(DESC, "Power")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc power u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto power($(unit)) $(port)")
+#    field(INP,  "@digitel mpc power u=$(port) m=$(unit)")
     field(SCAN, "1 second")
     field(EGU,  "W")
     field(LOPR, "0.0")
@@ -237,17 +248,26 @@ record(ao, "$(device):OUTPOWER")
 {
 #
 # !!! NOTE !!! need to implement OFF if power = 0
-# !!! NOTE !!! now done in ornlserial driver
+# !!! NOTE !!! now done in stream driver
 #
     field(DESC, "Power")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc power p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc setpower($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc power p=1 u=$(port) m=$(unit)")
     field(EGU,  "W")
     field(DRVL, "0")
     field(DRVH, "250")
     field(LOPR, "0")
     field(HOPR, "250")
     field(PREC, "0")
+}
+record(bo, "$(device):TSPOFF")
+{
+    field(DESC, "Switch TSP Off")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto tspoff($(unit)) $(port)")
+    field(ZNAM, "Off")
+    field(ONAM, "Off")
 }
 record(ao, "$(device):RAMPRATE") 
 {
@@ -269,15 +289,33 @@ record(ai, "$(device):TGTPOWER")
     field(HOPR, "250")
     field(PREC, "0")
 }
-record(calcout, "$(device):RMPPOWER") 
+record(calc, "$(device):RMPPOWER") 
 {
     field(DESC, "Ramp Power")
-    field(SCAN, "1 second")
+#    field(SCAN, "1 second")
     field(CALC, "(A>(B+C))?(B+C):A")
-    field(OUT,  "$(device):OUTPOWER PP")
+#    field(OUT,  "$(device):SEQPOWER PP")
     field(INPA, "$(device):TGTPOWER")
     field(INPB, "$(device):POWER")
     field(INPC, "$(device):RAMPRATE") 
+}
+record(calc, "$(device):TSPON") 
+{
+    field(DESC, "Power On")
+    field(SCAN, "1 second")
+    field(CALC, "(A>1)?1:2")
+    field(INPA, "$(device):RMPPOWER PP")
+}
+record(seq, "$(device):SEQPOWER") 
+{
+    field(DESC, "Ramp Power")
+    field(SELM, "Specified")
+    field(SELL, "$(device):TSPON PP")
+    field(SCAN, "1 second")
+    field(DOL1, "$(device):RMPPOWER")
+    field(LNK1, "$(device):OUTPOWER PP")
+    field(DOL2, "0") 
+    field(LNK2, "$(device):TSPOFF PP")
 }
 ################################################################################
 # TSP operating mode
@@ -815,8 +853,9 @@ record(calcout, "$(device):AUTOCOUNT6")
 record(mbbi, "$(device):FIL")
 {
     field(DESC, "Filament Active")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc filament u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto fil($(unit)) $(port)")
+#    field(INP,  "@digitel mpc filament u=$(port) m=$(unit)")
     field(SCAN, "1 second")
     field(ZRST, "Filament 1")
     field(ONST, "Filament 2")
@@ -829,8 +868,9 @@ record(mbbi, "$(device):FIL")
 record(mbbo, "$(device):SETFIL")
 {
     field(DESC, "Filament Active")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc filament p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto setfil($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc filament p=1 u=$(port) m=$(unit)")
     field(ZRST, "Filament 1")
     field(ONST, "Filament 2")
     field(TWST, "Filament 3")
@@ -845,8 +885,9 @@ record(mbbo, "$(device):SETFIL")
 record(longin, "$(device):LEFT")
 {
     field(DESC, "Cycles Left")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc left u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto left($(unit),$(device)) $(port)")
+#    field(INP,  "@digitel mpc left u=$(port) m=$(unit)")
     field(SCAN, "10 second")
     field(LOPR, "0")
     field(HOPR, "999")
@@ -858,8 +899,7 @@ record(longin, "$(device):LEFT")
 record(longin, "$(device):FIL1:USED")
 {
     field(DESC, "Minutes used")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=1")
+#    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=1")
 #    field(SCAN, "10 second")
     field(EGU,  "min")
     field(LOPR, "0")
@@ -881,12 +921,10 @@ record(calcout, "$(device):FIL1:OPEN")
 #% archiver 10 Monitor
 #% controldesk Filament 2 Minutes Used readback
 #
-#!!! NOTE !!! used will get values from left protocol
 record(longin, "$(device):FIL2:USED")
 {
     field(DESC, "Minutes used")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=2")
+#    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=2")
 #    field(SCAN, "10 second")
     field(EGU,  "min")
     field(LOPR, "0")
@@ -911,8 +949,7 @@ record(calcout, "$(device):FIL2:OPEN")
 record(longin, "$(device):FIL3:USED")
 {
     field(DESC, "Minutes used")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=3")
+#    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=3")
 #    field(SCAN, "10 second")
     field(EGU,  "min")
     field(LOPR, "0")
@@ -933,8 +970,8 @@ record(calcout, "$(device):FIL3:OPEN")
 record(longin, "$(device):FIL4:USED")
 {
     field(DESC, "Minutes used")
-    field(DTYP, "ornlSerial")
-    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=4")
+#    field(DTYP, "stream")
+#    field(INP,  "@digitel mpc used u=$(port) m=$(unit) p1=4")
     field(SCAN, "10 second")
     field(EGU,  "min")
     field(LOPR, "0")
@@ -951,8 +988,9 @@ record(longin, "$(device):FIL4:USED")
 record(bo, "$(device):CLEAR")
 {
     field(DESC, "Clear Filaments")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc clear p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto clear($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc clear p=1 u=$(port) m=$(unit)")
     field(ZNAM, "Clear")
     field(ONAM, "Clear")
 }
@@ -973,8 +1011,9 @@ record(bo, "$(device):SETAUTOFIL")
 record(bo, "$(device):OUTAUTOFIL")
 {
     field(DESC, "Auto Advance")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc autofil p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto autofil($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc autofil p=1 u=$(port) m=$(unit)")
     field(ZNAM, "No")
     field(ONAM, "Yes")
     field(DOL,  "0")
@@ -989,8 +1028,9 @@ record(bo, "$(device):OUTAUTOFIL")
 record(mbbo, "$(device):CTLSRC")
 {
     field(DESC, "Control Source")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc ctlsrc p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto ctlsrc($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc ctlsrc p=1 u=$(port) m=$(unit)")
     field(ZRST, "Service")
     field(ONST, "Ion Pump 1")
     field(TWST, "Ion Pump 2")
@@ -1003,8 +1043,9 @@ record(mbbo, "$(device):CTLSRC")
 record(ao, "$(device):SETPTHR") 
 {
     field(DESC, "Pressure Threshold")
-    field(DTYP, "ornlSerial")
-    field(OUT,  "@digitel mpc threshold p=1 u=$(port) m=$(unit)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto thresh($(unit)) $(port)")
+#    field(OUT,  "@digitel mpc threshold p=1 u=$(port) m=$(unit)")
     field(EGU,  "mbar")
     field(DRVL, "1.0e-9")
     field(DRVH, "1.0e-5")

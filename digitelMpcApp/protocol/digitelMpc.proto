@@ -25,7 +25,7 @@
 #      <TERM>  : Terminator character (1 byte) = '\r'#
 #
 # Arguments:
-# $1 = address: (2 hex digits - default 05)
+# $1 = address: (2 hex digits - default 05){1|2|3|4}
 # $2 = parameter: (ion pump/filament (1,2 or 3)
 
 
@@ -73,7 +73,7 @@ start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"     
 # TSP Protocols
 #
 tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"           ; }
-filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"           ; }
+filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6} %0<sum8>"           ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*2x %d,W %0<sum8>"         ; }
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"   ; }
 left      { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %d,"
