@@ -148,7 +148,38 @@ record(mbbi, "$(device):STA")
     field(TTSV, "MAJOR")
     field(FTSV, "MAJOR")
     field(FFSV, "MAJOR")
+    field(FLNK, "$(device):ERRSEL")
 }
+
+record(seq, "$(device):ERRSEQ")
+{
+    field(DESC, "Get Error if applicable")
+    field(SCAN, "Passive")
+    field(SELM, "Specified")
+    field(SELN, "1")
+    field(DOL1, "0")
+    field(LNK1, "$(device):ERR PP")
+    field(DOL2, "$(device):ERRGET PP")
+    field(LNK2, "$(device):ERR PP")
+}
+
+record(longin, "$(device):ERRGET")
+{
+    field(DESC, "Get Error Code")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto err($(unit),$(pump)) $(port)")
+#    field(INP,  "@digitel mpc err u=$(port) m=$(unit) p1=$(pump)")
+    field(SCAN, "Passive")
+}
+
+record(calcout, "$(device):ERRSEL")
+{
+    field(DESC, "Choose which error source")
+    field(INPA, "$(device):STA")
+    field(CALC, "A>=3?2:1")
+    field(OUT, "$(device):ERRSEQ.SELN PP")
+}
+
 #
 #% archiver 10 Monitor
 #% controldesk Error Code smon
@@ -156,10 +187,8 @@ record(mbbi, "$(device):STA")
 record(mbbi, "$(device):ERR")
 {
     field(DESC, "Error Code")
-    field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto err($(unit),$(pump)) $(port)")
-#    field(INP,  "@digitel mpc err u=$(port) m=$(unit) p1=$(pump)")
-    field(SCAN, "1 second")
+    field(DTYP, "Soft")
+    field(SCAN, "Passive")
     field(ZRST, "OK")
     field(ONST, "Too many cycles")
     field(TWST, "High pressure")
