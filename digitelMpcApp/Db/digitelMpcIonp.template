@@ -187,7 +187,7 @@ record(calcout, "$(device):ERRSEL")
 record(mbbi, "$(device):ERR")
 {
     field(DESC, "Error Code")
-    field(DTYP, "Soft")
+    field(DTYP, "Soft Channel")
     field(SCAN, "Passive")
     field(ZRST, "OK")
     field(ONST, "Too many cycles")
