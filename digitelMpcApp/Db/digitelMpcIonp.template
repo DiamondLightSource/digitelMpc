@@ -246,7 +246,7 @@ record(longin, "$(device):SIZE") {
 record(ao, "$(device):SETSIZE") {
     field(DESC, "Pump Size")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto size($(unit),$(pump)) $(port)")
+    field(OUT,  "@digitelMpc.proto setsize($(unit),$(pump)) $(port)")
 #    field(OUT,  "@digitel mpc size p=1 u=$(port) m=$(unit) p1=$(pump)")
     field(PINI, "YES")
     field(DOL,  "$(size)")
@@ -280,7 +280,7 @@ record(ai, "$(device):CAL") {
 record(ao, "$(device):SETCAL") {
     field(DESC, "Calibration Factor")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto cal($(unit),$(pump)) $(port)")
+    field(OUT,  "@digitelMpc.proto setcal($(unit),$(pump)) $(port)")
 #    field(OUT,  "@digitel mpc cal p=1 u=$(port) m=$(unit) p1=$(pump)")
     field(DRVL, "0.0")
     field(DRVH, "9.99")
