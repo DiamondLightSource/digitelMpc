@@ -252,7 +252,7 @@ record(ao, "$(device):OUTPOWER")
 #
     field(DESC, "Power")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc setpower($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto setpower($(unit)) $(port)")
 #    field(OUT,  "@digitel mpc power p=1 u=$(port) m=$(unit)")
     field(EGU,  "W")
     field(DRVL, "0")
