@@ -77,7 +77,7 @@ tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"  
 filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}:%*s %0<sum8>" ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*2x %g W %0<sum8>"           ; }
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"     ; }
-left      { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %d,"
+left      { out "~ \$1 2A %01<sum8>"            ; in "\$1 OK %*2x %d,"
                                                      "1-%(\$2:FIL1:USED.VAL)d,"
                                                      "2-%(\$2:FIL2:USED.VAL)d,"
                                                      "3-%(\$2:FIL3:USED.VAL)d,"
