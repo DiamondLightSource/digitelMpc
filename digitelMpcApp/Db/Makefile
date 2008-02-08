@@ -15,6 +15,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += digitelMpc.template
 DB += digitelMpcIonp.template
+DB += digitelMpcIonpSps.template
 DB += digitelMpcTsp.template
 DB += digitelMpcIonpGroup.template
 DB += digitelMpcTspGroup.template
