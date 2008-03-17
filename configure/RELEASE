@@ -16,7 +16,7 @@ WORK=/dls_sw/work/R3.14.8.2/support
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-STREAMS=	$(SUPPORT)/streamDevice/2-1dls4
+STREAMS=	$(SUPPORT)/streamDevice/2-3dls3
 
 # External module definitions (prod release).
 # Uncomment the following when building the exampleApp
