@@ -364,5 +364,15 @@ record(calcout, "$(device):SETSPS") {
     field(CALC, "A+B")
 }
 ################################################################################
+# Text string on front panel
+#
+record(stringout, "$(device):SETTEXT") {
+    field(DESC, "Text String")
+    field(VAL , "$(device)")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto settext($(unit),$(pump)) $(port)")
+    field(PINI, "YES")
+}
+################################################################################
 
 
