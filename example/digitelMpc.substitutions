@@ -20,9 +20,9 @@ pattern {    device   , port, unit }
 #
 file ../db/digitelMpcIonp.template
 {
-pattern {    device    , port, unit, pump, size }
-        { TS-VA-IONP-01,  ty_mpc_0  ,  1  ,  1  ,  40  }    
-        { TS-VA-IONP-02,  ty_mpc_0  ,  1  ,  2  ,  40  }
+pattern {    device     , port     , unit , pump , size , spon   , spoff  }
+        { TS-VA-IONP-01 , ty_mpc_0 ,  1   ,  1   ,  40  , 1.0E-8 , 1.0E-7 }    
+        { TS-VA-IONP-02 , ty_mpc_0 ,  1   ,  2   ,  40  , 1.0E-8 , 1.0E-7 }
 }
 #################################################################
 # TSP
