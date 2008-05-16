@@ -8,6 +8,8 @@
 # unit    - unit number for multi-drop serial (2 hex digits - 05 by default)
 # pump    - ion pump number (1 or 2)
 # size    - pump size (l/s)
+# spon    - setpoimt on
+# spoff   - setpoint off
 ################################################################################
 # Read pump current
 #
@@ -307,7 +309,7 @@ record(bi,"$(device):STARTING")
 #% controldesk Setpoint 1 readback
 #
 record(ai, "$(device):SP1") {
-    field(DESC, "Setpoint 1")
+    field(DESC, "Setpoint On")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto sps($(unit),$(pump),$(device)) $(port)")
     field(SCAN, "10 second")
@@ -321,7 +323,7 @@ record(ai, "$(device):SP1") {
 #% controldesk Setpoint 2 readback
 #
 record(ai, "$(device):SP2") {
-    field(DESC, "Setpoint 2")
+    field(DESC, "Setpoint Off")
     field(EGU,  "mbar")
     field(LOPR, "0.0")
     field(HOPR, "1000.0")
@@ -332,7 +334,8 @@ record(ai, "$(device):SP2") {
 #% controldesk Setpoint 1 setpoint
 #
 record(ao, "$(device):SETSP1") {
-    field(DESC, "Setpoint 1")
+    field(VAL,  "$(spon)")
+    field(DESC, "Setpoint On")
     field(EGU,  "mbar")
     field(DRVL, "0.0")
     field(DRVH, "1000.0")
@@ -346,7 +349,8 @@ record(ao, "$(device):SETSP1") {
 #% controldesk Setpoint 2 setpoint
 #
 record(ao, "$(device):SETSP2") {
-    field(DESC, "Setpoint 2")
+    field(VAL,  "$(spoff)")
+    field(DESC, "Setpoint Off")
     field(EGU,  "mbar")
     field(DRVL, "0.0")
     field(DRVH, "1000.0")
@@ -362,6 +366,7 @@ record(calcout, "$(device):SETSPS") {
     field(INPA, "$(device):SETSP1")
     field(INPB, "$(device):SETSP2")
     field(CALC, "A+B")
+    field(PINI, "YES")
 }
 ################################################################################
 # Text string on front panel

@@ -264,7 +264,7 @@ endObjectProperties
 object activeBarClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 172
 y 64
@@ -276,12 +276,12 @@ fgColor index 14
 bgColor index 10
 indicatorPv "$(device):PLOG"
 font "arial-bold-r-16.0"
-labelTicks 10
-majorTicks 1
-minorTicks 2
+labelTicks "10"
+majorTicks "1"
+minorTicks "2"
 border
 limitsFromDb
-precision 0
+precision "0"
 scaleFormat "FFloat"
 endObjectProperties
 
@@ -523,7 +523,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 216
 y 272
@@ -555,14 +555,14 @@ minor 1
 release 0
 x 24
 y 360
-w 66
+w 78
 h 16
 font "arial-medium-r-14.0"
 fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Setpoint 2"
+  "Setpoint Off"
 }
 autoSize
 endObjectProperties
@@ -596,14 +596,14 @@ minor 1
 release 0
 x 24
 y 332
-w 66
+w 78
 h 16
 font "arial-medium-r-14.0"
 fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Setpoint 1"
+  "Setpoint On"
 }
 autoSize
 endObjectProperties
@@ -678,7 +678,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 216
 y 300
@@ -706,7 +706,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 216
 y 328
@@ -735,7 +735,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 216
 y 356
@@ -853,7 +853,7 @@ endObjectProperties
 object shellCmdClass
 beginObjectProperties
 major 4
-minor 0
+minor 2
 release 0
 x 256
 y 404
