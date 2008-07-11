@@ -65,7 +65,8 @@ sps       { out "~ \$1 3C \$2 %01<sum8>"        ; in "\$1 OK %*2x %*i,%*i,%g,%(\
 
 setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
-setsps    { out "~ \$1 3D \$2,\$2, %(A)3.1E, %(B)3.1E %01<sum8>" ;
+#setsps    { out "~ \$1 3D \$2,\$2, %(A)3.1E, %(B)3.1E %01<sum8>" ;
+setsps    { out "~ \$1 3D \$2,%1d, %(A)3.1E, %(B)3.1E %01<sum8>" ;
                                                   in "\$1 OK %*2x %0<sum8>"            ; }
 settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 

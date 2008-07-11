@@ -365,7 +365,10 @@ record(calcout, "$(device):SETSPS") {
     field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
     field(INPA, "$(device):SETSP1")
     field(INPB, "$(device):SETSP2")
-    field(CALC, "A+B")
+    field(INPC, "$(pump)")
+    field(INPD, "1.01E-10")
+    field(INPE, "9.99E-5")
+    field(CALC, "((A<D)||(B>E))?0:C")
     field(PINI, "YES")
 }
 ################################################################################
