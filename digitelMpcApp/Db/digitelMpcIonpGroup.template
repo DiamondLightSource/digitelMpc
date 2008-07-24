@@ -395,7 +395,7 @@ record(sel, "$(device):SP1") {
     field(PREC, "1")
 }
 record(ao, "$(device):SETSP1") {
-    field(DESC, "Setpoint 1")
+    field(DESC, "Setpoint On")
     field(FLNK, "$(device):SEQSP1")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -425,7 +425,7 @@ record(seq, "$(device):SEQSP1")
     field(LNK8, "$(ionp8):SETSP1 CA")
 }
 record(sel, "$(device):SP2") {
-    field(DESC, "Setpoint 2")
+    field(DESC, "Setpoint Off")
     field(SELM, "Low Signal")
     field(INPA, "$(ionp1):SP2")
     field(INPB, "$(ionp2):SP2")
