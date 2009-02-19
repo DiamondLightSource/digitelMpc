@@ -253,7 +253,7 @@ record(seq, "$(device):SEQPOWER")
 record(ao, "$(device):RAMPRATE") 
 {
     field(DESC, "Power Ramp Rate")
-    field(FLNK, "$(device):SEQRATE")
+    field(FLNK, "$(device):SEQRAMP")
     field(EGU,  "W/s")
     field(DRVL, "10")
     field(DRVH, "50")
