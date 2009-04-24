@@ -61,7 +61,7 @@ record(calc, "$(device):PLOG")
     field(DESC, "log Pressure")
     field(EGU,  "log")
     field(CALC, "LOG(A)")
-    field(INPA, "$(device):P")
+    field(INPA, "$(device):P MS")
     field(HOPR, "3")
     field(LOPR, "-12")
 #    field(ADEL, "0.1")
@@ -155,9 +155,9 @@ record(seq, "$(device):ERRSEQ")
     field(SELM, "Specified")
     field(SELN, "1")
     field(DOL1, "0")
-    field(LNK1, "$(device):ERR PP")
-    field(DOL2, "$(device):ERRGET PP")
-    field(LNK2, "$(device):ERR PP")
+    field(LNK1, "$(device):ERR PP MS")
+    field(DOL2, "$(device):ERRGET PP MS")
+    field(LNK2, "$(device):ERR PP MS")
 }
 
 record(longin, "$(device):ERRGET")
@@ -171,9 +171,9 @@ record(longin, "$(device):ERRGET")
 record(calcout, "$(device):ERRSEL")
 {
     field(DESC, "Choose which error source")
-    field(INPA, "$(device):STA")
+    field(INPA, "$(device):STA MS")
     field(CALC, "A>=3?2:1")
-    field(OUT, "$(device):ERRSEQ.SELN PP")
+    field(OUT, "$(device):ERRSEQ.SELN PP MS")
 }
 
 #
