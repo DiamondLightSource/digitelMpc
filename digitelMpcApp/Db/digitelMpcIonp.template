@@ -11,6 +11,10 @@
 # spon    - setpoimt on
 # spoff   - setpoint off
 ################################################################################
+
+# This associates an edm screen with the template
+# % gui, $(name), edm, digitelMpcIonpControl.edl, device=$(device)
+
 # Read pump current
 #
 #% controldesk Current readback
