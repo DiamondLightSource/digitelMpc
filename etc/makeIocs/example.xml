@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<components arch="linux-x86">
+	<digitelMpc.digitelMpcIonpSps device="device" sp1="sp1" sp2="sp2"/>
+	<digitelMpc.simulation_digitelMpcIonp device="device" port="port" unit="unit" pump="pump" size="size"/>
+	<pyDrv.serial_sim_instance module="digitelMpc_sim" name="digitelMpcSim" pyCls="digitelMpc"/>
+	<asyn.AsynIP name="digitelMpcAsyn" port="172.23.111.180:7001" simulation="digitelMpcSim"/>
+	<digitelMpc.digitelMpcIonp name="name" device="device" unit="unit" pump="pump" port="digitelMpcAsyn" size="size" spon="spon" spoff="spoff"/>
+	<digitelMpc.digitelMpcTspGroup device="device" tsp1="tsp1" tsp2="tsp2" tsp3="tsp3" tsp4="tsp4" tsp5="tsp5" tsp6="tsp6" tsp7="tsp7" tsp8="tsp8"/>
+	<digitelMpc.dummyIonp device="device"/>
+	<digitelMpc.simulation_digitelMpcTsp device="device" port="port" unit="unit" ctlsrc="ctlsrc"/>
+	<digitelMpc.simulation_digitelMpc device="device" port="port" unit="unit"/>
+	<pyDrv.serial_sim_instance module="digitelMpc_sim" name="digitelMpcSim" pyCls="digitelMpc"/>
+	<asyn.AsynIP name="digitelMpcAsyn" port="172.23.111.180:7001" simulation="digitelMpcSim"/>
+	<digitelMpc.digitelMpcTsp device="device" unit="unit" port="digitelMpcAsyn" ctlsrc="ctlsrc"/>
+	<digitelMpc.digitelMpcIonpGroup device="device" ionp1="ionp1" ionp2="ionp2" ionp3="ionp3" ionp4="ionp4" ionp5="ionp5" ionp6="ionp6" ionp7="ionp7" ionp8="ionp8" delay="delay"/>
+	<pyDrv.serial_sim_instance module="digitelMpc_sim" name="digitelMpcSim" pyCls="digitelMpc"/>
+	<asyn.AsynIP name="digitelMpcAsyn" port="172.23.111.180:7001" simulation="digitelMpcSim"/>
+	<digitelMpc.digitelMpc device="device" unit="unit" port="digitelMpcAsyn"/>
+</components>
