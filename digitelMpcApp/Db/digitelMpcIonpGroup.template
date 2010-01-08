@@ -1,10 +1,19 @@
 # digitelMpcIonpGroup.db
-# Template database for a group of up to 8 digitel MPC Ion Pumps
+#% macro, __doc__, Template database for a group of up to 8 digitel MPC Ion Pumps
 # Pete Owens - 3/5/05
 #
 # substitutions:
-# device  - device name
-# ionp1-8 - names of ion pumps in group
+# % macro, device, device name
+# % macro, delay, delay between starting pumps
+# % macro, ionp1, Ion pump 1 device name
+# % macro, ionp2, Ion pump 2 device name
+# % macro, ionp3, Ion pump 3 device name
+# % macro, ionp4, Ion pump 4 device name
+# % macro, ionp5, Ion pump 5 device name
+# % macro, ionp6, Ion pump 6 device name
+# % macro, ionp7, Ion pump 7 device name
+# % macro, ionp8, Ion pump 8 device name
+
 ################################################################################
 # Maximum pump current
 #

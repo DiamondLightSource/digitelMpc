@@ -1,12 +1,12 @@
 # digitelMpc-tsp.db
-# Template database for digitel MPC - Titanium Sublimation Pump
+#% macro, __doc__, Template database for digitel MPC - Titanium Sublimation Pump
 # Pete Owens - 13/10/03
 #
 # substitutions:
-# device  - device name
-# port    - seral port number (from device manager table)
-# unit    - unit number for multi-drop serial (5 by default)
-# ctlsrc  - control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
+#% macro, device, device name
+#% macro, port, asyn seral port number (e.g. ty_40_0)
+#% macro, unit, unit number for multi-drop serial
+#% macro, ctlsrc, control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
 ################################################################################
 # Status
 #

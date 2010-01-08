@@ -1,15 +1,16 @@
 # digitelMpcIonp.template
-# Template database for digitel MPC - Ion Pump
+#% macro, __doc__, Template database for digitel MPC - Ion Pump
 # Pete Owens - 30/9/03
 #
 # substitutions:
-# device  - device name
-# port    - seral port number (from device manager table)
-# unit    - unit number for multi-drop serial (2 hex digits - 05 by default)
-# pump    - ion pump number (1 or 2)
-# size    - pump size (l/s)
-# spon    - setpoimt on
-# spoff   - setpoint off
+#% macro, device, device name
+#% macro, name, Object name and gui association name
+#% macro, port, asyn serial port number
+#% macro, unit, unit number for multi-drop serial (2 hex digits - 05 by default)
+#% macro, pump, ion pump number (1 or 2)
+#% macro, size, pump size (l/s)
+#% macro, spon, setpoint on
+#% macro, spoff, setpoint off
 ################################################################################
 
 # This associates an edm screen with the template
@@ -338,7 +339,7 @@ record(ai, "$(device):SP2") {
 #% controldesk Setpoint 1 setpoint
 #
 record(ao, "$(device):SETSP1") {
-    field(VAL,  "$(spon)")
+    field(VAL,  "$(spon=0)")
     field(DESC, "Setpoint On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -353,7 +354,7 @@ record(ao, "$(device):SETSP1") {
 #% controldesk Setpoint 2 setpoint
 #
 record(ao, "$(device):SETSP2") {
-    field(VAL,  "$(spoff)")
+    field(VAL,  "$(spoff=0)")
     field(DESC, "Setpoint Off")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")

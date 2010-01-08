@@ -1,10 +1,17 @@
 # digitelMpcTspGroup.db
-# Template database for a group of up to 8 digitel MPC TSPs
+#% macro, __doc__, Template database for a group of up to 8 digitel MPC TSPs
 # Pete Owens - 11/4/05
 #
 # substitutions:
-# device  - device name
-# tsp1-8  - names of TSPs in group
+#% macro, device, device name
+# % macro, tsp1, TSP 1 device name
+# % macro, tsp2, TSP 2 device name
+# % macro, tsp3, TSP 3 device name
+# % macro, tsp4, TSP 4 device name
+# % macro, tsp5, TSP 5 device name
+# % macro, tsp6, TSP 6 device name
+# % macro, tsp7, TSP 7 device name
+# % macro, tsp8, TSP 8 device name
 ################################################################################
 # Status
 #

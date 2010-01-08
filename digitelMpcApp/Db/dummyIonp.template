@@ -4,12 +4,12 @@
 
 
 # dummyIonp.db
-# Template database for dummy Ion Pump
+#% macro, __doc__, Template database for dummy Ion Pump. 
 # Just holds start, starting and status
 # Malcolm Walters - 02/08/2006
 #
 # substitutions:
-# device  - device name
+#% macro, device, device name
 ################################################################################
 # Get supply status
 #
