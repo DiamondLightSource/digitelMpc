@@ -2,7 +2,7 @@ from iocbuilder import AutoSubstitution, Substitution, SetSimulation, ModuleBase
 from iocbuilder.modules.streamDevice import AutoProtocol
 from iocbuilder.arginfo import *
 
-class digitelMpc(AutoSubstitution):
+class digitelMpc(AutoSubstitution, AutoProtocol):
     # Make sure unit is a 2 digit int
     def __init__(self, **args):
         if "unit" in args:
