@@ -10,7 +10,7 @@
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SUPPORT=/dls_sw/prod/R3.14.8.2/support
-#WORK=commented out to prevent prod modules depending on work modules
+WORK=/dls_sw/work/R3.14.8.2/support
 
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION_APP here
