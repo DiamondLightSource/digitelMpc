@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1006
-y 50
+x 748
+y 240
 w 260
-h 586
+h 621
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -163,28 +163,10 @@ release 0
 x 8
 y 498
 w 246
-h 48
+h 78
 lineColor index 14
 fill
 fillColor index 5
-endObjectProperties
-
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 18
-y 514
-w 51
-h 24
-controlPv "$(device):STARTING"
-fgColor index 18
-fgAlarm
-bgColor index 10
-font "arial-bold-r-14.0"
-fontAlign "center"
 endObjectProperties
 
 # (Message Button)
@@ -194,7 +176,7 @@ major 4
 minor 0
 release 0
 x 16
-y 514
+y 545
 w 51
 h 24
 fgColor index 25
@@ -269,7 +251,7 @@ major 4
 minor 1
 release 0
 x 175
-y 554
+y 592
 w 77
 h 24
 fgColor index 46
@@ -312,7 +294,7 @@ major 4
 minor 2
 release 0
 x 8
-y 554
+y 592
 w 77
 h 24
 fgColor index 43
@@ -550,7 +532,7 @@ major 4
 minor 2
 release 0
 x 91
-y 554
+y 592
 w 76
 h 24
 fgColor index 43
@@ -654,7 +636,7 @@ major 4
 minor 0
 release 0
 x 75
-y 514
+y 545
 w 52
 h 24
 fgColor index 25
@@ -677,7 +659,7 @@ major 4
 minor 0
 release 0
 x 194
-y 514
+y 545
 w 52
 h 24
 fgColor index 25
@@ -700,7 +682,7 @@ major 4
 minor 0
 release 0
 x 135
-y 514
+y 545
 w 51
 h 24
 fgColor index 25
@@ -1058,5 +1040,47 @@ w 100
 h 16
 lineColor index 14
 fillColor index 3
+endObjectProperties
+
+# (Choice Button)
+object activeChoiceButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 187
+y 507
+w 57
+h 22
+fgColor index 14
+bgColor index 3
+selectColor index 3
+inconsistentColor index 5
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(device):RELAY"
+indicatorPv "$(device):RELAY"
+font "arial-medium-r-16.0"
+orientation "horizontal"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 88
+y 510
+w 84
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Output Relay"
+}
+autoSize
 endObjectProperties
 

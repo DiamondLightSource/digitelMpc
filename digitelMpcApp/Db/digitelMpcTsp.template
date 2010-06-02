@@ -7,6 +7,7 @@
 #% macro, port, asyn seral port number (e.g. ty_40_0)
 #% macro, unit, unit number for multi-drop serial
 #% macro, ctlsrc, control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
+# duration- On duration (s)       - new addition May 2010 for dual TSP systems on MPCe - defaults to 10
 ################################################################################
 # Status
 #
@@ -61,7 +62,7 @@ record(mbbi, "$(device):RAWSTA")
 {
     field(DESC, "Raw Status")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto tspsta($(unit)) $(port)")
+    field(INP,  "@digitelMpc.proto tspsta($(unit),$(device):RELAY) $(port)")
     field(SCAN, "1 second")
     field(FLNK, "$(device):CALSTA")
 }
@@ -75,7 +76,7 @@ record(mbbi, "$(device):FIL1:STA")
 {
     field(DESC, "Filament 1 Status")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto filsta($(unit),1) $(port)")
+    field(INP,  "@digitelMpc.proto filsta($(unit),1,$(device):RELAY) $(port)")
     field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
@@ -109,7 +110,7 @@ record(mbbi, "$(device):FIL2:STA")
 {
     field(DESC, "Filament 2 Status")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto filsta($(unit),2) $(port)")
+    field(INP,  "@digitelMpc.proto filsta($(unit),2,$(device):RELAY) $(port)")
     field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
@@ -143,7 +144,7 @@ record(mbbi, "$(device):FIL3:STA")
 {
     field(DESC, "Filament 3 Status")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto filsta($(unit),3) $(port)")
+    field(INP,  "@digitelMpc.proto filsta($(unit),3,$(device):RELAY) $(port)")
     field(SCAN, "1 second")
     field(ZRST, "Not Installed")
     field(ONST, "Inactive")
@@ -205,7 +206,7 @@ record(ao, "$(device):OUTPOWER")
 #
     field(DESC, "Power")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setpower($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto setpower($(unit),$(device):RELAY) $(port)")
     field(EGU,  "W")
     field(DRVL, "0")
     field(DRVH, "250")
@@ -812,6 +813,7 @@ record(mbbi, "$(device):FIL")
     field(ONST, "Filament 2")
     field(TWST, "Filament 3")
 #    field(THST, "Filament 4")
+    field(FRST, "Error - IND")
 }
 #
 #% controldesk Active Filament scon
@@ -820,7 +822,7 @@ record(mbbo, "$(device):SETFIL")
 {
     field(DESC, "Filament Active")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setfil($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto setfil($(unit),$(device):RELAY) $(port)")
     field(ZRST, "Filament 1")
     field(ONST, "Filament 2")
     field(TWST, "Filament 3")
@@ -836,7 +838,7 @@ record(longin, "$(device):LEFT")
 {
     field(DESC, "Cycles Left")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto left($(unit),$(device)) $(port)")
+    field(INP,  "@digitelMpc.proto left($(unit),$(device),$(device):RELAY) $(port)")
     field(SCAN, "10 second")
     field(LOPR, "0")
     field(HOPR, "999")
@@ -929,7 +931,7 @@ record(bo, "$(device):CLEAR")
 {
     field(DESC, "Clear Filaments")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto clear($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto clear($(unit),$(device):RELAY) $(port)")
     field(ZNAM, "Clear")
     field(ONAM, "Clear")
 }
@@ -967,7 +969,7 @@ record(mbbo, "$(device):CTLSRC")
 {
     field(DESC, "Control Source")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto ctlsrc($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto ctlsrc($(unit),$(device):RELAY) $(port)")
     field(ZRST, "Service")
     field(ONST, "Ion Pump 1")
     field(TWST, "Ion Pump 2")
@@ -981,7 +983,7 @@ record(ao, "$(device):SETPTHR")
 {
     field(DESC, "Pressure Threshold")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto thresh($(unit)) $(port)")
+    field(OUT,  "@digitelMpc.proto thresh($(unit),$(device):RELAY) $(port)")
     field(EGU,  "mbar")
     field(DRVL, "1.0e-9")
     field(DRVH, "1.0e-5")
@@ -993,4 +995,44 @@ record(ao, "$(device):SETPTHR")
 }
 ################################################################################
 
+
+# Get TSP Configuration
+#
+record(mbbi, "$(device):CONFIG")
+{
+    field(DESC, "Configuration mode")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto getconfig($(unit)) $(port)")
+    field(SCAN, "10 second")
+    field(ZRST, "Fault")
+    field(ONST, "Not Installed")
+    field(TWST, "NEG")
+    field(THST, "Single 3")
+    field(FRST, "Single 4")
+    field(FVST, "Single 6")
+    field(SXST, "Single 8")
+    field(SVST, "Dual 3")
+    field(EIST, "Dual 4")
+}
+
+record(mbbo, "$(device):RELAY")
+{
+    field(DESC, "Dual mode TSP relay select")
+    field(ZRST, "0")
+    field(ONST, "1")
+    field(TWST, "2")
+    field(DOL,  "1")
+    field(PINI, "YES")
+}
+
+record(fanout, "$(device):FANUPDATE")
+{
+    field(DESC, "Get status update dual mode")
+    field(SCAN, "Passive")
+    field(LNK1, "$(device):STA")
+    field(LNK2, "$(device):CTLSRC")
+    field(LNK3, "$(device):FIL1:STA")
+    field(LNK4, "$(device):FIL2:STA")
+    field(LNK5, "$(device):FIL3:STA")
+}
 
