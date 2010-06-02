@@ -151,4 +151,11 @@ record(bo, "$(device):RESET")
 }
 ################################################################################
 
+record(stringin, "$(device):DEBUG")
+{
+    field(DESC, "Generic command")
+    field(DTYP, "stream")
+    field(INP,  "@digitelMpc.proto debug($(unit)) $(port)")
+    field(SCAN, "Passive")
+}
 
