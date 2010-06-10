@@ -98,7 +98,7 @@ ctlsrc    { out "~ \$1 8B %(\$2.VAL)d,%d %01<sum8>"         ; in "\$1 OK %*2x %0
 thresh    { out "~ \$1 EA %(\$2.VAL)d,%3.1E %01<sum8>"      ; in "\$1 OK %*2x %0<sum8>"                ; }
 setfil    { out "~ \$1 29 %(\$2.VAL)d,%{1|2|3|4} %01<sum8>" ;ExtraInput = Ignore; in "\$1 OK %*2x %0<sum8>"                ; }
 
-tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }
+tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"; @mismatch { in "\$1 OK %*2x %*s %0<sum8>";} }
 clear     { out "~ \$1 2B %(\$2.VAL)d,0 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }
 
 getconfig { out "~ \$1 87 %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4|5|6|7|8} %0<sum8>" ; }
