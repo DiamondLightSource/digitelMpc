@@ -267,8 +267,27 @@ record(seq, "$(device):SEQPOWER")
     field(SCAN, "1 second")
     field(DOL1, "$(device):RMPPOWER")
     field(LNK1, "$(device):OUTPOWER PP")
+#    field(DOL2, "0") 
+#    field(LNK2, "$(device):TSPOFF PP")
     field(DOL2, "0") 
+    field(LNK2, "$(device):SEQOFF PP")
+}
+
+#
+# Don't issue the TSPOFF command if already off
+# by checking :STA 
+#
+record(seq, "$(device):SEQOFF") 
+{
+    field(DESC, "Power off TSP sequence")
+    field(SELM, "Specified")
+    field(SELL, "$(device):STA")
+    field(DOL2, "0")
     field(LNK2, "$(device):TSPOFF PP")
+    field(DOL3, "0") 
+    field(LNK3, "$(device):TSPOFF PP")
+    field(DOL4, "0") 
+    field(LNK4, "$(device):TSPOFF PP")
 }
 ################################################################################
 # TSP operating mode
@@ -1018,7 +1037,7 @@ record(mbbi, "$(device):CONFIG")
 record(mbbo, "$(device):RELAY")
 {
     field(DESC, "Dual mode TSP relay select")
-    field(ZRST, "0")
+#    field(ZRST, "0")
     field(ONST, "1")
     field(TWST, "2")
     field(DOL,  "1")
