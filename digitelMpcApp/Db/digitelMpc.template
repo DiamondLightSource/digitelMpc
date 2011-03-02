@@ -155,7 +155,7 @@ record(stringin, "$(device):DEBUG")
 {
     field(DESC, "Generic command")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto debug($(unit)) $(port)")
+    field(INP,  "@digitelMpc.proto debug($(unit=01)) $(port)")
     field(SCAN, "Passive")
 }
 
