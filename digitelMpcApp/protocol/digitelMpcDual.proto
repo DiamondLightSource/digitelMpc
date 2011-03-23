@@ -1,4 +1,4 @@
-# digitelMpc.proto
+# digitelMpcDual.proto
 # Stream Device Protocol for Gamma Vacuum Digitel MPC
 # This protocol uses features defined in Stream Device 2
 #
@@ -77,36 +77,31 @@ start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"     
 # TSP Protocols
 #
 #tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"             ; }
-tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d"             ; }
+tspsta    { out "~ \$1 DE %(\$2.VAL)d %01<sum8>"         ; in "\$1 OK %*2x %d:%*s"          ; }
 #filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}:%*s %0<sum8>" ; }
-filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}" ; }
+filsta    { out "~ \$1 E9 %(\$3.VAL)d,\$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}" ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*2x %g W %0<sum8>"           ; }
+
+# fil now caters for Dual mode where the relay number is returned before the status R,N instead of N
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4|*ERROR} %0<sum8>"; @mismatch {in "\$1 OK %*2x %*d,%{1|2|3|4|*ERROR} %0<sum8>";} }
-#fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"     ; }
-left      { out "~ \$1 2A %01<sum8>"            ; in "\$1 OK %*2x %d,"
+left      { out "~ \$1 2A %(\$3.VAL)d %01<sum8>"        ; in "\$1 OK %*2x %d,"
                                                      "1-%(\$2:FIL1:USED.VAL)d,"
                                                      "2-%(\$2:FIL2:USED.VAL)d,"
                                                      "3-%(\$2:FIL3:USED.VAL)d,"
                                                      "4-%(\$2:FIL4:USED.VAL)d %0<sum8>"    ; }
 
-setpower  { out "~ \$1 E2 %d,W %01<sum8>"       ; in "\$1 OK %*2x %0<sum8>"                ; }
+setpower  { out "~ \$1 E2 %(\$2.VAL)d,%d,W,10 %01<sum8>"       ; in "\$1 OK %*2x %0<sum8>"                ; }
+# New alternative to cater for 'R' (relay) selection of 1 or 2 sent in 2nd parameter
+setpower_dual { out "~ \$1 E2 \$2,%d,W,\$3 %01<sum8>"; in "\$1 OK %*2x %0<sum8>"           ; }
 autofil   { out "~ \$1 2C %{NO|YES} %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"                ; }
-ctlsrc    { out "~ \$1 8B %d %01<sum8>"         ; in "\$1 OK %*2x %0<sum8>"                ; }
-thresh    { out "~ \$1 EA %3.1E %01<sum8>"      ; in "\$1 OK %*2x %0<sum8>"                ; }
-setfil    { out "~ \$1 29 %{1|2|3|4} %01<sum8>" ; in "\$1 OK %*2x %0<sum8>"                ; }
+ctlsrc    { out "~ \$1 8B %(\$2.VAL)d,%d %01<sum8>"         ; in "\$1 OK %*2x %0<sum8>"                ; }
+thresh    { out "~ \$1 EA %(\$2.VAL)d,%3.1E %01<sum8>"      ; in "\$1 OK %*2x %0<sum8>"                ; }
+setfil    { out "~ \$1 29 %(\$2.VAL)d,%{1|2|3|4} %01<sum8>" ;ExtraInput = Ignore; in "\$1 OK %*2x %0<sum8>"                ; }
 
-tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }
-clear     { out "~ \$1 2B %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }
+tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"; @mismatch { in "\$1 OK %*2x %*s %0<sum8>";} }
+clear     { out "~ \$1 2B %(\$2.VAL)d,0 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }
 
 getconfig { out "~ \$1 87 %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4|5|6|7|8} %0<sum8>" ; }
 
 #debug
 debug { ExtraInput = Ignore; out "~ %s %01<sum8>"; in "%*d %*{OK|ER} %*2x %s %0<sum8>";}
-
-
-
-
-
-
-
-
