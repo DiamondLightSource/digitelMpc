@@ -1,4 +1,4 @@
 TOP = ../..
 include $(TOP)/configure/CONFIG
-DATA += digitelMpc_sim.py
+DATA += DigitelMpcCrate.py
 include $(TOP)/configure/RULES

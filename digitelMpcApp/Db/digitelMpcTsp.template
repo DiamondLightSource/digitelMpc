@@ -7,8 +7,8 @@
 #% macro, port, asyn seral port number (e.g. ty_40_0)
 #% macro, unit, unit number for multi-drop serial
 #% macro, ctlsrc, control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
+#% macro, protocol, name of protocol file, either digitelMpc.proto or digitelMpcDual.proto
 # duration- On duration (s)       - new addition May 2010 for dual TSP systems on MPCe - defaults to 10
-# protocol- name of protocol file, either '$(protocol=digitelMpc.proto)' or 'digitelMpcDual.proto'. Defaults to '$(protocol=digitelMpc.proto)'
 ################################################################################
 # Status
 #

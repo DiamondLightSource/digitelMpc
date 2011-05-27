@@ -19,7 +19,7 @@ class PowerSupply(object):
         self.text = ''
         self.pressure = 0.0
         self.voltage = 0
-        self.status = 'STANDBY'
+        self.status = 'RUNNING 00'
         self.pumpSize = 0
         self.calFactor = 0.0
         self.hvStrapping = 5600
