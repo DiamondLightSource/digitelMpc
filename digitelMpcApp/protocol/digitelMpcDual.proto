@@ -61,7 +61,8 @@ status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|
 err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<sum8>" ; }
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*2x %f %0<sum8>"         ; }
-sps       { out "~ \$1 3C \$2 %01<sum8>"        ; in "\$1 OK %*2x %*i,%*i,%g,%(\$3:SP2.VAL)g,%*i %0<sum8>"; }
+#sps       { out "~ \$1 3C \$2 %01<sum8>"        ; in "\$1 OK %*2x %*i,%*i,%g,%(\$3:SP2.VAL)g,%*i %0<sum8>"; }
+sps       { out "~ \$1 3C \$2 %01<sum8>"        ; in "\$1 OK %*2x %*i,%*i,%g,%(\$3:SP2.VAL)g,%*i %0<sum8>"; @mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} }
 
 setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
