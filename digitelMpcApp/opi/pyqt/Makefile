@@ -1,10 +1,9 @@
-TOP = ../..
+TOP = ../../..
 include $(TOP)/configure/CONFIG
 
-DIRS += symbol
-DIRS += edl
-DIRS += pyqt
-DIRS += controldesk
+DIRS += widgets
+DIRS += ui
+DIRS += plugins
 DIRS := $(wildcard $(DIRS))
 
 include $(TOP)/configure/RULES_DIRS

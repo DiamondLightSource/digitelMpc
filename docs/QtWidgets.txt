@@ -1,0 +1,7 @@
+Environment settings to implement Qt4 widget in application:
+
+PYTHONPATH = /dls_sw/support/R3.14.11/dls_pyqt4widgets/dls_pyqt4widgets:/dls_sw/support/R3.14.11/dls_pyqt4widgets:/dls_sw/work/R3.14.11/support/digitelMpc/data
+
+To enable the widget in Qt Designer:
+PYQTDESIGNERPATH = //dls_sw/support/R3.14.11/dls_pyqt4widgets/designerplugins::/dls_sw/work/R3.14.11/support/digitelMpc/data
+
