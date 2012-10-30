@@ -6,10 +6,14 @@ A PyQt custom widget for Qt Designer.
 
 import random, sys
 import logging, logging.handlers
+from pkg_resources import require
 
 from PyQt4 import QtCore, QtGui
 
-from epics_epics_widget import *
+require("dls_pyqt4widgets")
+from dls_pyqt4widgets.epics_epics_widget import *
+
+#from epics_epics_widget import *
 
 logger = logging.getLogger(__name__)
 #logger.setLevel(logging.DEBUG)
