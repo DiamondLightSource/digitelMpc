@@ -40,8 +40,7 @@ class PumpWidget(EpicsSVGWidget):
     __yellow = QtGui.QColor(255,255,0) 
     __red    = QtGui.QColor(255,0,0) 
     
-    epics_data = pyqtSignal()
-    
+   
     def __init__(self, parent = None):
     
         EpicsSVGWidget.__init__(self, "ionp.svg", "", parent)
@@ -113,37 +112,39 @@ class PumpWidget(EpicsSVGWidget):
 
     def updatePumpStatus(self):
     
-        if (self._pvkey.status):
-            value = self._pvkey.value          
-            if ((self._pvkey.severity == None) or (self._pvkey.severity == EpicsTransaction._severity_noalarm)):
-                if (value >= 0) and (value <= PumpWidget.Invalid):
-                    self.pumpStatus = value
-                    
-                    if self.pumpStatus == PumpWidget.Fault:
-                        self.svgLoad(colour = PumpWidget.__white)
-                    elif self.pumpStatus == PumpWidget.Waiting:
-                        self.svgLoad(colour = PumpWidget.__yellow)
-                    elif (self.pumpStatus == PumpWidget.Standby) or (self.pumpStatus == PumpWidget.SafeCon):
-                        self.svgLoad(colour = PumpWidget.__red)
-                    elif self.pumpStatus == PumpWidget.Running:
-                        self.svgLoad(colour = PumpWidget.__green)
-                    elif self.pumpStatus == PumpWidget.CoolDown:
-                        self.svgLoad(colour = PumpWidget.__yellow)
-                    elif (self.pumpStatus == PumpWidget.PumpError)\
-                          or (self.pumpStatus == PumpWidget.HVOff)\
-                          or (self.pumpStatus == PumpWidget.Interlock)\
-                          or (self.pumpStatus == PumpWidget.Invalid):
-                        self.svgLoad(colour = PumpWidget.__red)
+        if self._pvkey is not None:
+            if self._pvkey.connected:
+                value = self._pvkey.value
+                if ((self._pvkey.severity is None) or (self._pvkey.severity == EpicsTransaction._severity_noalarm)):
+                    if (value >= 0) and (value <= PumpWidget.Invalid):
+                        self.pumpStatus = value
+                        
+                        if self.pumpStatus == PumpWidget.Fault:
+                            self.svgLoad(colour = PumpWidget.__white)
+                        elif self.pumpStatus == PumpWidget.Waiting:
+                            self.svgLoad(colour = PumpWidget.__yellow)
+                        elif (self.pumpStatus == PumpWidget.Standby) or (self.pumpStatus == PumpWidget.SafeCon):
+                            self.svgLoad(colour = PumpWidget.__red)
+                        elif self.pumpStatus == PumpWidget.Running:
+                            self.svgLoad(colour = PumpWidget.__green)
+                        elif self.pumpStatus == PumpWidget.CoolDown:
+                            self.svgLoad(colour = PumpWidget.__yellow)
+                        elif (self.pumpStatus == PumpWidget.PumpError)\
+                              or (self.pumpStatus == PumpWidget.HVOff)\
+                              or (self.pumpStatus == PumpWidget.Interlock)\
+                              or (self.pumpStatus == PumpWidget.Invalid):
+                            self.svgLoad(colour = PumpWidget.__red)
+                        else:
+                            self.svgLoad(colour = PumpWidget.__white)
                     else:
                         self.svgLoad(colour = PumpWidget.__white)
-                else:
-                    self.svgLoad(colour = PumpWidget.__white)
-            elif (self._pvkey.severity == EpicsTransaction._severity_minor):
-                    self.svgLoad(colour = PumpWidget.__yellow)
-            elif (self._pvkey.severity == EpicsTransaction._severity_major):
-                    self.svgLoad(colour = PumpWidget.__red)
-            elif (self._pvkey.severity == EpicsTransaction._severity_invalid):
-                    self.svgLoad(colour = PumpWidget.__white)
+                if self._pvkey.severity is not None:
+                    if (self._pvkey.severity == EpicsTransaction._severity_minor):
+                            self.svgLoad(colour = PumpWidget.__yellow)
+                    elif (self._pvkey.severity == EpicsTransaction._severity_major):
+                            self.svgLoad(colour = PumpWidget.__red)
+                    elif (self._pvkey.severity == EpicsTransaction._severity_invalid):
+                            self.svgLoad(colour = PumpWidget.__white)
                 
         else: # Invalid
             self.svgLoad(colour = PumpWidget.__white)
