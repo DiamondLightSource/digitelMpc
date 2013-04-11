@@ -114,7 +114,7 @@ class PumpWidget(EpicsSVGWidget):
     
         if self._pvkey is not None:
             if self._pvkey.connected:
-                value = self._pvkey.value
+                value = self._pvkey.get()
                 if ((self._pvkey.severity is None) or (self._pvkey.severity == EpicsTransaction._severity_noalarm)):
                     if (value >= 0) and (value <= PumpWidget.Invalid):
                         self.pumpStatus = value
