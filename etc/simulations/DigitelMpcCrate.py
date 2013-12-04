@@ -28,8 +28,8 @@ class PowerSupply(object):
 class DigitelMpcCrate(serial_device):
     def __init__(self, name='none', tcpPort=9100, ui=None):
         print "Create Digitel MPC controller %s" % name
-        serial_device.__init__(self, ui=ui)
         self.name = name
+        serial_device.__init__(self, ui=ui)
         self.voltageStrapping = 240
         self.autoRestart = False
         self.fanControl = False
