@@ -11,6 +11,7 @@
 #% macro, size, pump size (l/s)
 #% macro, spon, setpoint on
 #% macro, spoff, setpoint off
+#% macro, alh,  alarm handler tag (Defaults to None) c.f. mp49's commit 80833
 ################################################################################
 
 # This associates an edm screen with the template
