@@ -41,7 +41,7 @@ extrainput   = Ignore;
 model     { out "~ \$1 01 %01<sum8>"            ; in "\$1 OK %*2x %[^0-9.]"            ; }
 version   { out "~ \$1 02 %01<sum8>"            ; in "\$1 OK %*2x %*s %*s %s %0<sum8>" ; }
 linev     { out "~ \$1 22 %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"         ; }
-linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*2x %d Hz %0<sum8>"      ; }
+linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*2x %d Hz %*?/\(.*\) /%0<sum8>"; }
 autost    { out "~ \$1 34 %01<sum8>"            ; in "\$1 OK %*2x %{NO|YES} %0<sum8>"  ; }
 
 setlinev  { out "~ \$1 23 %d %01<sum8>"         ; in "\$1 OK %*2x %0<sum8>"            ; }
