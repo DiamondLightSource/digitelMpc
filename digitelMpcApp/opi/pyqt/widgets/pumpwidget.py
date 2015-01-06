@@ -161,6 +161,8 @@ class PumpWidget(EpicsSVGWidget):
         we are able to invoke the appropriate EDM screen for this widget.
         A check is first performed to ensure that the EDM panel is not already invoked.
         '''
+        # Dictionary of local gauge type identifiers mapped to configure-ioc redirector names
+        redirectorName = "FE-SUPPORT-digitelMpc"
         
         feguidir = self.redirectorPath()
         # Setup the process environment variables from support-module-versions in the QT Gui directory, given by the redirector (e.g. FE-QT-GUI)
@@ -174,9 +176,10 @@ class PumpWidget(EpicsSVGWidget):
 
         if bInvoke:
             logger.debug( "EDM process not running - invoking request")
-            cmd = "source %s/support-module-versions;" %(feguidir) \
-                  +"export EDMDATAFILES=/dls_sw/prod/${VER_EPICS}/support/digitelMpc/${VER_MPC}/data;" \
+            edmdirectory = self.redirectorPath(redirectorName)
+            cmd = "export EDMDATAFILES={0:s};".format(edmdirectory) \
                   +"edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(self._pv_base)
+            
             self._edm_process = Popen(cmd, shell=True)
 
     
