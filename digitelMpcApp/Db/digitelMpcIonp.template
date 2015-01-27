@@ -16,6 +16,21 @@
 
 # This associates an edm screen with the template
 # % gui, $(name=), edm, digitelMpcIonpControl.edl, device=$(device)
+# This associates a BOY screen with the template
+
+# % gui, $(name=), boydetail, digitelMpcApp_opi/ionp_detail.opi, device=$(device), desc=$(device)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed_box.opi, device=$(device), desc=$(device)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed.opi, device=$(device), desc=$(device)
+
+# These define what PVs a valve detail screen should contain
+# TODO - is it better to use $(device) here in one block or spread these through the template and use <pv> ?
+# % gui, $(name=), readback, Status,  low, $(device):STA
+# % gui, $(name=), readback, Error Code, low, $(device):ERR
+# % gui, $(name=), readback, Voltage, low, $(device):V
+# % gui, $(name=), readback, Current, low, $(device):I
+# % gui, $(name=), readback, Strapping, low, $(device):HV
+# % gui, $(name=), enum, Start, low, $(device):START
+# TODO complete further set/readback values and GRAPH (and duplicate Start/Stop ?)
 
 # Read pump current
 #
