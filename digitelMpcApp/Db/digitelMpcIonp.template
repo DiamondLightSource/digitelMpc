@@ -29,8 +29,15 @@
 # % gui, $(name=), readback, Voltage, low, $(device):V
 # % gui, $(name=), readback, Current, low, $(device):I
 # % gui, $(name=), readback, Strapping, low, $(device):HV
-# % gui, $(name=), enum, Start, low, $(device):START
-# TODO complete further set/readback values and GRAPH (and duplicate Start/Stop ?)
+# % gui, $(name=), enum, Start, high, $(device):START
+# % gui, $(name=), readback, Pump Size, low, $(device):SIZE
+# % gui, $(name=), demand, Pump Size, low, $(device):SETSIZE
+# % gui, $(name=), readback, Calibration, low, $(device):CAL
+# % gui, $(name=), demand, Calibration, low, $(device):SETCAL
+# % gui, $(name=), readback, Setpoint On, low, $(device):SP1
+# % gui, $(name=), demand, Setpoint On, low, $(device):SETSP1
+# % gui, $(name=), readback, Setpoint Off, low, $(device):SP2
+# % gui, $(name=), demand, Setpoint Off, low, $(device):SETSP2
 
 # Read pump current
 #
