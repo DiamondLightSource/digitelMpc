@@ -23,21 +23,21 @@
 # % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed.opi, device=$(device), desc=$(device)
 
 # These define what PVs a valve detail screen should contain
-# % gui, $(name=), readback, Status,  low, $(device):STA
-# % gui, $(name=), readback, Error Code, low, $(device):ERR
-# % gui, $(name=), readback, Voltage, low, $(device):V
-# % gui, $(name=), readback, Current, low, $(device):I
-# % gui, $(name=), readback, Strapping, low, $(device):HV
-# % gui, $(name=), enum, Start, low, $(device):START
-# % gui, $(name=), readback, Starting, low, $(device):STARTING
-# % gui, $(name=), readback, Pump Size, low, $(device):SIZE
-# % gui, $(name=), demand, Pump Size, low, $(device):SETSIZE
-# % gui, $(name=), readback, Calibration, low, $(device):CAL
-# % gui, $(name=), demand, Calibration, low, $(device):SETCAL
-# % gui, $(name=), readback, Setpoint On, low, $(device):SP1
-# % gui, $(name=), demand, Setpoint On, low, $(device):SETSP1
-# % gui, $(name=), readback, Setpoint Off, low, $(device):SP2
-# % gui, $(name=), demand, Setpoint Off, low, $(device):SETSP2
+# % gui, $(name=), readback, Status,   $(device):STA
+# % gui, $(name=), readback, Error Code,  $(device):ERR
+# % gui, $(name=), readback, Voltage,  $(device):V
+# % gui, $(name=), readback, Current,  $(device):I
+# % gui, $(name=), readback, Strapping,  $(device):HV
+# % gui, $(name=), enum, Start,  $(device):START
+# % gui, $(name=), readback, Starting,  $(device):STARTING
+# % gui, $(name=), readback, Pump Size,  $(device):SIZE
+# % gui, $(name=), demand, Pump Size,  $(device):SETSIZE
+# % gui, $(name=), readback, Calibration,  $(device):CAL
+# % gui, $(name=), demand, Calibration,  $(device):SETCAL
+# % gui, $(name=), readback, Setpoint On,  $(device):SP1
+# % gui, $(name=), demand, Setpoint On,  $(device):SETSP1
+# % gui, $(name=), readback, Setpoint Off,  $(device):SP2
+# % gui, $(name=), demand, Setpoint Off,  $(device):SETSP2
 
 # Read pump current
 #
