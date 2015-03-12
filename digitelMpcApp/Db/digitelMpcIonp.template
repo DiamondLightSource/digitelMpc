@@ -132,7 +132,6 @@ record(longin, "$(device):HV")
 #
 #% archiver 10 Monitor
 #% controldesk Supply Status smon
-#% alh $SEVRCOMMAND UP_MINOR alh_minor_alarm_email.pl -d "$(device):STA"
 #% $(alh=None) $SEVRCOMMAND UP_ANY dls-alh-handler.py $(device):STA
 record(mbbi, "$(device):STA")
 {
