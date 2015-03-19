@@ -12,6 +12,7 @@
 #% macro, spon, setpoint on
 #% macro, spoff, setpoint off
 #% macro, alh,  alarm handler tag (Defaults to None) c.f. mp49's commit 80833
+#% macro, text, Text to display in the ion pump controller window.
 ################################################################################
 
 # This associates an edm screen with the template
@@ -403,7 +404,7 @@ record(calcout, "$(device):SETSPS") {
 #
 record(stringout, "$(device):SETTEXT") {
     field(DESC, "Text String")
-    field(VAL , "$(device)")
+    field(VAL , "$(text=$(device))")
     field(DTYP, "stream")
     field(OUT,  "@digitelMpc.proto settext($(unit),$(pump)) $(port)")
     field(PINI, "YES")
