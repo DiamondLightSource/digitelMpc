@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 91
-y 239
+x 201
+y 618
 w 328
-h 468
+h 524
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -34,7 +34,7 @@ release 0
 x 8
 y 48
 w 312
-h 348
+h 400
 lineColor index 14
 fill
 fillColor index 5
@@ -45,7 +45,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 0
 y 0
 w 328
@@ -64,7 +64,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 68
 w 60
@@ -84,7 +84,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 96
 w 42
@@ -104,7 +104,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 152
 w 50
@@ -168,7 +168,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 179
 w 48
@@ -245,7 +245,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 124
 w 72
@@ -265,7 +265,7 @@ object activeBarClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 172
 y 64
 w 140
@@ -303,7 +303,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 40
 w 48
@@ -361,7 +361,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 208
 w 62
@@ -385,7 +385,7 @@ release 0
 x 208
 y 240
 w 104
-h 148
+h 200
 lineColor index 14
 fill
 fillColor index 3
@@ -399,8 +399,8 @@ minor 0
 release 0
 x 16
 y 240
-w 88
-h 148
+w 104
+h 200
 lineColor index 14
 fill
 fillColor index 3
@@ -412,10 +412,10 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 104
+x 120
 y 240
-w 104
-h 148
+w 88
+h 200
 lineColor index 14
 fill
 fillColor index 3
@@ -426,7 +426,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
 y 276
 w 69
@@ -446,7 +446,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 104
 y 240
 w 104
@@ -465,7 +465,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 208
 y 240
 w 104
@@ -484,7 +484,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 240
 w 88
@@ -494,7 +494,7 @@ fontAlign "center"
 fgColor index 1
 bgColor index 10
 value {
-  "Area"
+  "Attribute"
 }
 endObjectProperties
 
@@ -504,9 +504,9 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 112
+x 128
 y 272
-w 88
+w 70
 h 22
 controlPv "$(device):SIZE"
 fgColor index 16
@@ -523,7 +523,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
 y 272
@@ -545,6 +545,7 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Static Text)
@@ -552,17 +553,17 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
-y 360
-w 78
+y 365
+w 90
 h 16
 font "arial-medium-r-14.0"
 fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Setpoint Off"
+  "Setpoint 1 Off"
 }
 autoSize
 endObjectProperties
@@ -573,9 +574,9 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 112
-y 300
-w 88
+x 128
+y 301
+w 70
 h 22
 controlPv "$(device):CAL"
 fgColor index 16
@@ -593,17 +594,17 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
-y 332
-w 78
+y 336
+w 90
 h 16
 font "arial-medium-r-14.0"
 fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Setpoint On"
+  "Setpoint 1 On"
 }
 autoSize
 endObjectProperties
@@ -613,9 +614,9 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
-y 304
+y 306
 w 69
 h 16
 font "arial-medium-r-14.0"
@@ -634,11 +635,11 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 112
-y 356
-w 88
+x 128
+y 359
+w 70
 h 22
-controlPv "$(device):SP2"
+controlPv "$(device):SP1OFF"
 displayMode "exp"
 precision 1
 fgColor index 16
@@ -657,11 +658,11 @@ beginObjectProperties
 major 10
 minor 0
 release 0
-x 112
-y 328
-w 88
+x 128
+y 330
+w 70
 h 22
-controlPv "$(device):SP1"
+controlPv "$(device):SP1ON"
 displayMode "exp"
 precision 1
 fgColor index 16
@@ -678,10 +679,10 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
-y 300
+y 301
 w 88
 h 22
 controlPv "$(device):SETCAL"
@@ -700,19 +701,20 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Text Control)
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
-y 328
+y 330
 w 88
 h 22
-controlPv "$(device):SETSP1"
+controlPv "$(device):SETSP1ON"
 format "exponential"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -721,7 +723,7 @@ bgColor index 1
 editable
 motifWidget
 limitsFromDb
-nullPv "$(device):SETSP1"
+nullPv "$(device):SETSP1ON"
 nullColor index 18
 nullCondition "disabled"
 fastUpdate
@@ -729,19 +731,20 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Text Control)
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
-y 356
+y 359
 w 88
 h 22
-controlPv "$(device):SETSP2"
+controlPv "$(device):SETSP1OFF"
 format "exponential"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -750,7 +753,7 @@ bgColor index 1
 editable
 motifWidget
 limitsFromDb
-nullPv "$(device):SETSP2"
+nullPv "$(device):SETSP1OFF"
 nullColor index 18
 nullCondition "disabled"
 fastUpdate
@@ -758,6 +761,7 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Rectangle)
@@ -768,7 +772,7 @@ minor 0
 release 0
 x 16
 y 240
-w 88
+w 104
 h 24
 lineColor index 14
 fillColor index 3
@@ -780,9 +784,9 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 104
+x 120
 y 240
-w 104
+w 88
 h 24
 lineColor index 14
 fillColor index 3
@@ -809,7 +813,7 @@ major 4
 minor 0
 release 0
 x 8
-y 408
+y 464
 w 312
 h 56
 
@@ -822,7 +826,7 @@ major 4
 minor 0
 release 0
 x 8
-y 412
+y 464
 w 152
 h 48
 lineColor index 14
@@ -837,7 +841,7 @@ major 4
 minor 1
 release 0
 x 256
-y 436
+y 488
 w 64
 h 24
 fgColor index 46
@@ -853,10 +857,10 @@ endObjectProperties
 object shellCmdClass
 beginObjectProperties
 major 4
-minor 2
+minor 3
 release 0
 x 256
-y 404
+y 456
 w 64
 h 24
 fgColor index 43
@@ -878,7 +882,7 @@ major 10
 minor 0
 release 0
 x 16
-y 428
+y 480
 w 64
 h 24
 controlPv "$(device):STARTING"
@@ -893,10 +897,10 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 16
-y 428
+y 480
 w 64
 h 24
 fgColor index 25
@@ -919,10 +923,10 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 88
-y 428
+y 480
 w 64
 h 24
 fgColor index 25
@@ -943,9 +947,9 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
-y 404
+y 456
 w 56
 h 16
 font "arial-medium-r-12.0"
@@ -964,7 +968,7 @@ major 4
 minor 0
 release 0
 x 8
-y 404
+y 456
 w 56
 h 16
 lineColor index 14
@@ -973,5 +977,233 @@ endObjectProperties
 
 endGroup
 
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 416
+w 88
+h 22
+controlPv "$(device):SETSP2OFF"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP2OFF"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 388
+w 88
+h 22
+controlPv "$(device):SETSP2ON"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP2ON"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 416
+w 70
+h 22
+controlPv "$(device):SP2OFF"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 388
+w 70
+h 22
+controlPv "$(device):SP2ON"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 424
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2 Off"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 395
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2 On"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 272
+y 148
+w 40
+h 24
+controlPv "$(device):SP1STATE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 200
+y 152
+w 64
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 1"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 272
+y 176
+w 40
+h 24
+controlPv "$(device):SP2STATE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 200
+y 179
+w 66
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2"
+}
+autoSize
 endObjectProperties
 

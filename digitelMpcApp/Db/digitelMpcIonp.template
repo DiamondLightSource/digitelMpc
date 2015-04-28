@@ -35,10 +35,14 @@
 # % gui, $(name=), demand, Pump Size,  $(device):SETSIZE
 # % gui, $(name=), readback, Calibration,  $(device):CAL
 # % gui, $(name=), demand, Calibration,  $(device):SETCAL
-# % gui, $(name=), readback, Setpoint On,  $(device):SP1
-# % gui, $(name=), demand, Setpoint On,  $(device):SETSP1
-# % gui, $(name=), readback, Setpoint Off,  $(device):SP2
-# % gui, $(name=), demand, Setpoint Off,  $(device):SETSP2
+# % gui, $(name=), readback, Setpoint 1 On,  $(device):SP1ON
+# % gui, $(name=), demand, Setpoint 1 On,  $(device):SETSP1ON
+# % gui, $(name=), readback, Setpoint 1 Off,  $(device):SP1OFF
+# % gui, $(name=), demand, Setpoint 1 Off,  $(device):SETSP1OFF
+# % gui, $(name=), readback, Setpoint 2 On,  $(device):SP2ON
+# % gui, $(name=), demand, Setpoint 2 On,  $(device):SETSP2ON
+# % gui, $(name=), readback, Setpoint 2 Off,  $(device):SP2OFF
+# % gui, $(name=), demand, Setpoint 2 Off,  $(device):SETSP2OFF
 
 # Read pump current
 #
@@ -330,75 +334,325 @@ record(bi,"$(device):STARTING")
     field(ZNAM, "")
     field(ONAM, "Starting")
 }
+
 ################################################################################
 # Setpoints
+#
+# The MPC and MPCe controllers have four setpoints. Each setpoint has associated
+# with it an ON pressure, an OFF pressure and a supply.
+# Each pump on the controller is allocated two of the setpoints (pump setpoints 1 & 2).
+# The following table describes the mapping of controller setpoints and supplies to
+# each pump.
+# I Gillingham: April 2015
+#
+#  Pump number   Pump_Setpoint Controller_Setpoint   Supply  
+#      1             1                   1             1
+#      2             1                   2             2
+#      1             2                   3             1
+#      2             2                   4             2
+
+## ----------------- SP1 -------------------------------
+#
+# -----------------------------------------------------------------------------------------
+# These two records work together to provide one scan
+# to correctly initialise the SETSPS1 and SETSPS2 records just once
+# at startup.
+#
+record(bo, "$(device):INIT:SETSPSDIS") 
+    {
+    field(DTYP, "Soft Channel")
+    field(VAL, "1")
+    field(OUT, "$(device):INIT:SETSPSEQ.DISA")
+    }
+#
+# 1) Get the instrument value for SP1 ON/OFF
+# 1a) Wait one second for :RQSTSP1ON to complete and populate :SP1OFF and :SP1ON
+# 2) Disable instrument update of setting SP1 ON/OFF
+# 3) LOAD SETSP1OFF with SP1OFF
+# 4) LOAD SETSP1ON with SP1ON
+# 5) Enable instrument update of setting SP1 ON/OFF
+# 6) Process seq for SP2
+# 7) Disable this seq record from processing again
+record(seq, "$(device):INIT:SETSPSEQ") 
+    {
+    field(SCAN, "1 second")
+    field(SELM, "All")
+    field(LNK1, "$(device):RQSTSP1ON PP")
+    field(LNK2, "$(device):SETSPS1.DISA PP")
+    field(LNK3, "$(device):SETSP1OFF PP")
+    field(LNK4, "$(device):SETSP1ON PP")
+    field(LNK5, "$(device):SETSPS1.DISA PP")
+    field(LNK6, "$(device):INIT:SETSP2SEQ PP")
+    field(LNK7, "$(device):INIT:SETSPSDIS PP")
+    field(DLY1, "0")
+    field(DLY2, "1.0")
+    field(DLY3, "0")
+    field(DLY4, "0")
+    field(DLY7, "0")
+    field(DOL1, "0")
+    field(DOL2, "1")
+    field(DOL3, "$(device):SP1OFF")
+    field(DOL4, "$(device):SP1ON")
+    field(DOL5, "0")
+    field(DOL6, "0")
+    field(DOL7, "1")
+    }
+    
+# 1) Get the instrument value for SP2 ON/OFF
+# 1a) Wait one second for :RQSTSP2ON to complete and populate :SP2OFF and :SP2ON
+# 2) Disable instrument update of setting SP2 ON/OFF
+# 3) LOAD SETSP2OFF with SP2OFF
+# 4) LOAD SETSP2ON with SP2ON
+# 5) Enable instrument update of setting SP2 ON/OFF
+record(seq, "$(device):INIT:SETSP2SEQ")
+    {
+    field(SELM, "All")
+    field(LNK1, "$(device):RQSTSP2ON PP")
+    field(LNK2, "$(device):SETSPS2.DISA PP")
+    field(LNK3, "$(device):SETSP2OFF PP")
+    field(LNK4, "$(device):SETSP2ON PP")
+    field(LNK5, "$(device):SETSPS2.DISA PP")
+    field(DLY1, "0")
+    field(DLY2, "1.0")
+    field(DLY3, "0")
+    field(DLY4, "0")
+    field(DOL1, "0")
+    field(DOL2, "1")
+    field(DOL3, "$(device):SP2OFF")
+    field(DOL4, "$(device):SP2ON")
+    field(DOL5, "0")
+    }
+
+
+
+# Although requesting SPS is logically an input, a calcout has been 
+# used here to allow the return values to be injected directly into the 
+# given record names via input links.
+#
+record(calcout, "$(device):RQSTSP1ON") 
+    {
+    field(DESC, "Rqst Setpoint1 On")
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+    field(OUT,  "@digitelMpc.proto sps($(unit),$(device),1) $(port)")
+    field(INPA, "$(device):SP1ON PP")
+    field(INPB, "$(device):SP1OFF PP")
+    field(INPC, "$(device):SPNUM1")
+    field(CALC, "0")
+    field(PINI, "NO")
+    }
+record(calcout, "$(device):RQSTSP2ON") 
+    {
+    field(DESC, "Rqst Setpoint2 On")
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+    field(OUT,  "@digitelMpc.proto sps($(unit),$(device),2) $(port)")
+    field(INPA, "$(device):SP2ON PP")
+    field(INPB, "$(device):SP2OFF PP")
+    field(INPC, "$(device):SPNUM2")
+    field(CALC, "0")
+    field(PINI, "NO")
+    }
+
+
+
+#% archiver 10 Monitor
+#% controldesk Setpoint 1 readback
+#
+record(ai, "$(device):SP1ON") 
+    {
+    field(DESC, "Setpoint 1 On")
+    field(DTYP, "Soft Channel")
+    field(EGU,  "mbar")
+    field(LOPR, "0.0")
+    field(HOPR, "1000.0")
+    field(PREC, "1")
+    }
 #
 #% archiver 10 Monitor
 #% controldesk Setpoint 1 readback
 #
-record(ai, "$(device):SP1") {
-    field(DESC, "Setpoint On")
-    field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto sps($(unit),$(pump),$(device)) $(port)")
-    field(SCAN, "10 second")
+record(ai, "$(device):SP1OFF") 
+    {
+    field(DESC, "Setpoint 1 Off")
     field(EGU,  "mbar")
     field(LOPR, "0.0")
     field(HOPR, "1000.0")
     field(PREC, "1")
-}
-#
-#% archiver 10 Monitor
-#% controldesk Setpoint 2 readback
-#
-record(ai, "$(device):SP2") {
-    field(DESC, "Setpoint Off")
-    field(EGU,  "mbar")
-    field(LOPR, "0.0")
-    field(HOPR, "1000.0")
-    field(PREC, "1")
-}
+    }
+record(bi,"$(device):SP1STATE")
+    {
+    field(DESC, "Setpoint 1 State")
+    field(PINI, "NO")
+    field(INP,  "0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    }
 #
 #% archiver 10 Monitor
 #% controldesk Setpoint 1 setpoint
 #
-record(ao, "$(device):SETSP1") {
+record(ao, "$(device):SETSP1ON") 
+    {
     field(VAL,  "$(spon=0)")
-    field(DESC, "Setpoint On")
+    field(DESC, "Setpoint 1 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
     field(DRVH, "1.0E-4")
     field(LOPR, "0.0")
     field(HOPR, "1000.0")
     field(PREC, "1")
-    field(FLNK, "$(device):SETSPS")
-}
+    field(FLNK, "$(device):SETSPS1")
+    }
+#
+#% archiver 10 Monitor
+#% controldesk Setpoint 1 Off setpoint
+#
+record(ao, "$(device):SETSP1OFF") 
+    {
+    field(VAL,  "$(spoff=0)")
+    field(DESC, "Setpoint 1 Off")
+    field(EGU,  "mbar")
+    field(DRVL, "1.0E-10")
+    field(DRVH, "1.0E-4")
+    field(LOPR, "0.0")
+    field(HOPR, "1000.0")
+    field(PREC, "1")
+    field(FLNK, "$(device):SETSPS1")
+    }
+
+# NB: INPF is written to by :SPNUM1 on PINI
+#     The supply number is equivalent to pump number (1 | 2)
+#
+record(calcout, "$(device):SETSPS1") 
+    {
+    field(DESC, "Output Setpoints")
+    field(DTYP, "stream")
+    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
+    field(INPA, "$(device):SETSP1ON")
+    field(INPB, "$(device):SETSP1OFF")
+    field(INPC, "$(pump)")
+    field(INPD, "1.01E-10")
+    field(INPE, "9.99E-5")
+    field(INPF, "$(device):SPNUM1")
+    field(CALC, "((A<D)||(B>E))?0:C")
+    field(PINI, "NO")
+    field(FLNK, "$(device):RQSTSP1ON")
+    }
+
+
+## ----------------- SP2 -------------------------------
+
+#% archiver 10 Monitor
+#% controldesk Setpoint 2 readback
+#
+record(ai, "$(device):SP2ON") 
+    {
+    field(DESC, "Setpoint 2 On")
+    field(EGU,  "mbar")
+    field(LOPR, "0.0")
+    field(HOPR, "1000.0")
+    field(PREC, "1")
+    }
+#
+#% archiver 10 Monitor
+#% controldesk Setpoint 2 readback
+#
+record(ai, "$(device):SP2OFF") 
+    {
+    field(DESC, "Setpoint 2 Off")
+    field(EGU,  "mbar")
+    field(LOPR, "0.0")
+    field(HOPR, "1000.0")
+    field(PREC, "1")
+    }
+record(bi,"$(device):SP2STATE")
+    {
+    field(DESC, "Setpoint 2 State")
+    field(PINI, "NO")
+    field(INP,  "0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    }
 #
 #% archiver 10 Monitor
 #% controldesk Setpoint 2 setpoint
 #
-record(ao, "$(device):SETSP2") {
-    field(VAL,  "$(spoff=0)")
-    field(DESC, "Setpoint Off")
+record(ao, "$(device):SETSP2ON") 
+    {
+    field(VAL,  "$(spon=0)")
+    field(DESC, "Setpoint 2 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
     field(DRVH, "1.0E-4")
     field(LOPR, "0.0")
     field(HOPR, "1000.0")
     field(PREC, "1")
-    field(FLNK, "$(device):SETSPS")
-}
-record(calcout, "$(device):SETSPS") {
+    field(FLNK, "$(device):SETSPS2")
+    }
+#
+#% archiver 10 Monitor
+#% controldesk Setpoint 2 Off setpoint
+#
+record(ao, "$(device):SETSP2OFF") 
+    {
+    field(VAL,  "$(spoff=0)")
+    field(DESC, "Setpoint 2 Off")
+    field(EGU,  "mbar")
+    field(DRVL, "1.0E-10")
+    field(DRVH, "1.0E-4")
+    field(LOPR, "0.0")
+    field(HOPR, "1000.0")
+    field(PREC, "1")
+    field(FLNK, "$(device):SETSPS2")
+    }
+
+# NB: INPF is written to by :SPNUM2 on PINI
+record(calcout, "$(device):SETSPS2") 
+    {
     field(DESC, "Output Setpoints")
     field(DTYP, "stream")
     field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
-    field(INPA, "$(device):SETSP1")
-    field(INPB, "$(device):SETSP2")
+    field(INPA, "$(device):SETSP2ON")
+    field(INPB, "$(device):SETSP2OFF")
     field(INPC, "$(pump)")
     field(INPD, "1.01E-10")
     field(INPE, "9.99E-5")
+    field(INPF, "$(device):SPNUM2")    
     field(CALC, "((A<D)||(B>E))?0:C")
+    field(PINI, "NO")
+    field(FLNK, "$(device):RQSTSP2ON")
+    }
+
+
+# Calculate the controller setpoint number for this pump
+# Pump  Pump Setpoint  Controller Setpoint
+#   1       1                    1
+#   1       2                    3
+#   2       1                    2
+#   2       2                    4
+
+record(calc, "$(device):SPNUM1") 
+    {
+    field(DESC, "Controller setpoints number Pump 1")
+    field(INPA, "$(pump)")
+    field(CALC, "(A>1)?3:1")
     field(PINI, "YES")
-}
+    field(FLNK, "$(device):SETSPS1")
+    }
+
+record(calc, "$(device):SPNUM2") 
+    {
+    field(DESC, "Controller setpoints number Pump 2")
+    field(INPA, "$(pump)")
+    field(CALC, "(A>1)?4:2")
+    field(PINI, "YES")
+    field(FLNK, "$(device):SETSPS2")
+    }
+
+
 ################################################################################
 # Text string on front panel
 #
@@ -411,4 +665,11 @@ record(stringout, "$(device):SETTEXT") {
 }
 ################################################################################
 
+################################################################################
+# Text error message
+#
+record(stringin, "$(device):ERROR") 
+    {
+    field(DESC, "Last error message")
+    }
 
