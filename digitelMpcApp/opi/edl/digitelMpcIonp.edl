@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 86
-y 217
+x 887
+y 833
 w 232
 h 310
 font "arial-medium-r-16.0"
@@ -30,7 +30,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 0
 y 0
 w 232
@@ -64,7 +64,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 68
 w 60
@@ -84,7 +84,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 96
 w 42
@@ -104,7 +104,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 124
 w 50
@@ -124,7 +124,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 152
 w 48
@@ -144,7 +144,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 180
 w 69
@@ -164,7 +164,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 40
 w 48
@@ -303,7 +303,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 40
 w 48
@@ -354,7 +354,7 @@ endObjectProperties
 object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 0
+minor 4
 release 0
 x 160
 y 214
@@ -386,10 +386,10 @@ endObjectProperties
 object shellCmdClass
 beginObjectProperties
 major 4
-minor 0
+minor 3
 release 0
 x 160
-y 246
+y 248
 w 64
 h 24
 fgColor index 43
@@ -400,7 +400,7 @@ font "arial-medium-r-14.0"
 buttonLabel "Graph"
 numCmds 1
 command {
-  0 "buildStripToolconfig.sh $(device):PLOG log_mbar"
+  0 "buildStripToolconfig.py $(device):PLOG log_mbar"
 }
 endObjectProperties
 
@@ -436,7 +436,7 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 80
 y 238
@@ -477,7 +477,7 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 16
 y 238
@@ -504,7 +504,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 214
 w 48

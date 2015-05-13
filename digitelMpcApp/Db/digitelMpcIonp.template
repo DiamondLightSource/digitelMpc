@@ -526,6 +526,13 @@ record(ao, "$(device):SETSP1OFF")
 # NB: INPF is written to by :SPNUM1 on PINI
 #     The supply number is equivalent to pump number (1 | 2)
 #
+# INPA => Setpoint ON pressure
+# INPB => Setpoint OFF pressure
+# INPC => Source (usually equivalent to pump [1|2])
+# INPD => Lower pressure working limit
+# INPE => Upper pressure working limit
+# INPF => Setpoint interlock number [1..4]
+#
 record(calcout, "$(device):SETSPS1") 
     {
     field(DESC, "Output Setpoints")
@@ -537,7 +544,7 @@ record(calcout, "$(device):SETSPS1")
     field(INPD, "1.01E-10")
     field(INPE, "9.99E-5")
     field(INPF, "$(device):SPNUM1")
-    field(CALC, "((A<D)||(B>E))?0:C")
+    field(CALC, "((A<D)||(B>E))?0:F")
     field(PINI, "NO")
     field(FLNK, "$(device):RQSTSP1ON")
     }
@@ -610,6 +617,13 @@ record(ao, "$(device):SETSP2OFF")
     }
 
 # NB: INPF is written to by :SPNUM2 on PINI
+# INPA => Setpoint ON pressure
+# INPB => Setpoint OFF pressure
+# INPC => Source (usually equivalent to pump [1|2])
+# INPD => Lower pressure working limit
+# INPE => Upper pressure working limit
+# INPF => Setpoint interlock number [1..4]
+#
 record(calcout, "$(device):SETSPS2") 
     {
     field(DESC, "Output Setpoints")
@@ -621,7 +635,7 @@ record(calcout, "$(device):SETSPS2")
     field(INPD, "1.01E-10")
     field(INPE, "9.99E-5")
     field(INPF, "$(device):SPNUM2")    
-    field(CALC, "((A<D)||(B>E))?0:C")
+    field(CALC, "((A<D)||(B>E))?0:F")
     field(PINI, "NO")
     field(FLNK, "$(device):RQSTSP2ON")
     }
@@ -638,7 +652,7 @@ record(calc, "$(device):SPNUM1")
     {
     field(DESC, "Controller setpoints number Pump 1")
     field(INPA, "$(pump)")
-    field(CALC, "(A>1)?3:1")
+    field(CALC, "(A>1)?2:1")
     field(PINI, "YES")
     field(FLNK, "$(device):SETSPS1")
     }
@@ -647,7 +661,7 @@ record(calc, "$(device):SPNUM2")
     {
     field(DESC, "Controller setpoints number Pump 2")
     field(INPA, "$(pump)")
-    field(CALC, "(A>1)?4:2")
+    field(CALC, "(A>1)?4:3")
     field(PINI, "YES")
     field(FLNK, "$(device):SETSPS2")
     }
