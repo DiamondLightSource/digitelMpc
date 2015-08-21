@@ -19,9 +19,9 @@
 # % gui, $(name=), edm, digitelMpcIonpControl.edl, device=$(device)
 
 # This associates BOY screens with the template
-# % gui, $(name=), boydetail, digitelMpcApp_opi/ionp_detail.opi, device=$(device), desc=$(device), name=$(name)
-# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed_box.opi, device=$(device), desc=$(device), name=$(name)
-# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed.opi, device=$(device), desc=$(device), name=$(name)
+# % gui, $(name=), boydetail, digitelMpcApp_opi/ionp_detail.opi, device=$(device), desc=$(device), name=$(name=)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed_box.opi, device=$(device), desc=$(device), name=$(name=)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/ionp_embed.opi, device=$(device), desc=$(device), name=$(name=)
 
 # These define what PVs a valve detail screen should contain
 # % gui, $(name=), readback, Status,   $(device):STA
@@ -30,7 +30,6 @@
 # % gui, $(name=), readback, Current,  $(device):I
 # % gui, $(name=), readback, Strapping,  $(device):HV
 # % gui, $(name=), enum, Start,  $(device):START
-# % gui, $(name=), readback, Starting,  $(device):STARTING
 # % gui, $(name=), readback, Pump Size,  $(device):SIZE
 # % gui, $(name=), demand, Pump Size,  $(device):SETSIZE
 # % gui, $(name=), readback, Calibration,  $(device):CAL
