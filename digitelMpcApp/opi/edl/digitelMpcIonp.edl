@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 887
-y 833
-w 232
-h 310
+x 603
+y 296
+w 231
+h 333
 font "arial-medium-r-16.0"
 ctlFont "arial-bold-r-16.0"
 btnFont "arial-medium-r-16.0"
@@ -23,6 +23,7 @@ title "Digitel MPC Ion Pump Controller - $(device)"
 showGrid
 snapToGrid
 gridSize 8
+disableScroll
 endScreenProperties
 
 # (Static Text)
@@ -53,7 +54,7 @@ release 0
 x 8
 y 48
 w 216
-h 158
+h 192
 lineColor index 14
 fill
 fillColor index 5
@@ -338,7 +339,7 @@ major 4
 minor 1
 release 0
 x 160
-y 278
+y 280
 w 64
 h 24
 fgColor index 46
@@ -348,38 +349,6 @@ botShadowColor index 11
 label "Exit"
 font "arial-medium-r-14.0"
 3d
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 160
-y 214
-w 64
-h 24
-fgColor index 43
-bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "arial-medium-r-14.0"
-buttonLabel "Control"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "digitelMpcIonpControl.edl"
-}
-menuLabel {
-  0 "Control"
-}
-setPosition {
-  0 "parentWindow"
-}
-symbols {
-  0 "devive=$(device)"
-}
 endObjectProperties
 
 # (Shell Command)
@@ -411,7 +380,7 @@ major 4
 minor 0
 release 0
 x 8
-y 214
+y 248
 w 136
 h 56
 
@@ -424,7 +393,7 @@ major 4
 minor 0
 release 0
 x 8
-y 222
+y 254
 w 136
 h 48
 lineColor index 14
@@ -439,7 +408,7 @@ major 4
 minor 1
 release 0
 x 80
-y 238
+y 270
 w 56
 h 24
 fgColor index 25
@@ -462,7 +431,7 @@ major 10
 minor 0
 release 0
 x 16
-y 238
+y 270
 w 56
 h 24
 controlPv "$(device):STARTING"
@@ -480,7 +449,7 @@ major 4
 minor 1
 release 0
 x 16
-y 238
+y 270
 w 56
 h 24
 fgColor index 25
@@ -506,7 +475,7 @@ major 4
 minor 1
 release 1
 x 8
-y 214
+y 246
 w 48
 h 16
 font "arial-medium-r-12.0"
@@ -525,7 +494,7 @@ major 4
 minor 0
 release 0
 x 8
-y 214
+y 246
 w 48
 h 16
 lineColor index 14
@@ -534,5 +503,777 @@ endObjectProperties
 
 endGroup
 
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 96
+y 208
+w 72
+h 22
+controlPv "$(device):HV"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 208
+w 62
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Strapping"
+}
+autoSize
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 8
+y 376
+w 312
+h 224
+lineColor index 14
+fill
+fillColor index 5
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 208
+y 392
+w 104
+h 200
+lineColor index 14
+fill
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 16
+y 392
+w 104
+h 200
+lineColor index 14
+fill
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 120
+y 392
+w 88
+h 200
+lineColor index 14
+fill
+fillColor index 3
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 424
+w 69
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Pump Size"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 104
+y 392
+w 104
+h 24
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 1
+bgColor index 10
+value {
+  "Current"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 208
+y 392
+w 104
+h 24
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 1
+bgColor index 10
+value {
+  "Set"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 392
+w 88
+h 24
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 1
+bgColor index 10
+value {
+  "Attribute"
+}
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 424
+w 70
+h 22
+controlPv "$(device):SIZE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 424
+w 88
+h 22
+controlPv "$(device):SETSIZE"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSIZE"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 512
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 1 Off"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 448
+w 70
+h 22
+controlPv "$(device):CAL"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 488
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 1 On"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 456
+w 69
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Calibration"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 504
+w 70
+h 22
+controlPv "$(device):SP1OFF"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 480
+w 70
+h 22
+controlPv "$(device):SP1ON"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 448
+w 88
+h 22
+controlPv "$(device):SETCAL"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETCAL"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 480
+w 88
+h 22
+controlPv "$(device):SETSP1ON"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP1ON"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 504
+w 88
+h 22
+controlPv "$(device):SETSP1OFF"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP1OFF"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 16
+y 392
+w 104
+h 24
+lineColor index 14
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 120
+y 392
+w 88
+h 24
+lineColor index 14
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 208
+y 392
+w 104
+h 24
+lineColor index 14
+fillColor index 3
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 568
+w 88
+h 22
+controlPv "$(device):SETSP2OFF"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP2OFF"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 6
+release 0
+x 216
+y 536
+w 88
+h 22
+controlPv "$(device):SETSP2ON"
+format "exponential"
+font "arial-bold-r-14.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 1
+editable
+motifWidget
+limitsFromDb
+nullPv "$(device):SETSP2ON"
+nullColor index 18
+nullCondition "disabled"
+fastUpdate
+autoSelect
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 568
+w 70
+h 22
+controlPv "$(device):SP2OFF"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 128
+y 536
+w 70
+h 22
+controlPv "$(device):SP2ON"
+displayMode "exp"
+precision 1
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 576
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2 Off"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 544
+w 90
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2 On"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 88
+y 336
+w 40
+h 24
+controlPv "$(device):SP1STATE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 344
+w 66
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 1"
+}
+autoSize
+endObjectProperties
+
+# (Textupdate)
+object TextupdateClass
+beginObjectProperties
+major 10
+minor 0
+release 0
+x 240
+y 336
+w 40
+h 24
+controlPv "$(device):SP2STATE"
+fgColor index 16
+fgAlarm
+bgColor index 12
+fill
+font "arial-bold-r-14.0"
+fontAlign "center"
+lineWidth 2
+lineAlarm
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 168
+y 344
+w 66
+h 16
+font "arial-medium-r-14.0"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Setpoint 2"
+}
+autoSize
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 8
+y 368
+w 48
+h 16
+font "arial-medium-r-12.0"
+fontAlign "center"
+fgColor index 1
+bgColor index 8
+value {
+  "Settngs"
+}
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 8
+y 368
+w 48
+h 16
+lineColor index 14
+fillColor index 3
+endObjectProperties
+
+# (Shell Command)
+object shellCmdClass
+beginObjectProperties
+major 4
+minor 3
+release 0
+x 16
+y 312
+w 24
+h 20
+fgColor index 25
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "arial-medium-r-14.0"
+buttonLabel "^v"
+numCmds 1
+commandLabel {
+  0 "<<>>"
+}
+command {
+  0 "dls-windowsize.py --x1=231 --y1=333 --x2=328 --y2=613"
+}
 endObjectProperties
 
