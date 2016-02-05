@@ -1,4 +1,5 @@
 O.linux-x86_64
+O.vxWorks-ppc604_long
 data
 db
 *.iml
