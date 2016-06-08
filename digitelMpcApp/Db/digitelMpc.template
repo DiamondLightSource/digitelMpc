@@ -6,6 +6,16 @@
 #% macro, device, device name
 #% macro, port, asyn serial port number
 #% macro, unit, unit number for multi-drop serial
+record(bo, "$(device):DISABLE")
+{
+  field(DESC, "Disable comms")
+  field(PINI, "YES")
+  field(VAL, "$(DISABLED=0)")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+}
+
 ################################################################################
 # Get Model Number
 #
@@ -17,6 +27,7 @@ record(stringin, "$(device):MODEL")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto model($(unit=01)) $(port)")
     field(SCAN, "10 second")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Get Version
@@ -29,6 +40,7 @@ record(stringin, "$(device):VERSION")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto version($(unit=01)) $(port)")
     field(SCAN, "10 second")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Get Line Voltage - and inform the firmware
@@ -40,7 +52,6 @@ record(longin, "$(device):V")
     field(DESC, "Line Voltage")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto linev($(unit=01)) $(port)")
-#    field(FLNK, "$(device):OUTV")
     field(SCAN, "10 second")
     field(EGU,  "V")
     field(LOPR, "160")
@@ -53,6 +64,7 @@ record(longin, "$(device):V")
     field(HSV,  "MINOR")
     field(LSV,  "MINOR")
     field(LLSV, "MAJOR")
+    field(SDIS, "$(device):DISABLE")
 }
 #
 # Pete Owens 25-5-04 cannot use longout as OUT field gets garbled 
@@ -62,8 +74,6 @@ record(ao, "$(device):OUTV")
     field(DESC, "Line Voltage")
     field(DTYP, "stream")
     field(OUT,  "@digitelMpc.proto setlinev($(unit=01)) $(port)")
-#    field(OMSL, "closed_loop")
-#    field(DOL,  "$(device):V")
     field(DOL,  "240")
     field(PINI, "YES")
     field(DRVL, "160")
@@ -71,6 +81,7 @@ record(ao, "$(device):OUTV")
     field(EGU,  "V")
     field(LOPR, "160")
     field(HOPR, "240")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Get Line Frequency
@@ -94,6 +105,7 @@ record(longin, "$(device):F")
     field(HSV,  "MINOR")
     field(LSV,  "MINOR")
     field(LLSV, "MAJOR")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Fan
@@ -109,6 +121,7 @@ record(bo, "$(device):SETFAN")
     field(ONAM, "On")
     field(DOL,  "1")
     field(PINI, "YES")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Automatically Restart on power up
@@ -122,6 +135,7 @@ record(bo, "$(device):SETAUTOST")
     field(ONAM, "Yes")
     field(DOL,  "0")
     field(PINI, "YES")
+    field(SDIS, "$(device):DISABLE")
 }
 #
 #% controldesk Auto Restart smon
@@ -134,6 +148,7 @@ record(bi, "$(device):AUTOST")
     field(SCAN, "10 second")
     field(ZNAM, "No")
     field(ONAM, "Yes")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 # Reset Software
@@ -148,6 +163,7 @@ record(bo, "$(device):RESET")
     field(OUT,  "@digitelMpc.proto reset($(unit=01)) $(port)")
     field(ZNAM, "Reset")
     field(ONAM, "Reset")
+    field(SDIS, "$(device):DISABLE")
 }
 ################################################################################
 
@@ -157,5 +173,6 @@ record(stringin, "$(device):DEBUG")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto debug($(unit=01)) $(port)")
     field(SCAN, "Passive")
+    field(SDIS, "$(device):DISABLE")
 }
 
