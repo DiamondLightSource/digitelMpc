@@ -11,7 +11,6 @@
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 ## EPICS_BASE usually appears last so other apps can override stuff:
-#EPICS_BASE=/dls_sw/epics/R3.14.11/base
 EPICS_BASE=/dls_sw/epics/R3.14.12.3/base
 
 -include $(TOP)/configure/RELEASE.private
