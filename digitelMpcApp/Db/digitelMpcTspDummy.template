@@ -986,7 +986,7 @@ record(mbbo, "$(device):CTLSRC")
     field(ZRST, "Service")
     field(ONST, "Ion Pump 1")
     field(TWST, "Ion Pump 2")
-    field(DOL,  "$(ctlsrc)")
+    field(DOL,  "$(ctlsrc=0)")
     field(PINI, "YES")
 }
 #% archiver 10 Monitor
