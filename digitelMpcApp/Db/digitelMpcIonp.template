@@ -9,8 +9,10 @@
 #% macro, unit, unit number for multi-drop serial (2 hex digits - 05 by default)
 #% macro, pump, ion pump number (1 or 2)
 #% macro, size, pump size (l/s)
-#% macro, spon, setpoint on
-#% macro, spoff, setpoint off
+#% macro, sp1on, setpoint1 on
+#% macro, sp1off, setpoint1 off
+#% macro, sp2on, setpoint2 on
+#% macro, sp2off, setpoint2 off
 #% macro, alh,  alarm handler tag (Defaults to None) c.f. mp49's commit 80833
 #% macro, text, Text to display in the ion pump controller window.
 ################################################################################
@@ -495,7 +497,7 @@ record(bi,"$(device):SP1STATE")
 #
 record(ao, "$(device):SETSP1ON") 
     {
-    field(VAL,  "$(spon=0)")
+    field(VAL,  "$(sp1on=0)")
     field(DESC, "Setpoint 1 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -511,7 +513,7 @@ record(ao, "$(device):SETSP1ON")
 #
 record(ao, "$(device):SETSP1OFF") 
     {
-    field(VAL,  "$(spoff=0)")
+    field(VAL,  "$(sp1off=0)")
     field(DESC, "Setpoint 1 Off")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -588,7 +590,7 @@ record(bi,"$(device):SP2STATE")
 #
 record(ao, "$(device):SETSP2ON") 
     {
-    field(VAL,  "$(spon=0)")
+    field(VAL,  "$(sp2on=0)")
     field(DESC, "Setpoint 2 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -604,7 +606,7 @@ record(ao, "$(device):SETSP2ON")
 #
 record(ao, "$(device):SETSP2OFF") 
     {
-    field(VAL,  "$(spoff=0)")
+    field(VAL,  "$(sp2off=0)")
     field(DESC, "Setpoint 2 Off")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
