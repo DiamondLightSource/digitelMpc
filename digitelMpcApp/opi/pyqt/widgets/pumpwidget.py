@@ -191,7 +191,7 @@ class PumpWidget(EpicsSVGWidget):
 
     
     def onPVValueChange(self, pvname=None, value=None, char_value=None, severity=None, status=None, **kws):
-        logger.debug( "%s: %s Value change callback: %s severity %s" %(self.__class__.__name__, pvname, repr(char_value), repr(severity)) )
+        # logger.debug( "%s: %s Value change callback: %s severity %s" %(self.__class__.__name__, pvname, repr(char_value), repr(severity)) )
         self.epics_data.emit()
 
     # Custom properties:
