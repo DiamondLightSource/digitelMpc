@@ -53,6 +53,7 @@ class PumpWidget(EpicsSVGWidget):
         self.setWindowTitle(self.tr("Pump"))
 
         self.pumpStatus = 0
+        self._twoSetpoints = False
     
         # Hook up EPICS data event signal to trigger updateAbsorberStatus()
         # this prevents relatively length UI updates from within a callback.
@@ -162,7 +163,9 @@ class PumpWidget(EpicsSVGWidget):
         A check is first performed to ensure that the EDM panel is not already invoked.
         '''
         # Dictionary of local gauge type identifiers mapped to configure-ioc redirector names
-        redirectorName = "FE-SUPPORT-digitelMpc"
+        #redirectorName = "FE-SUPPORT-digitelMpc"
+        # --> Support for two pairs of protection setpoints added April 2017 (IJG)
+        redirectorNames = {"1SP":"FE-SUPPORT-digitelMpc", "2SP":"FE-SUPPORT-digitelMpc2sp"}
         
         feguidir = self.redirectorPath()
         # Setup the process environment variables from support-module-versions in the QT Gui directory, given by the redirector (e.g. FE-QT-GUI)
@@ -176,7 +179,11 @@ class PumpWidget(EpicsSVGWidget):
 
         if bInvoke:
             logger.debug( "EDM process not running - invoking request")
-            edmdirectory = self.redirectorPath(redirectorName)
+            if (self._twoSetpoints):
+                edmdirectory = self.redirectorPath(redirectorNames["2SP"])
+            else:
+                edmdirectory = self.redirectorPath(redirectorNames["1SP"])
+
             cmd = "export EDMDATAFILES={0:s};".format(edmdirectory) \
                   +"edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(self._pv_base)
             
@@ -187,5 +194,21 @@ class PumpWidget(EpicsSVGWidget):
         logger.debug( "%s: %s Value change callback: %s severity %s" %(self.__class__.__name__, pvname, repr(char_value), repr(severity)) )
         self.epics_data.emit()
 
+    # Custom properties:
+    
+    # The following custom property was added after Vacuum Group requested that 
+    # the digitelMpc second set of protection setpoints be made available via EPICS.
+    # This means that two variants of the EDM panel need to be supported, one for digitelMpc support module which 
+    # defines both setpoints (SP1 and SP2) and the original support module which defines just one SP.
+    def getTwoSetpoints(self):
+        return self._twoSetpoints
+    
+    def setTwoSetpoints(self, haveTwoSetpoints):
+        self._twoSetpoints = haveTwoSetpoints
+    
+    def resetTwoSetpoints(self):
+        self._twoSetpoints = False
+    
+    twoSetpoints = QtCore.pyqtProperty("bool", getTwoSetpoints, setTwoSetpoints, resetTwoSetpoints)
 
 
