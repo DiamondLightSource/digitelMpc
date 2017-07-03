@@ -8,6 +8,8 @@
 #% macro, unit, unit number for multi-drop serial
 #% macro, ctlsrc, control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
 #% macro, protocol, name of protocol file, either digitelMpc.proto or digitelMpcDual.proto
+#% macro, totmax, cycle max off time (default 600 mins) 
+#% macro, tcmax, max number of cycles (default 20) 
 # duration- On duration (s)       - new addition May 2010 for dual TSP systems on MPCe - defaults to 10
 ################################################################################
 # Status
@@ -401,9 +403,9 @@ record(ao, "$(device):TIMOFFTIME")
     field(DESC, "Timed Off Time")
     field(EGU,  "min")
     field(DRVL, "1")
-    field(DRVH, "600")
+    field(DRVH, "$(totmax=600)")
     field(LOPR, "1")
-    field(HOPR, "600")
+    field(HOPR, "$(totmax=600)")
     field(PREC, "0")
     field(DOL,  "60")
     field(PINI, "YES")
@@ -416,9 +418,9 @@ record(ao, "$(device):TIMCYCLES")
 {
     field(DESC, "Timed Cycles")
     field(DRVL, "1")
-    field(DRVH, "20")
+    field(DRVH, "$(tcmax=20)")
     field(LOPR, "1")
-    field(HOPR, "20")
+    field(HOPR, "$(tcmax=20)")
     field(PREC, "0")
     field(DOL,  "10")
     field(PINI, "YES")
