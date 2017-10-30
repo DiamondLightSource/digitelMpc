@@ -461,6 +461,7 @@ record(calcout, "$(device):RQSTSP2ON")
 
 #% archiver 10 Monitor
 #% controldesk Setpoint 1 readback
+# This PV is written to directly from the protocol (sps) return string
 #
 record(ai, "$(device):SP1ON") 
     {
@@ -475,6 +476,7 @@ record(ai, "$(device):SP1ON")
 #% archiver 10 Monitor
 #% controldesk Setpoint 1 readback
 #
+# This PV is written to directly from the protocol (sps) return string
 record(ai, "$(device):SP1OFF") 
     {
     field(DESC, "Setpoint 1 Off")
@@ -483,6 +485,7 @@ record(ai, "$(device):SP1OFF")
     field(HOPR, "1000.0")
     field(PREC, "1")
     }
+# This PV is written to directly from the protocol (sps) return string
 record(bi,"$(device):SP1STATE")
     {
     field(DESC, "Setpoint 1 State")
@@ -556,6 +559,7 @@ record(calcout, "$(device):SETSPS1")
 #% archiver 10 Monitor
 #% controldesk Setpoint 2 readback
 #
+# This PV is written to directly from the protocol (sps) return string
 record(ai, "$(device):SP2ON") 
     {
     field(DESC, "Setpoint 2 On")
@@ -568,6 +572,7 @@ record(ai, "$(device):SP2ON")
 #% archiver 10 Monitor
 #% controldesk Setpoint 2 readback
 #
+# This PV is written to directly from the protocol (sps) return string
 record(ai, "$(device):SP2OFF") 
     {
     field(DESC, "Setpoint 2 Off")
@@ -576,6 +581,7 @@ record(ai, "$(device):SP2OFF")
     field(HOPR, "1000.0")
     field(PREC, "1")
     }
+# This PV is written to directly from the protocol (sps) return string
 record(bi,"$(device):SP2STATE")
     {
     field(DESC, "Setpoint 2 State")
