@@ -500,7 +500,7 @@ record(bi,"$(device):SP1STATE")
 #
 record(ao, "$(device):SETSP1ON") 
     {
-    field(VAL,  "$(sp1on=0)")
+    field(VAL,  "$(sp1on=1.0E-7)")
     field(DESC, "Setpoint 1 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -516,7 +516,7 @@ record(ao, "$(device):SETSP1ON")
 #
 record(ao, "$(device):SETSP1OFF") 
     {
-    field(VAL,  "$(sp1off=0)")
+    field(VAL,  "$(sp1off=2.0E-7)")
     field(DESC, "Setpoint 1 Off")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -596,7 +596,7 @@ record(bi,"$(device):SP2STATE")
 #
 record(ao, "$(device):SETSP2ON") 
     {
-    field(VAL,  "$(sp2on=0)")
+    field(VAL,  "$(sp2on=1.0E-7)")
     field(DESC, "Setpoint 2 On")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
@@ -612,7 +612,7 @@ record(ao, "$(device):SETSP2ON")
 #
 record(ao, "$(device):SETSP2OFF") 
     {
-    field(VAL,  "$(sp2off=0)")
+    field(VAL,  "$(sp2off=2.0E-7)")
     field(DESC, "Setpoint 2 Off")
     field(EGU,  "mbar")
     field(DRVL, "1.0E-10")
