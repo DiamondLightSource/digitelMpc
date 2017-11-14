@@ -430,33 +430,28 @@ record(seq, "$(device):INIT:SETSP2SEQ")
 # used here to allow the return values to be injected directly into the 
 # given record names via input links.
 #
-record(calcout, "$(device):RQSTSP1ON") 
+# Record RQSTSP1OFF is I/O Intr and gets (a copy of) any input, including input that was directed to record RQSTSP1ON
+# Record RQSTSP1STATE is I/O Intr and gets (a copy of) any input, including input that was directed to record RQSTSP1ON
+ 
+# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+record(ai, "$(device):RQSTSP1ON") 
     {
-    field(DESC, "Rqst Setpoint1 On")
+    field(DESC, "Rqst Setpoint1")
     field(DTYP, "stream")
     field(SCAN, "Passive")
-# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
-    field(OUT,  "@digitelMpc.proto sps($(unit),$(device),1) $(port)")
-    field(INPA, "$(device):SP1ON PP")
-    field(INPB, "$(device):SP1OFF PP")
-    field(INPC, "$(device):SPNUM1")
-    field(CALC, "0")
-    field(PINI, "NO")
-    }
-record(calcout, "$(device):RQSTSP2ON") 
-    {
-    field(DESC, "Rqst Setpoint2 On")
-    field(DTYP, "stream")
-    field(SCAN, "Passive")
-# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
-    field(OUT,  "@digitelMpc.proto sps($(unit),$(device),2) $(port)")
-    field(INPA, "$(device):SP2ON PP")
-    field(INPB, "$(device):SP2OFF PP")
-    field(INPC, "$(device):SPNUM2")
-    field(CALC, "0")
+    field(INP,  "@digitelMpc.proto getsps($(unit),$(device),1) $(port)")
     field(PINI, "NO")
     }
 
+# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+record(ai, "$(device):RQSTSP2ON") 
+    {
+    field(DESC, "Rqst Setpoint2")
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(INP,  "@digitelMpc.proto getsps($(unit),$(device),2) $(port)")
+    field(PINI, "NO")
+    }
 
 
 #% archiver 10 Monitor
@@ -541,7 +536,8 @@ record(calcout, "$(device):SETSPS1")
     {
     field(DESC, "Output Setpoints")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
+    field(OUT,  "@digitelMpc.proto setsps($(unit),$(device),1) $(port)")
+##    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
     field(INPA, "$(device):SETSP1ON")
     field(INPB, "$(device):SETSP1OFF")
     field(INPC, "$(pump)")
@@ -635,7 +631,8 @@ record(calcout, "$(device):SETSPS2")
     {
     field(DESC, "Output Setpoints")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
+    field(OUT,  "@digitelMpc.proto setsps($(unit),$(device),1) $(port)")
+##    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
     field(INPA, "$(device):SETSP2ON")
     field(INPB, "$(device):SETSP2OFF")
     field(INPC, "$(pump)")

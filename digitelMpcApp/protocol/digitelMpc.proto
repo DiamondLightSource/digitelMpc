@@ -63,12 +63,34 @@ err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*2x %f %0<sum8>"         ; }
 
-# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
-sps       { out "~ \$1 3C %(C)d %01<sum8>"        ; in "\$1 OK %*2x %*i,%*i,%(\$2:SP\$3ON.VAL)g,%(\$2:SP\$3OFF.VAL)g,%(\$2:SP\$3STATE)i %0<sum8>"; @mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} }
+
+getFrequency {
+    out "FREQ?"; in "%f";
+}
+
+setFrequency {
+    out "FREQ %f";
+    @init { getFrequency; }
+}
+
+#
+# Protection Setpoint Commands
+# Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+# It is important to derive the setpoint set value at iocInit, so consider using @init handler.
+# 
+getsps    { out "~ \$1 3C \$3 %01<sum8>";
+			in  "\$1 OK %*2x %*i,%*i,%(\$2:SP\$3ON.VAL)g,%(\$2:SP\$3OFF.VAL)g,%(\$2:SP\$3STATE)i %0<sum8>";
+			@mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
+		  }
+		  
+setsps    { out "~ \$1 3D %(F)1d,%(C)1d, %(A)3.1E, %(B)3.1E %01<sum8>"; in "\$1 OK %*2x %0<sum8>";
+            @mismatch {in "\$1 OK %*2x %?g %0<sum8>";};
+            @init { getsps; } 
+          }
+
 
 setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
-setsps    { out "~ \$1 3D %(F)1d,%(C)1d, %(A)3.1E, %(B)3.1E %01<sum8>"; in "\$1 OK %*2x %0<sum8>"; @mismatch {in "\$1 OK %*2x %?g %0<sum8>";}}
 #settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 # ignore errors from old syle units that do not implement this protocol
 settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 "                            ; }
