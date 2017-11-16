@@ -78,7 +78,7 @@ setFrequency {
 # Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
 # It is important to derive the setpoint set value at iocInit, so consider using @init handler.
 # 
-getsps    { out "~ \$1 3C \$3 %01<sum8>";
+getsps    { out "~ \$1 3C %(\$2:SPNUM\$3)1d %01<sum8>";
 			in  "\$1 OK %*2x %*i,%*i,%(\$2:SP\$3ON.VAL)g,%(\$2:SP\$3OFF.VAL)g,%(\$2:SP\$3STATE)i %0<sum8>";
 			@mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
 		  }
