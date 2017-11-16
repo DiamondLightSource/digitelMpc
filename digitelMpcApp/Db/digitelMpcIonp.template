@@ -433,7 +433,7 @@ record(seq, "$(device):INIT:SETSP2SEQ")
 # Record RQSTSP1OFF is I/O Intr and gets (a copy of) any input, including input that was directed to record RQSTSP1ON
 # Record RQSTSP1STATE is I/O Intr and gets (a copy of) any input, including input that was directed to record RQSTSP1ON
  
-# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+# sps: Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2) - gets converted to actual setpoint in protocol.
 record(ai, "$(device):RQSTSP1ON") 
     {
     field(DESC, "Rqst Setpoint1")
@@ -544,7 +544,8 @@ record(calcout, "$(device):SETSPS1")
     field(INPD, "1.01E-10")
     field(INPE, "9.99E-5")
     field(INPF, "$(device):SPNUM1")
-    field(CALC, "((A<D)||(B>E))?0:F")
+    field(CALC, "((A<D)||(B>E)||(F<1))?0:F")
+    field(OOPT, "When Non-zero")
     field(PINI, "NO")
     field(FLNK, "$(device):RQSTSP1ON")
     }
@@ -646,6 +647,7 @@ record(calcout, "$(device):SETSPS2")
 
 
 # Calculate the controller setpoint number for this pump
+# Each setpoint has an ON and an OFF pressure attribute.
 # Pump  Pump Setpoint  Controller Setpoint
 #   1       1                    1
 #   1       2                    3
