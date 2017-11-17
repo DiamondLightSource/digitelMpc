@@ -55,7 +55,7 @@ reset     { out "~ \$1 07 %01<sum8>"            ; }
 # Ion Pump Protocols
 #
 current   { out "~ \$1 0A \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*{AMPS|Amps} %0<sum8>"    ; }
-pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*2x %g%*s %0<sum8>"      ; }
+pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*s %0<sum8>"     ; }
 voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}" ; }
@@ -63,15 +63,6 @@ err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*2x %f %0<sum8>"         ; }
 
-
-getFrequency {
-    out "FREQ?"; in "%f";
-}
-
-setFrequency {
-    out "FREQ %f";
-    @init { getFrequency; }
-}
 
 #
 # Protection Setpoint Commands
@@ -83,7 +74,7 @@ getsps    { out "~ \$1 3C %(\$2:SPNUM\$3)1d %01<sum8>";
 			@mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
 		  }
 		  
-setsps    { out "~ \$1 3D %(F)1d,%(C)1d, %(A)3.1E, %(B)3.1E %01<sum8>"; in "\$1 OK %*2x %0<sum8>";
+setsps    { out "~ \$1 3D %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>"; in "\$1 OK %*2x %0<sum8>";
             @mismatch {in "\$1 OK %*2x %?g %0<sum8>";};
             @init { getsps; } 
           }
@@ -93,7 +84,7 @@ setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"     
 setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
 #settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 # ignore errors from old syle units that do not implement this protocol
-settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 "                            ; }
+settext   { out "~ \$1 ED \$2,\"%s\" %01<sum8>"     ; in "\$1 "                            ; }
 
 start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
 
