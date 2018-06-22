@@ -4,6 +4,7 @@
 #
 # substitutions:
 #% macro, device, device name
+#% macro, name, Object name and gui association name
 #% macro, port, asyn seral port number (e.g. ty_40_0)
 #% macro, unit, unit number for multi-drop serial
 #% macro, ctlsrc, control source (0 = service, 1 = Ion Pump 1, 2 = Ion Pump 2)
@@ -12,6 +13,50 @@
 #% macro, tcmax, max number of cycles (default 20) 
 # duration- On duration (s)       - new addition May 2010 for dual TSP systems on MPCe - defaults to 10
 ################################################################################
+
+# This associates an edm screen with the template
+# % gui, $(name=), edm, digitelMpcIonp2sp.edl, device=$(device)
+
+# This associates BOY screens with the template
+# % gui, $(name=), boydetail, digitelMpcApp_opi/tsp_detail.opi, device=$(device), desc=$(device), name=$(name=)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/tsp_embed_box.opi, device=$(device), desc=$(device), name=$(name=)
+# % gui, $(name=), boyembed, digitelMpcApp_opi/tsp_embed.opi, device=$(device), desc=$(device), name=$(name=)
+
+# These define what PVs a valve detail screen should contain
+# Status:
+# % gui, $(name=), readback, Power,   $(device):POWER
+# % gui, $(name=), readback, Mode,  $(device):MODE
+# % gui, $(name=), readback, Status,  $(device):STA
+# % gui, $(name=), readback, Filament,  $(device):FIL
+# % gui, $(name=), readback, Cycles Left,  $(device):TIMCOUNT
+# % gui, $(name=), readback, Next Cycle,  $(device):TIMCOUNT2
+# Used (minutes):
+# % gui, $(name=), readback, Filament 1,  $(device):FIL1:USED
+# % gui, $(name=), readback, Filament 2,  $(device):FIL2:USED
+# % gui, $(name=), readback, Filament 3,  $(device):FIL3:USED
+# Filament Status:
+# % gui, $(name=), readback, Filament 1 2,  $(device):FIL1:STA
+# % gui, $(name=), readback, Filament 2 2,  $(device):FIL2:STA
+# % gui, $(name=), readback, Filament 3 2,  $(device):FIL3:STA
+# Control:
+# % gui, $(name=), enum, Output Relay,  $(device):RELAY
+# % gui, $(name=), enum, Set Mode,  $(device):SETMODE
+# Configuration:
+# % gui, $(name=), demand, Power 1,  $(device):SETPOWER
+# % gui, $(name=), demand, Ramp Rate,  $(device):RAMPRATE
+# % gui, $(name=), enum, Active Filament,  $(device):SETFIL
+# % gui, $(name=), command, Clear Filaments,  $(device):CLEAR
+# Degas Settings:
+# % gui, $(name=), demand, On Time,  $(device):DGSONTIME
+# % gui, $(name=), enum, Auto Advance,  $(device):SETAUTOFIL
+# Timed Settings:
+# % gui, $(name=), demand, On Time 1,  $(device):TIMONTIME
+# % gui, $(name=), demand, Off Time,  $(device):TIMOFFTIME
+# % gui, $(name=), demand, Number of Cycles,  $(device):TIMCYCLES
+# Pressure Interlock
+# % gui, $(name=), demand, Threshold,  $(device):SETPTHR
+# % gui, $(name=), enum, Control Source,  $(device):CTLSRC
+
 # Status
 #
 #% archiver 10 Monitor
