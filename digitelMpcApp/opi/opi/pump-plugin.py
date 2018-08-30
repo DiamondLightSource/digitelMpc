@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env dls-python
 
 """
 pump-plugin.py

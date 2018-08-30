@@ -41,7 +41,7 @@ class DigitelMpcCrate(serial_device):
         self.start_ip(tcpPort)
 
     def createUi(self):
-        '''Override to create the user interface for the simulation.'''
+        """Override to create the user interface for the simulation."""
         return TerminalWindow()
     
     def pump(self, number):
@@ -52,10 +52,10 @@ class DigitelMpcCrate(serial_device):
 
     def reply(self, command):
         result = None
-        printMessage = True
+        print_message = True
         parts = command.strip().split()
         if len(parts) >= 4 and parts[0] == '~':
-            printMessage = False
+            print_message = False
             chan = parts[1]
             cmd = parts[2]
             if cmd == '01':
@@ -86,10 +86,10 @@ class DigitelMpcCrate(serial_device):
                 number = int(bits[0])
                 supply = int(bits[1])
                 bits = parts[4].split(',')
-                onPressure = float(bits[0])
-                offPressure = float(parts[5])
+                on_pressure = float(bits[0])
+                off_pressure = float(parts[5])
                 self.setPoints[number] = \
-                    SetPoint(number, supply, onPressure, offPressure)
+                    SetPoint(number, supply, on_pressure, off_pressure)
                 result = '%s OK 3D ' % chan
             elif cmd == '3C' and len(parts) >= 5:
                 number = int(parts[3])
@@ -136,15 +136,16 @@ class DigitelMpcCrate(serial_device):
                 self.supplies[pump].status = 'STANDBY'
                 result = '%s OK 38 ' % chan
             else:
-                printMessage = True
+                print_message = True
         if result is not None:
             result = result + self.checksum(result)
-        if printMessage:
+        if print_message:
             text = "%s==>%s" % (repr(command), repr(result))
             self.diagnostic(text, 1)
         return result
 
-    def checksum(self, text):
+    @staticmethod
+    def checksum(text):
         result = 0
         for ch in text:
             result = result + ord(ch)

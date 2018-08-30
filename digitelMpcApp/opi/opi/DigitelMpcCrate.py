@@ -40,7 +40,8 @@ class DigitelMpcCrate(serial_device):
         serial_device.Terminator = "\r"
         self.start_ip(tcpPort)
 
-    def createUi(self):
+    @staticmethod
+    def createUi():
         '''Override to create the user interface for the simulation.'''
         return TerminalWindow()
     
@@ -144,7 +145,8 @@ class DigitelMpcCrate(serial_device):
             self.diagnostic(text, 1)
         return result
 
-    def checksum(self, text):
+    @staticmethod
+    def checksum(text):
         result = 0
         for ch in text:
             result = result + ord(ch)

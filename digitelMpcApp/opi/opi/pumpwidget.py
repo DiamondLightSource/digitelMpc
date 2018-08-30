@@ -54,7 +54,7 @@ class PumpWidget(EpicsSVGWidget):
 
         self.pumpStatus = 0
         self._twoSetpoints = False
-    
+        self._edm_process = None
         # Hook up EPICS data event signal to trigger updateAbsorberStatus()
         # this prevents relatively length UI updates from within a callback.
         self.epics_data.connect(self.updatePumpStatus)
@@ -77,14 +77,16 @@ class PumpWidget(EpicsSVGWidget):
         return(EpicsSVGWidget.mousePressEvent(self, event))
     
     
-    def mouseMoveEvent(self, event):
+    @staticmethod
+    def mouseMoveEvent(event):
         event.accept()
     
     def mouseReleaseEvent(self, event):
         return(EpicsSVGWidget.mouseReleaseEvent(self, event))
     
    
-    def sizeHint(self):
+    @staticmethod
+    def sizeHint():
     
         return QtCore.QSize(26, 26)
 
@@ -172,8 +174,8 @@ class PumpWidget(EpicsSVGWidget):
         # call the edm panel, with macro parameters in the same process space. 
 #        p1 = Popen("source %s;export EDMDATAFILES=/dls_sw/prod/${VER_EPICS}/support/digitelMpc/${VER_MPC}/data; edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(feguidir+'/support-module-versions', self._pv_base), shell=True)
         bInvoke = True
-        if self._edm_process != None:
-            if self._edm_process.poll() == None:
+        if self._edm_process is not None:
+            if self._edm_process.poll() is None:
                 logger.debug( "EDM process already running - skipping request")
                 bInvoke = False
 
