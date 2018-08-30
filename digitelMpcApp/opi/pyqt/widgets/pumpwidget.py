@@ -4,20 +4,20 @@ pumpwidget.py
 A PyQt custom widget for Qt Designer.
 """
 
-import random, sys
 import logging, logging.handlers
 from pkg_resources import require
 
-from PyQt4 import QtCore, QtGui
+# from PyQt4 import QtCore, QtGui
 
 require("dls_pyqt4widgets")
 from dls_pyqt4widgets.epics_epics_widget import *
 
-#from epics_epics_widget import *
+# from epics_epics_widget import *
 
 logger = logging.getLogger(__name__)
-#logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 logger.setLevel(logging.CRITICAL)
+
 
 class PumpWidget(EpicsSVGWidget):
 
@@ -28,8 +28,7 @@ class PumpWidget(EpicsSVGWidget):
     appearance of the widget, and change the number and behaviour of the
     pump via EPICS.
     """
-    
-    
+
     # Establish pump status enumerations
     (Fault, Waiting, Standby, SafeCon, Running, CoolDown, PumpError, HVOff, Interlock, Shutdown, Calibration, Invalid) = range(12)
 
@@ -39,30 +38,33 @@ class PumpWidget(EpicsSVGWidget):
     __green  = QtGui.QColor(0,255,0) 
     __yellow = QtGui.QColor(255,255,0) 
     __red    = QtGui.QColor(255,0,0) 
-    
-   
+
     def __init__(self, parent = None):
     
         EpicsSVGWidget.__init__(self, "ionp.svg", "", parent)
-        self.EDM_filename = "digitelMpcIonpControl.edl"
+        # self.EDM_filename = "digitelMpcIonpControl.edl"
+        self.EDM_filename = "digitelMpcIonp2sp.edl"
         self.EDM_Macro = None
         self.svgPathIds = ['epicscolour1',]
         self.setMouseTracking(True)
 #        self.setMinimumSize(QtCore.QSize(37, 40))
         self.setMinimumSize(QtCore.QSize(25, 25))
         self.setWindowTitle(self.tr("Pump"))
-
+        self._edm_process = None
+        self.OPI_filename = "digitelMpcIonp2sp.opi"
+        self._opi_process = None
         self.pumpStatus = 0
-        self._twoSetpoints = False
-    
+        self._twoSetpoints = True
+        self._use_css = False
+
         # Hook up EPICS data event signal to trigger updateAbsorberStatus()
         # this prevents relatively length UI updates from within a callback.
         self.epics_data.connect(self.updatePumpStatus)
 
     def getPkgdir(self):
-        '''
+        """
         getPkgdir(): Override in the subclass to provide the FQDN for the derived class module.
-        '''
+        """
         pkdir = os.path.realpath(os.path.dirname(os.path.abspath(__file__)))
         logger.debug("{0:s}.getPkdir(): {1:s}".format(self.__class__.__name__, pkdir))
         return(pkdir)
@@ -74,49 +76,39 @@ class PumpWidget(EpicsSVGWidget):
         if event.button() == QtCore.Qt.LeftButton:
             self.update()
     
-        return(EpicsSVGWidget.mousePressEvent(self, event))
-    
-    
+        return EpicsSVGWidget.mousePressEvent(self, event)
+
+    # @staticmethod
     def mouseMoveEvent(self, event):
         event.accept()
     
     def mouseReleaseEvent(self, event):
-        return(EpicsSVGWidget.mouseReleaseEvent(self, event))
-    
-   
+        return EpicsSVGWidget.mouseReleaseEvent(self, event)
+
+    # @staticmethod
     def sizeHint(self):
     
         return QtCore.QSize(26, 26)
 
-    def showUninitialised(self):
-        '''
-        Prior to receiving any EPICS updates, the widget should show
-        a disconnected state - as with EDM.
-        '''
-        self.svgLoad(colour = PumpWidget.__white)
-                   
-    
     # We provide getter and setter methods for the numberOfBubbles property.
     def getPumpStatus(self):
     
         return self.pumpStatus
     
-    
     def showUninitialised(self):
-        '''
+        """
         Prior to receiving any EPICS updates, the widget should show
         a disconnected state - as with EDM.
-        '''
-        super(PumpWidget, self).showUninitialised()
+        """
+        EpicsSVGWidget.showUninitialised(self)
         self.svgLoad(colour = PumpWidget.__white)
-    
 
     def updatePumpStatus(self):
     
         if self._pvkey is not None:
             if self._pvkey.connected:
                 value = self._pvkey.get()
-                if ((self._pvkey.severity is None) or (self._pvkey.severity == EpicsTransaction._severity_noalarm)):
+                if (self._pvkey.severity is None) or (self._pvkey.severity == EpicsTransaction._severity_noalarm):
                     if (value >= 0) and (value <= PumpWidget.Invalid):
                         self.pumpStatus = value
                         
@@ -140,56 +132,89 @@ class PumpWidget(EpicsSVGWidget):
                     else:
                         self.svgLoad(colour = PumpWidget.__white)
                 if self._pvkey.severity is not None:
-                    if (self._pvkey.severity == EpicsTransaction._severity_minor):
+                    if self._pvkey.severity == EpicsTransaction._severity_minor:
                             self.svgLoad(colour = PumpWidget.__yellow)
-                    elif (self._pvkey.severity == EpicsTransaction._severity_major):
+                    elif self._pvkey.severity == EpicsTransaction._severity_major:
                             self.svgLoad(colour = PumpWidget.__red)
-                    elif (self._pvkey.severity == EpicsTransaction._severity_invalid):
+                    elif self._pvkey.severity == EpicsTransaction._severity_invalid:
                             self.svgLoad(colour = PumpWidget.__white)
                 
-        else: # Invalid
+        else:  # Invalid
             self.svgLoad(colour = PumpWidget.__white)
  
         self.update()
 
-    def leftButtonEvent(self):
-        self.showEdm()
-    
+    def left_button_event(self):
+        if self._use_css:
+            self.show_opi()
+        else:
+            self.showEdm()
+
+    def show_opi(self):
+        """
+        show_opi():
+
+        This ImgWidget class should determine the cs-studio opi path and file from the redirector
+        and display the opi.
+
+        :return: Nothing
+        """
+        redirector_name = "FE-SUPPORT-digitelMpc-opi"
+
+        feguidir = self.redirectorPath()
+        # Setup the process environment variables from support-module-versions in the QT Gui directory,
+        # given by the redirector (e.g. FE-QT-GUI)
+        # call the css opi panel, with macro parameters in the same process space.
+        b_invoke = True
+        if self._opi_process is not None:
+            if self._opi_process.poll() is None:
+                logger.debug("CS-Studio process already running - skipping request")
+                b_invoke = False
+
+        if b_invoke:
+            logger.debug("CS-Studio process not running - invoking request")
+            opidirectory = self.redirectorPath(redirector_name)
+
+            cmd = "{0:s}/runcss.sh {1:s} -m 'device={2:s}'".format(opidirectory, self.OPI_filename, self._pv_base)
+            self._opi_process = Popen(cmd, shell=True)
+
     def showEdm(self):
-        '''
+        """
         Given the PV base name and the common GUI support directory,
         both of which have been established in the constructor,
         we are able to invoke the appropriate EDM screen for this widget.
         A check is first performed to ensure that the EDM panel is not already invoked.
-        '''
+        """
         # Dictionary of local gauge type identifiers mapped to configure-ioc redirector names
-        #redirectorName = "FE-SUPPORT-digitelMpc"
+        # redirectorName = "FE-SUPPORT-digitelMpc"
         # --> Support for two pairs of protection setpoints added April 2017 (IJG)
-        redirectorNames = {"1SP":"FE-SUPPORT-digitelMpc", "2SP":"FE-SUPPORT-digitelMpc2sp"}
+        redirector_names = {"1SP": "FE-SUPPORT-digitelMpc", "2SP": "FE-SUPPORT-digitelMpc2sp"}
         
         feguidir = self.redirectorPath()
-        # Setup the process environment variables from support-module-versions in the QT Gui directory, given by the redirector (e.g. FE-QT-GUI)
+        # Setup the process environment variables from support-module-versions in the QT Gui directory,
+        # given by the redirector (e.g. FE-QT-GUI)
         # call the edm panel, with macro parameters in the same process space. 
-#        p1 = Popen("source %s;export EDMDATAFILES=/dls_sw/prod/${VER_EPICS}/support/digitelMpc/${VER_MPC}/data; edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(feguidir+'/support-module-versions', self._pv_base), shell=True)
-        bInvoke = True
-        if self._edm_process != None:
-            if self._edm_process.poll() == None:
-                logger.debug( "EDM process already running - skipping request")
-                bInvoke = False
+        #  p1 = Popen("source %s;export EDMDATAFILES=/dls_sw/prod/${VER_EPICS}/support/digitelMpc/${VER_MPC}/data; edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(feguidir+'/support-module-versions', self._pv_base), shell=True)
+        b_invoke = True
+        if self._edm_process is not None:
+            if self._edm_process.poll() is None:
+                logger.debug("EDM process already running - skipping request")
+                b_invoke = False
 
-        if bInvoke:
-            logger.debug( "EDM process not running - invoking request")
-            if (self._twoSetpoints):
-                edmdirectory = self.redirectorPath(redirectorNames["2SP"])
+        if b_invoke:
+            cmd = ""
+            logger.debug("EDM process not running - invoking request")
+            if self._twoSetpoints:
+                edmdirectory = self.redirectorPath(redirector_names["2SP"])
+                cmd = "export EDMDATAFILES={0:s};".format(edmdirectory) \
+                      + "edm -x -m 'device=%s' -eolc digitelMpcIonp2sp.edl;" %(self._pv_base)
             else:
-                edmdirectory = self.redirectorPath(redirectorNames["1SP"])
-
-            cmd = "export EDMDATAFILES={0:s};".format(edmdirectory) \
-                  +"edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(self._pv_base)
+                edmdirectory = self.redirectorPath(redirector_names["1SP"])
+                cmd = "export EDMDATAFILES={0:s};".format(edmdirectory) \
+                      + "edm -x -m 'device=%s' -eolc digitelMpcIonpControl.edl;" %(self._pv_base)
             
             self._edm_process = Popen(cmd, shell=True)
 
-    
     def onPVValueChange(self, pvname=None, value=None, char_value=None, severity=None, status=None, **kws):
         # logger.debug( "%s: %s Value change callback: %s severity %s" %(self.__class__.__name__, pvname, repr(char_value), repr(severity)) )
         self.epics_data.emit()
@@ -211,4 +236,14 @@ class PumpWidget(EpicsSVGWidget):
     
     twoSetpoints = QtCore.pyqtProperty("bool", getTwoSetpoints, setTwoSetpoints, resetTwoSetpoints)
 
+    # Option property to select EDM or CS-Studio for sub displays
+    def get_use_css(self):
+        return self._use_css
 
+    def set_use_css(self, usecss):
+        self._use_css = usecss
+
+    def reset_use_css(self):
+        self._use_css = False
+
+    Use_CS_Studio = QtCore.pyqtProperty("bool", get_use_css, set_use_css, reset_use_css)
