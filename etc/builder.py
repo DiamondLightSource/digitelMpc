@@ -13,7 +13,7 @@ class digitelMpc(AutoSubstitution, AutoProtocol):
     TemplateFile = 'digitelMpc.template'
 
     # AutoProtocol attributes
-    ProtocolFiles = ['digitelQpc.proto']
+    ProtocolFiles = ['digitelMpc.proto']
 
 class digitelMpcPump(ModuleBase):
     pass
