@@ -1,0 +1,14 @@
+file digitelMpc.template
+{
+pattern { device       , port     , unit }
+	{ TS-VA-MPC-01 , ser0  , 01   }
+}
+#
+# Ion pumps
+#
+file digitelMpcIonp.template
+{
+pattern { device        , port     , unit , pump , size , sp1on    , sp1off , sp2on    , sp2off}
+		{ TS-VA-IONP-01 , ser0  , 01   , 1    , 150  , 1.0E-10 , 1.0E-4  , 1.0E-10 , 1.0E-4 }
+		{ TS-VA-IONP-02 , ser0  , 01   , 2    , 150  , 1.0E-10 , 1.0E-4  , 1.0E-10 , 1.0E-4 }
+}

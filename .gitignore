@@ -1,5 +1,6 @@
 O.linux-x86_64/
 O.vxWorks-ppc604_long/
+O.Common/
 data/
 db/
 *.iml
