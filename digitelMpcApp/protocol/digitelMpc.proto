@@ -43,7 +43,7 @@ version   { out "~ \$1 02 %01<sum8>"            ; in "\$1 OK %*2x %*s %*s %s %0<
 linev     { out "~ \$1 22 %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*2x %d Hz %*?/\(.*\) /%0<sum8>"; }
 #linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*2x %d Hz %0<sum8>"; @mismatch { in "\$1 OK %*2x %d Hz (TSP %*i Hz) %0<sum8>";} }
-autost    { out "~ \$1 34 %01<sum8>"            ; in "\$1 OK %*2x %{NO|YES} %0<sum8>"  ; }
+autost    { out "~ \$1 34 %01<sum8>"            ; in "\$1 OK %*2x %{NO|YES} %0<sum8>"  ; @mismatch {in "\$1 OK %*2x %?s %0<sum8>";} }
 
 setlinev  { out "~ \$1 23 %d %01<sum8>"         ; in "\$1 OK %*2x %0<sum8>"            ; }
 fan       { out "~ \$1 32 %{OFF|ON} %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
@@ -57,7 +57,7 @@ reset     { out "~ \$1 07 %01<sum8>"            ; }
 current   { out "~ \$1 0A \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*{AMPS|Amps} %0<sum8>"    ; }
 pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*s %0<sum8>"     ; }
 voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
-strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
+strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"; @mismatch {in "\$1 OK %*2x %?s %0<sum8>";} }
 status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}" ; }
 err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<sum8>" ; }
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
@@ -74,9 +74,9 @@ getsps    { out "~ \$1 3C %(\$2:SPNUM\$3)1d %01<sum8>";
 			@mismatch {in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
 		  }
 		  
-setsps    { out "~ \$1 3D %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>"; in "\$1 OK %*2x %0<sum8>";
+setsps    { out "~ \$1 3D %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>";
+            in "\$1 OK %*2x %0<sum8>";
             @mismatch {in "\$1 OK %*2x %?g %0<sum8>";};
-            @init { getsps; } 
           }
 
 
