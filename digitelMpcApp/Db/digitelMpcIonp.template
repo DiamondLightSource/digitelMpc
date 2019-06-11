@@ -661,7 +661,7 @@ record(calc, "$(device):SPNUM1")
     field(INPA, "$(pump)")
     field(CALC, "(A>1)?2:1")
     field(PINI, "YES")
-    field(FLNK, "$(device):SETSPS1")
+    # field(FLNK, "$(device):SETSPS1")
     }
 
 record(calc, "$(device):SPNUM2") 
@@ -670,7 +670,7 @@ record(calc, "$(device):SPNUM2")
     field(INPA, "$(pump)")
     field(CALC, "(A>1)?4:3")
     field(PINI, "YES")
-    field(FLNK, "$(device):SETSPS2")
+    # field(FLNK, "$(device):SETSPS2")
     }
 
 
