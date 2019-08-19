@@ -4,6 +4,8 @@ O.Common/
 data/
 db/
 *.iml
-runcss.sh
+runcss*
+.idea
 bin/
-
+*~
+*.dbd
