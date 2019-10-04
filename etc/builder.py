@@ -1,6 +1,8 @@
 from iocbuilder import AutoSubstitution, Substitution, SetSimulation, ModuleBase
 from iocbuilder.modules.streamDevice import AutoProtocol
 from iocbuilder.arginfo import *
+from iocbuilder.modules.calc import Calc
+
 
 class digitelMpc(AutoSubstitution, AutoProtocol):
     # Make sure unit is a 2 digit int
@@ -8,6 +10,8 @@ class digitelMpc(AutoSubstitution, AutoProtocol):
         if "unit" in args:
             args["unit"] = "%02d" % int(args["unit"])
         self.__super.__init__(**args)
+    # Dependencies
+    Dependencies = (Calc, )
 
     # Substitution attributes
     TemplateFile = 'digitelMpc.template'
