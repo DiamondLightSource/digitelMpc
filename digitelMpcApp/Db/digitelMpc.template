@@ -86,6 +86,7 @@ record(mbbi, "$(device):COMMS")
     {
     field(DESC, "Communication Status")
     field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
     field(ZRST, "TIMEOUT")
     field(ONST, "OK")
     field(INP, "0")
@@ -100,5 +101,3 @@ record(scalcout, "$(device):COMMSMATCH")
     field(DOPT, "Use CALC")
     field(OUT, "$(device):COMMS PP MS")
     }
-
-
