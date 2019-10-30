@@ -1,0 +1,29 @@
+
+#############################################################################
+# Digitel MPC pump controllers
+#
+# substitutions:
+# device  - device name
+# port    - serial port (device manager port number)
+# unit    - unit number for multi-drop serial (5 by default)
+#
+# Controller
+#
+
+file digitelMpc.template
+{
+pattern { device       , port, unit }
+	    { TS-VA-MPC-01 , ser0,  01  }
+}
+
+#
+# Ion pumps
+#
+
+file digitelMpcIonp.template
+{
+pattern { device        , port   , unit , pump , size , sp1on , sp1off, sp2on   , sp2off }
+        { TS-VA-IONP-01 , ser0   , 01   , 1    , 300  , 1.0E-8, 2.0E-8, 1.0E-7  , 5.0E-7 }
+    	{ TS-VA-IONP-03 , ser0   , 01   , 2    , 300  , 1.0E-8, 2.0E-8, 1.0E-7  , 5.0E-7 }
+}
+
