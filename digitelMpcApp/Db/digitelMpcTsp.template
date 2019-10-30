@@ -1103,3 +1103,25 @@ record(fanout, "$(device):FANUPDATE")
     field(LNK5, "$(device):FIL3:STA")
 }
 
+# PINI set to ensure the record is initialised with TIMEOUT status,
+# which will only change to OK once communication starts.
+record(mbbi, "$(device):COMMS")
+    {
+    field(DESC, "Communication Status")
+    field(DTYP, "Soft Channel")
+    field(ZRST, "TIMEOUT")
+    field(ONST, "OK")
+    field(INP, "0")
+    field(PINI, "YES")
+    }
+
+record(scalcout, "$(device):COMMSMATCH")
+    {
+    field(INAA, "$(device):RAWSTA.STAT MS CP")
+    field(INBB, "TIMEOUT")
+    field(CALC, "AA=BB")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")
+    field(OUT, "$(device):COMMS")
+    }
+

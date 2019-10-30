@@ -6,4 +6,5 @@ db/
 *.iml
 runcss.sh
 bin/
-
+*~
+dbd/

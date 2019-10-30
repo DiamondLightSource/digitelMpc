@@ -1,29 +1,16 @@
 TOP=../..
 include $(TOP)/configure/CONFIG
-#----------------------------------------
-#  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-#----------------------------------------------------
-#  Optimization of db files using dbst (DEFAULT: NO)
-#DB_OPT = YES
+DB += TS-VA-IOC-01.db
 
-#----------------------------------------------------
-# In a Diamond Support Module, install
-# templates like this
-#
-#DB += motor.template
-#DB += basic_motor.template
-
-#----------------------------------------------------
-# In a Diamond IOC Application, build db files from
-# template files like this
-#
-#DB += BL06I-MO-IOC-01.db
-#DB += BL06I-MO-IOC-01_sim.db
-
-#USES_TEMPLATE += $(MOTOR)/db/motor.template
-#USES_TEMPLATE += $(MOTOR)/db/basic_motor.template
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
+
+TS: ../O.Common/TS-VA-IOC-01.db
+	/dls_sw/prod/tools/RHEL6-x86_64/defaults/bin/epicsparser.py ../O.Common/TS-VA-IOC-01.db -r TS -s as > TS
+	@echo "Installing postprocessor files:... INSTALL_PRODUCT=$(INSTALL_PRODUCT) - INSTALL_DATA=$(INSTALL_DATA)"
+	-@$(INSTALL_PRODUCT) -d -m 555 *.req $(INSTALL_DATA)
+
+buildInstall: TS
