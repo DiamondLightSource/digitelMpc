@@ -708,7 +708,7 @@ record(mbbi, "$(device):COMMS")
 
 record(scalcout, "$(device):COMMSMATCH")
     {
-    field(INAA, "$(device):MODEL.STAT MS CP")
+    field(INAA, "$(device):P.STAT MS CP")
     field(CALC, "printf('%d',AA!='TIMEOUT'?1:0)")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")
