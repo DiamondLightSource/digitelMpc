@@ -1109,6 +1109,7 @@ record(mbbi, "$(device):COMMS")
     {
     field(DESC, "Communication Status")
     field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
     field(ZRST, "TIMEOUT")
     field(ONST, "OK")
     field(INP, "0")
@@ -1117,11 +1118,10 @@ record(mbbi, "$(device):COMMS")
 
 record(scalcout, "$(device):COMMSMATCH")
     {
-    field(INAA, "$(device):RAWSTA.STAT MS CP")
-    field(INBB, "TIMEOUT")
-    field(CALC, "AA=BB")
+    field(INAA, "$(device):MODEL.STAT MS CP")
+    field(CALC, "printf('%d',AA!='TIMEOUT'?1:0)")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")
-    field(OUT, "$(device):COMMS")
+    field(OUT, "$(device):COMMS PP MS")
     }
 
