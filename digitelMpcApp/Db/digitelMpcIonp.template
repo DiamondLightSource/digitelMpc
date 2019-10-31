@@ -694,3 +694,26 @@ record(stringin, "$(device):ERROR")
     field(DESC, "Last error message")
     }
 
+
+# PINI set to ensure the record is initialised with TIMEOUT status,
+# which will only change to OK once communication starts.
+record(mbbi, "$(device):COMMS")
+    {
+    field(DESC, "Communication Status")
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(ZRST, "TIMEOUT")
+    field(ONST, "OK")
+    field(INP, "0")
+    field(PINI, "YES")
+    }
+
+record(scalcout, "$(device):COMMSMATCH")
+    {
+    field(INAA, "$(device):MODEL.STAT MS CP")
+    field(CALC, "printf('%d',AA!='TIMEOUT'?1:0)")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")
+    field(OUT, "$(device):COMMS PP MS")
+    }
+
