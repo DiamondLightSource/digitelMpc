@@ -11,7 +11,6 @@
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
 SUPPORT= /dls_sw/prod/R3.14.12.7/support
-
 CALC=    $(SUPPORT)/calc/3-7
 
 ## EPICS_BASE usually appears last so other apps can override stuff:

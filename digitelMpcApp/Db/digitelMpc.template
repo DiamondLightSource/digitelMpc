@@ -17,7 +17,32 @@ record(stringin, "$(device):MODEL")
     field(DTYP, "stream")
     field(INP,  "@digitelMpc.proto model($(unit=01)) $(port)")
     field(SCAN, "10 second")
+    field(FLNK, "$(device):CALCMODEL")
 }
+
+### Check for presence of Digitel MPCq which behaves slightly differently to the MPC DD and MPCe
+record(mbbi, "$(device):MODELENUM")
+    {
+    field(DESC, "Enumerated Model")
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(ZRST, "MPC2")
+    field(ONST, "MPCe")
+    field(TWST, "MPCq")
+    }
+
+record(aSub, "$(device):CALCMODEL")
+    {
+    field(SNAM, "modelCalc")
+    field(INPA, "$(device):MODEL MS")
+    field(FTA,  "STRING")
+    field(FTVA, "SHORT")
+    field(NOA,  "1")
+    field(NOVA, "1")
+    field(OUTA, "$(device):MODELENUM PP MS")
+    field(EFLG, "ALWAYS")
+    }
+
 ################################################################################
 # Get Version
 #
@@ -101,3 +126,4 @@ record(scalcout, "$(device):COMMSMATCH")
     field(DOPT, "Use CALC")
     field(OUT, "$(device):COMMS PP MS")
     }
+
