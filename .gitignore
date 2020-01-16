@@ -3,9 +3,9 @@ O.vxWorks-ppc604_long/
 O.Common/
 data/
 db/
+dbd/
 *.iml
 runcss*
 .idea
 bin/
 *~
-*.dbd

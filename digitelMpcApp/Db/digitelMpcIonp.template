@@ -694,7 +694,6 @@ record(stringin, "$(device):ERROR")
     field(DESC, "Last error message")
     }
 
-
 # PINI set to ensure the record is initialised with TIMEOUT status,
 # which will only change to OK once communication starts.
 record(mbbi, "$(device):COMMS")
