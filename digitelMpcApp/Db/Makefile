@@ -17,6 +17,7 @@ DB += digitelMpc.template
 DB += digitelMpcIonp.template
 DB += digitelMpcIonpSps.template
 DB += digitelMpcTsp.template
+DB += digitelMpcqTsp.template
 DB += digitelMpcTspDummy.template
 DB += digitelMpcIonpGroup.template
 DB += digitelMpcTspGroup.template
