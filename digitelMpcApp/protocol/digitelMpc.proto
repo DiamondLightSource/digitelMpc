@@ -38,7 +38,7 @@ extrainput   = Ignore;
 #
 # Controller Protocols
 #
-model     { out "~ \$1 01 %01<sum8>"            ; in "\$1 OK %*2x %[^0-9.]"            ; }
+model     { out "~ \$1 01 %01<sum8>"            ; in "\$1 OK %*2x %[^0-9.] %0<sum8>"   ; }
 version   { out "~ \$1 02 %01<sum8>"            ; in "\$1 OK %*2x %*s %*s %s %0<sum8>" ; }
 linev     { out "~ \$1 22 %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 linef     { out "~ \$1 24 %01<sum8>"            ; in "\$1 OK %*2x %d Hz %*?/\(.*\) /%0<sum8>"; }
@@ -58,7 +58,7 @@ current   { out "~ \$1 0A \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*{AMPS|Amp
 pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*s %0<sum8>"     ; }
 voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"; @mismatch {in "\$1 OK %*2x %?s %0<sum8>";} }
-status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}" ; }
+status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}%*s %0<sum8>" ; }
 err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<sum8>" ; }
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*2x %f %0<sum8>"         ; }
@@ -84,7 +84,7 @@ setsize   { out "~ \$1 12 \$2,%d %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"     
 setcal    { out "~ \$1 1E \$2,%4.2f %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
 #settext   { out "~ \$1 ED \$2,%s %01<sum8>"     ; in "\$1 OK %*2x %0<sum8>"            ; }
 # ignore errors from old syle units that do not implement this protocol
-settext   { out "~ \$1 ED \$2,\"%s\" %01<sum8>"     ; in "\$1 "                            ; }
+settext   { out "~ \$1 ED \$2,\"%s\" %01<sum8>"     ; in "\$1 %0<sum8>"                          ; }
 
 start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"            ; }
 
@@ -92,9 +92,9 @@ start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"     
 # TSP Protocols
 #
 #tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"             ; }
-tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %?d"             ; }
+tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %?d %0<sum8>"           ; }
 #filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}:%*s %0<sum8>" ; }
-filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6|*ERROR}" ; }
+filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6|*ERROR} %0<sum8>" ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*2x %?g W %0<sum8>"           ; @mismatch {in "\$1 OK %*2x %?g %0<sum8>";} }
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"; @mismatch {in "\$1 OK %*2x %?d %0<sum8>";} }
 #fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"     ; }
