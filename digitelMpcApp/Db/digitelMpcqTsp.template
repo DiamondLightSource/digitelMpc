@@ -1083,9 +1083,26 @@ record(mbbo, "$(device):CTLSRC")
     field(ZRST, "Service")
     field(ONST, "Ion Pump 1")
     field(TWST, "Ion Pump 2")
+    field(THST, "Ion Pump 3")
+    field(FRST, "Ion Pump 4")
     field(DOL,  "$(ctlsrc)")
     field(PINI, "YES")
 }
+
+record(mbbi, "$(device):GETCTLSRC")
+    {
+    field(DESC, "Control Source")
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(ZRST, "Service")
+    field(ONST, "Ion Pump 1")
+    field(TWST, "Ion Pump 2")
+    field(THST, "Ion Pump 3")
+    field(FRST, "Ion Pump 4")
+    field(INP, "@$(protocol=digitelMpcq.proto) get_ctlsrc($(unit),$(device)) $(port)")
+    field(PINI, "YES")
+    }
+
 #% archiver 10 Monitor
 #% controldesk Upper Pressure Threshold setpoint
 #

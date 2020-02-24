@@ -184,6 +184,10 @@ ctlsrc    { out "~ \$1 8B %(\$2:RELAY.VAL)d,%d %01<sum8>";
             @mismatch { in "\$1 ER %*2x %(\$2:ERROR.VAL)#s";}
           }
 
+get_ctlsrc { out "~ \$1 8C %(\$2:RELAY.VAL)d,0 %01<sum8>";
+             in  "\$1 OK %*2x %{0|1|2|3|4} %0<sum8>";
+           }
+
 set_upper_thresh    { out "~ \$1 EA %(\$2:RELAY.VAL)d,%3.1E %01<sum8>";
                       in "\$1 OK %*2x %0<sum8>";
                     }
