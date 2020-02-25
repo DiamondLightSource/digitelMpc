@@ -14,7 +14,7 @@
    height="25.542707"
    id="svg1307"
    sodipodi:version="0.32"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="ionp.svg">
   <metadata
      id="metadata1313">
@@ -37,10 +37,10 @@
      pagecolor="#ffffff"
      id="base"
      inkscape:zoom="16.572815"
-     inkscape:cx="11.309572"
+     inkscape:cx="3.5257405"
      inkscape:cy="13.964217"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="27"
      inkscape:current-layer="svg1307"
      showgrid="false"
      inkscape:showpageshadow="true"
@@ -57,7 +57,7 @@
        id="perspective17" />
   </defs>
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     style="opacity:0.39080458;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="epicscolour2"
      width="24.015232"
      height="25.342707"

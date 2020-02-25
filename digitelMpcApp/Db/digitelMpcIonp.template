@@ -15,6 +15,7 @@
 #% macro, sp2off, setpoint2 off
 #% macro, alh,  alarm handler tag (Defaults to None) c.f. mp49's commit 80833
 #% macro, text, Text to display in the ion pump controller window.
+#% macro, proto, StreamDevice Protocol definition file. Defaults to digitelMpc.proto
 ################################################################################
 
 # This associates an edm screen with the template
@@ -52,7 +53,7 @@
 record(ai, "$(device):I") {
     field(DESC, "Pump Current")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto current($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) current($(unit),$(pump)) $(port)")
     field(SCAN, "1 second")
     field(EGU,  "A")
     field(LOPR, "0.0")
@@ -68,7 +69,7 @@ record(ai, "$(device):I") {
 record(ai, "$(device):P") {
     field(DESC, "Pump Pressure")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto pressure($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) pressure($(unit),$(pump)) $(port)")
     field(SCAN, "1 second")
     field(FLNK, "$(device):PLOG")
     field(EGU,  "mbar")
@@ -111,7 +112,7 @@ record(calc, "$(device):PLOG")
 record(longin, "$(device):V") {
     field(DESC, "Pump Voltage")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto voltage($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) voltage($(unit),$(pump)) $(port)")
     field(SCAN, "1 second")
     field(EGU,  "V")
     field(LOPR, "0")
@@ -127,7 +128,7 @@ record(longin, "$(device):HV")
 {
     field(DESC, "HV Strapping")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto strap($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) strap($(unit),$(pump)) $(port)")
     field(SCAN, "10 second")
     field(EGU,  "V")
     field(LOPR, "5600")
@@ -143,7 +144,7 @@ record(mbbi, "$(device):STA")
 {
     field(DESC, "Supply Status")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto status($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) status($(unit),$(pump)) $(port)")
     field(SCAN, "1 second")
     field(ZRST, "Unknown")
     field(ONST, "Waiting")
@@ -197,7 +198,7 @@ record(longin, "$(device):ERRGET")
 {
     field(DESC, "Get Error Code")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto err($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) err($(unit),$(pump)) $(port)")
     field(SCAN, "Passive")
 }
 
@@ -261,7 +262,7 @@ record(mbbi, "$(device):ERR")
 record(longin, "$(device):SIZE") {
     field(DESC, "Pump Size")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto size($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) size($(unit),$(pump)) $(port)")
     field(SCAN, "10 second")
     field(EGU,  "l/s")
     field(LOPR, "0")
@@ -274,7 +275,7 @@ record(longin, "$(device):SIZE") {
 record(ao, "$(device):SETSIZE") {
     field(DESC, "Pump Size")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setsize($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) setsize($(unit),$(pump)) $(port)")
     field(PINI, "YES")
     field(DOL,  "$(size)")
     field(EGU,  "l/s")
@@ -293,7 +294,7 @@ record(ao, "$(device):SETSIZE") {
 record(ai, "$(device):CAL") {
     field(DESC, "Calibration Factor")
     field(DTYP, "stream")
-    field(INP,  "@digitelMpc.proto cal($(unit),$(pump)) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) cal($(unit),$(pump)) $(port)")
     field(SCAN, "10 second")
     field(LOPR, "0.0")
     field(HOPR, "9.99")
@@ -306,7 +307,7 @@ record(ai, "$(device):CAL") {
 record(ao, "$(device):SETCAL") {
     field(DESC, "Calibration Factor")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setcal($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) setcal($(unit),$(pump)) $(port)")
     field(DRVL, "0.0")
     field(DRVH, "9.99")
     field(LOPR, "0.0")
@@ -323,7 +324,7 @@ record(bo, "$(device):START")
 {
     field(DESC, "HV on/off")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto start($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) start($(unit),$(pump)) $(port)")
     field(ZNAM, "Stop")
     field(ONAM, "Start")
 }
@@ -439,7 +440,7 @@ record(ai, "$(device):RQSTSP1ON")
     field(DESC, "Rqst Setpoint1")
     field(DTYP, "stream")
     field(SCAN, "Passive")
-    field(INP,  "@digitelMpc.proto getsps($(unit),$(device),1) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) getsps($(unit),$(device),1) $(port)")
     field(PINI, "NO")
     }
 
@@ -449,7 +450,7 @@ record(ai, "$(device):RQSTSP2ON")
     field(DESC, "Rqst Setpoint2")
     field(DTYP, "stream")
     field(SCAN, "Passive")
-    field(INP,  "@digitelMpc.proto getsps($(unit),$(device),2) $(port)")
+    field(INP,  "@$(proto=digitelMpc.proto) getsps($(unit),$(device),2) $(port)")
     field(PINI, "NO")
     }
 
@@ -536,8 +537,8 @@ record(calcout, "$(device):SETSPS1")
     {
     field(DESC, "Output Setpoints")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setsps($(unit),$(device),1) $(port)")
-##    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) setsps($(unit),$(device),1) $(port)")
+##    field(OUT,  "@$(proto=digitelMpc.proto) setsps($(unit),$(pump)) $(port)")
     field(INPA, "$(device):SETSP1ON")
     field(INPB, "$(device):SETSP1OFF")
     field(INPC, "$(pump)")
@@ -632,8 +633,8 @@ record(calcout, "$(device):SETSPS2")
     {
     field(DESC, "Output Setpoints")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto setsps($(unit),$(device),1) $(port)")
-##    field(OUT,  "@digitelMpc.proto setsps($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) setsps($(unit),$(device),1) $(port)")
+##    field(OUT,  "@$(proto=digitelMpc.proto) setsps($(unit),$(pump)) $(port)")
     field(INPA, "$(device):SETSP2ON")
     field(INPB, "$(device):SETSP2OFF")
     field(INPC, "$(pump)")
@@ -681,7 +682,7 @@ record(stringout, "$(device):SETTEXT") {
     field(DESC, "Text String")
     field(VAL , "$(text=$(device))")
     field(DTYP, "stream")
-    field(OUT,  "@digitelMpc.proto settext($(unit),$(pump)) $(port)")
+    field(OUT,  "@$(proto=digitelMpc.proto) settext($(unit),$(pump),$(disptext=$(device))) $(port)")
     field(PINI, "YES")
 }
 ################################################################################
