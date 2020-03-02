@@ -58,7 +58,8 @@ current   { out "~ \$1 0A \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*{AMPS|Amp
 pressure  { out "~ \$1 0B \$2 %01<sum8>"        ; in "\$1 OK %*2x %g %*s %0<sum8>"     ; }
 voltage   { out "~ \$1 0C \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"         ; }
 strap     { out "~ \$1 20 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d %0<sum8>"; @mismatch {in "\$1 OK %*2x %?s %0<sum8>";} }
-status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}%*s %0<sum8>" ; }
+status    { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %{X|WAITING TO START|STANDBY|SAFE-CONN|RUNNING|COOL DOWN|PUMP ERROR|H|INTERLOCK|SHUT DOWN|CALIBRATION} %0<sum8>";
+            @mismatch {in "\$1 OK %*2x %#{COOL DOWN=4|PUMP ERROR|SAFE-CONN|RUNNING|INTERLOCK|SHUT DOWN|CALIBRATION} %*2x %0<sum8>";}}
 err       { out "~ \$1 0D \$2 %01<sum8>"        ; in "\$1 OK %*2x %*[^0-9]%d %0<sum8>" ; }
 size      { out "~ \$1 11 \$2 %01<sum8>"        ; in "\$1 OK %*2x %d L/S %0<sum8>"     ; }
 cal       { out "~ \$1 1D \$2 %01<sum8>"        ; in "\$1 OK %*2x %f %0<sum8>"         ; }
@@ -91,10 +92,14 @@ start     { out "~ \$1 %{38|37} \$2 %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"     
 #
 # TSP Protocols
 #
-#tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"             ; }
-tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %?d %0<sum8>"           ; }
+##tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d %0<sum8>"             ; }
+#tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d: %*[^0-9] %0<sum8>"           ; }
+tspsta    { out "~ \$1 DE %01<sum8>"            ; in "\$1 OK %*2x %d: %#*s"           ; }
 #filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6}:%*s %0<sum8>" ; }
-filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6|*ERROR} %0<sum8>" ; }
+# Purposely eat everything after the status code, as the strung returns may have multiple words and
+# almost impossible to isolate a variable number of word responses. With this technique we lose the checksum
+# check but get the correct code without error.
+filsta    { out "~ \$1 E9 \$2 %01<sum8>"        ; in "\$1 OK %*2x %{1|2|3|4|5|6|*ERROR}: %#*s" ; }
 power     { out "~ \$1 74 %01<sum8>"            ; in "\$1 OK %*2x %?g W %0<sum8>"           ; @mismatch {in "\$1 OK %*2x %?g %0<sum8>";} }
 fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"; @mismatch {in "\$1 OK %*2x %?d %0<sum8>";} }
 #fil       { out "~ \$1 DA %01<sum8>"            ; in "\$1 OK %*2x %{1|2|3|4} %0<sum8>"     ; }
@@ -107,7 +112,22 @@ left      { out "~ \$1 2A %01<sum8>"            ; in "\$1 OK %*2x %d,"
 setpower  { out "~ \$1 E2 %d,W %01<sum8>"       ; in "\$1 OK %*2x %0<sum8>"                ; }
 autofil   { out "~ \$1 2C %{NO|YES} %01<sum8>"  ; in "\$1 OK %*2x %0<sum8>"                ; }
 ctlsrc    { out "~ \$1 8B %d %01<sum8>"         ; in "\$1 OK %*2x %0<sum8>"                ; }
-thresh    { out "~ \$1 EA %3.1E %01<sum8>"      ; in "\$1 OK %*2x %0<sum8>"                ; }
+set_upper_thresh    { out "~ \$1 EA %(\$2:RELAY.VAL)d,%3.1E %01<sum8>";
+                      in "\$1 OK %*2x %0<sum8>";
+                    }
+
+set_lower_thresh    { out "~ \$1 EB %(\$2:RELAY.VAL)d,%3.1E %01<sum8>";
+                      in "\$1 OK %*2x %0<sum8>";
+                    }
+
+get_upper_thresh    { out "~ \$1 82 %(\$2:RELAY.VAL)d %01<sum8>";
+                      in "\$1 OK %*2x %g %*s %0<sum8>";
+                    }
+
+get_lower_thresh    { out "~ \$1 31 %(\$2:RELAY.VAL)d %01<sum8>";
+                      in "\$1 OK %*2x %g %*s %0<sum8>";
+                    }
+
 setfil    { out "~ \$1 29 %{1|2|3|4} %01<sum8>" ; in "\$1 OK %*2x %0<sum8>"                ; }
 
 tspoff    { out "~ \$1 28 %01<sum8>"            ; in "\$1 OK %*2x %0<sum8>"                ; }

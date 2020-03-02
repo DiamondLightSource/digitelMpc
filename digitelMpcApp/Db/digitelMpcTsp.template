@@ -1043,23 +1043,71 @@ record(mbbo, "$(device):CTLSRC")
     field(DOL,  "$(ctlsrc)")
     field(PINI, "YES")
 }
+
 #% archiver 10 Monitor
-#% controldesk Pressure Threshold setpoint
+#% controldesk Upper Pressure Threshold setpoint
 #
-record(ao, "$(device):SETPTHR") 
+record(ao, "$(device):SETUPPERPTHR")
 {
-    field(DESC, "Pressure Threshold")
+    field(DESC, "Upper Pressure Threshold")
     field(DTYP, "stream")
-    field(OUT,  "@$(protocol=digitelMpc.proto) thresh($(unit),$(device):RELAY) $(port)")
+    field(OUT,  "@$(protocol=digitelMpc.proto) set_upper_thresh($(unit),$(device)) $(port)")
     field(EGU,  "mbar")
-    field(DRVL, "1.0e-9")
+    field(DRVL, "1.0e-12")
     field(DRVH, "1.0e-5")
     field(LOPR, "0.0")
     field(HOPR, "1.0e-5")
     field(PREC, "1")
     field(DOL,  "1.0e-8")
     field(PINI, "YES")
+    field(FLNK, "$(device):UPPERPTHR")
 }
+#% archiver 10 Monitor
+#% controldesk Upper Pressure Threshold setpoint
+#
+record(ao, "$(device):SETLOWERPTHR")
+{
+    field(DESC, "Lower Pressure Threshold")
+    field(DTYP, "stream")
+    field(OUT,  "@$(protocol=digitelMpc.proto) set_lower_thresh($(unit),$(device)) $(port)")
+    field(EGU,  "mbar")
+    field(DRVL, "1.0e-12")
+    field(DRVH, "1.0e-5")
+    field(LOPR, "0.0")
+    field(HOPR, "1.0e-5")
+    field(PREC, "1")
+    field(DOL,  "1.0e-8")
+    field(PINI, "YES")
+    field(FLNK, "$(device):LOWERPTHR")
+}
+################################################################################
+# Upper pressure threshold
+#
+#% archiver 1 Monitor
+#
+record(ai, "$(device):UPPERPTHR")
+    {
+    field(DESC, "Upper Pressure Threshold")
+    field(DTYP, "stream")
+    field(INP,  "@$(protocol=digitelMpc.proto) get_upper_thresh($(unit),$(device)) $(port)")
+    field(SCAN, "1 second")
+    field(EGU,  "mBar")
+    field(PREC, "1")
+    }
+################################################################################
+# Lower pressure threshold
+#
+#% archiver 1 Monitor
+#
+record(ai, "$(device):LOWERPTHR")
+    {
+    field(DESC, "Lower Pressure Threshold")
+    field(DTYP, "stream")
+    field(INP,  "@$(protocol=digitelMpc.proto) get_lower_thresh($(unit),$(device)) $(port)")
+    field(SCAN, "1 second")
+    field(EGU,  "mBar")
+    field(PREC, "1")
+    }
 ################################################################################
 
 
