@@ -9,3 +9,7 @@ runcss*
 .idea
 bin/
 *~
+*.pyc
+.project
+.pydevproject
+lib/
