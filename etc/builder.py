@@ -19,12 +19,16 @@ class digitelMpc(AutoSubstitution, AutoProtocol):
     # AutoProtocol attributes
     ProtocolFiles = ['digitelMpc.proto']
 
+    
 class digitelMpcPump(ModuleBase):
     pass
 
 class digitelMpcTsp(AutoSubstitution, digitelMpcPump):
     TemplateFile = 'digitelMpcTsp.template'
 
+class digitelMpcqTsp(AutoSubstitution, digitelMpcPump):
+    TemplateFile = 'digitelMpcqTsp.template'
+   
 class _digitelMpcIonpTemplate(AutoSubstitution):
     TemplateFile = 'digitelMpcIonp.template'
 
