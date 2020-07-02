@@ -2,26 +2,32 @@ from iocbuilder import AutoSubstitution, Substitution, SetSimulation, ModuleBase
 from iocbuilder.modules.streamDevice import AutoProtocol
 from iocbuilder.arginfo import *
 from iocbuilder.modules.calc import Calc
+from iocbuilder.modules.asyn import AsynIP
 
+class digitelMpcPump(ModuleBase):
+    pass
 
-class digitelMpc(AutoSubstitution, AutoProtocol):
+class _digitelMpcTemplate(AutoSubstitution,AutoProtocol ):
+    TemplateFile = 'digitelMpc.template'
+
+class digitelMpc(_digitelMpcTemplate,digitelMpcPump):
     # Make sure unit is a 2 digit int
-    def __init__(self, **args):
-        if "unit" in args:
-            args["unit"] = "%02d" % int(args["unit"])
+    def __init__(self,unit = "01", proto = "digitelMpc.proto",**args):
         self.__super.__init__(**args)
     # Dependencies
     Dependencies = (Calc, )
 
-    # Substitution attributes
-    TemplateFile = 'digitelMpc.template'
 
     # AutoProtocol attributes
     ProtocolFiles = ['digitelMpc.proto']
 
+    ArgInfo = makeArgInfo(__init__,
+        port = Ident("Asyn port",AsynIP),
+        unit = Choice("Unit number for multi drop serial",["%02d" % unit for unit in range(1,33)]),
+        proto = Choice("Protocol file to use", ["digitelMpc.proto","digitelMpcq.proto"])) + \
+        _digitelMpcTemplate.ArgInfo.filtered(without = ['a', 'c'])
     
-class digitelMpcPump(ModuleBase):
-    pass
+   
 
 class digitelMpcTsp(AutoSubstitution, digitelMpcPump):
     TemplateFile = 'digitelMpcTsp.template'
