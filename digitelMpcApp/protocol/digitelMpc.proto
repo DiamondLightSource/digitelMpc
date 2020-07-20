@@ -172,6 +172,7 @@ start       {   out "~ \$1 %{38|37} \$2 %01<sum8>";
 #
 tspsta      {   out "~ \$1 DE %01<sum8>";
                 in "\$1 OK %*2x %d: %#*s"; 
+                @mismatch { in "\$1 OK %*2x *ERROR: %#*s";}
             }
 
 #MPCq
