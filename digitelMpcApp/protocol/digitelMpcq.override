@@ -1,0 +1,62 @@
+
+#
+# Protection Setpoint Commands
+# Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
+# It is important to derive the setpoint set value at iocInit, so consider using @init handler.
+# 
+getsps      {   out "~ \$1 3B %(\$2:SPNUM\$3)1d %01<sum8>";
+			    in  "\$1 OK %*2x %*i,%*i,%*i,%(\$2:SP\$3ON.VAL)g,%(\$2:SP\$3OFF.VAL)g,%(\$2:SP\$3STATE)i %0<sum8>";
+			    @mismatch { in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
+		    }
+		  
+setsps      {   out "~ \$1 3B %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>";
+                in  "\$1 OK %*2x %0<sum8>";
+                @mismatch { in "\$1 OK %*2x %?g %0<sum8>";}
+            }
+
+#
+# TSP Protocols
+#
+tspsta      {   out "~ \$1 DE %(\$2:RELAY.VAL)d,0 %01<sum8>";
+                in "\$1 OK %*2x %2x %0<sum8>";
+            }
+
+
+# Purposely eat everything after the status code, as the strung returns may have multiple words and
+# almost impossible to isolate a variable number of word responses. With this technique we lose the checksum
+# check but get the correct code without error.
+filsta      {   out "~ \$1 E9 %(\$2)d %01<sum8>";
+                in "\$1 OK %*2x %{01: NOT INSTALLED|02: INACTIVE|03: NEXT ACTIVE|04: FIRING|05: OPENING|06: LOW LEVEL} %0<sum8>";
+            }
+
+fil         {   out "~ \$1 DF %(\$2:RELAY.VAL)d %01<sum8>";
+                in "\$1 OK %*2x %{1|2|3|4} %0<sum8>";
+                @mismatch { in "\$1 OK %*2x %?d %0<sum8>";}
+            }
+
+ctlsrc      {   out "~ \$1 8B %(\$2:RELAY.VAL)d,%d %01<sum8>";
+                in  "\$1 OK %*2x %0<sum8>";
+                @mismatch { in "\$1 ER %*2x %(\$2:ERROR.VAL)#s";}
+            }
+            
+get_ctlsrc  {   out "~ \$1 8C %(\$2:RELAY.VAL)d,0 %01<sum8>";
+                in  "\$1 OK %*2x %{0|1|2|3|4} %0<sum8>";
+            }
+
+setfil      {   out "~ \$1 29 %(\$2:RELAY.VAL)d,%{1|2|3|4} %01<sum8>";
+                in "\$1 OK %*2x %0<sum8>";
+            }
+
+tspoff      {   out "~ \$1 28 %(\$2:RELAY.VAL)d %01<sum8>";
+                in "\$1 OK %*2x %0<sum8>";
+            }
+
+
+
+
+
+
+
+
+
+

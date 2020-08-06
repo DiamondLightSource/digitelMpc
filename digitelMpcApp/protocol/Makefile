@@ -5,7 +5,12 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 # Copy all protocol files into data directory
-DATA += $(patsubst ../%, %, $(wildcard ../*.proto))
+
+
+default:
+	cp digitelMpc.proto $(TOP)/data
+	dls-python generateMpcqProto.py
+
 
 include $(TOP)/configure/RULES
 endif
