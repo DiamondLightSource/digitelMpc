@@ -207,13 +207,13 @@ set_lower_thresh    {   out "~ \$1 EB %(\$2:RELAY.VAL)d,%3.1E %01<sum8>";
                     }
 
 get_upper_thresh    {   out "~ \$1 82 %(\$2:RELAY.VAL)d %01<sum8>";
-                        in  "\$1 OK %*2x %g %*s %0<sum8>";
-                        @mismatch { in "\$1 OK %*2x %*g %*g";}
+                        in  "\$1 OK %*2x %g %*s %*2x";
+                        @mismatch { in "%*s";}
                     }
 
 get_lower_thresh    {   out "~ \$1 31 %(\$2:RELAY.VAL)d %01<sum8>";
-                        in  "\$1 OK %*2x %g %*s %0<sum8>";
-                        @mismatch { in "\$1 OK %*2x %*g %*g";}
+                        in  "\$1 OK %*2x %g %*s %*2x";
+                        @mismatch { in "%*s";}
                     }
 #MPCq
 setfil      {   out "~ \$1 29 %(\$2:RELAY.VAL)d,%{1|2|3|4} %01<sum8>";
