@@ -160,7 +160,7 @@ tspsta      {   out "~ \$1 DE %(\$2:RELAY.VAL)d,0 %01<sum8>";
             }
 
 #MPCq
-filsta      {   out "~ \$1 E9 %(\$2)d %01<sum8>";
+filsta      {   out "~ \$1 E9 \$2 %01<sum8>";
                 in "\$1 OK %*2x %{01: NOT INSTALLED|02: INACTIVE|03: NEXT ACTIVE|04: FIRING|05: OPENING|06: LOW LEVEL} %0<sum8>";
             }
 
