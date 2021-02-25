@@ -15,7 +15,7 @@
 ################################################################################
 
 # This associates an edm screen with the template
-# % gui, $(name=), edm, digitelMpcqTsp.edl, device=$(device)
+# % gui, $(name=), edm, digitelMpcTsp.edl, device=$(device)
 
 # This associates BOY screens with the template
 # % gui, $(name=), boydetail, digitelMpcApp_opi/tsp_detail.opi, device=$(device), desc=$(device), name=$(name=)
