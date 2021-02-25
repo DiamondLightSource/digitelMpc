@@ -25,7 +25,7 @@ class digitelMpc(_digitelMpcTemplate,digitelMpcPump):
         port = Ident("Asyn port",AsynIP),
         unit = Choice("Unit number for multi drop serial",["%02d" % unit for unit in range(1,33)]),
         proto = Choice("Protocol file to use", ["digitelMpc.proto","digitelMpcq.proto"])) + \
-        _digitelMpcTemplate.ArgInfo.filtered(without = ['a', 'c'])
+        _digitelMpcTemplate.ArgInfo.filtered(without = ['a', 'c','port','unit','proto'])
     
    
 
@@ -48,8 +48,9 @@ class digitelMpcIonp(_digitelMpcIonpTemplate, digitelMpcPump):
 
     # __init__ arguments
     ArgInfo = makeArgInfo(__init__,
-        MPC    = Ident ('digitelMPC object', digitelMpc)) + \
-        _digitelMpcIonpTemplate.ArgInfo.filtered(without = ['port', 'unit'])
+        MPC    = Ident ('digitelMPC object', digitelMpc),
+        proto = Choice("Protocol file to use", ["digitelMpc.proto","digitelMpcq.proto"])) + \
+        _digitelMpcIonpTemplate.ArgInfo.filtered(without = ['port', 'unit','proto'])
 
 class digitelMpcIonpGroup(AutoSubstitution):
     TemplateFile = 'digitelMpcIonpGroup.template'
