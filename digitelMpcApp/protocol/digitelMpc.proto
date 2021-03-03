@@ -130,11 +130,7 @@ getsps      {   out "~ \$1 3C %(\$2:SPNUM\$3)1d %01<sum8>";
 			    @mismatch { in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
 		    }
 
-#MPCq
-getsps_q    {   out "~ \$1 3B %(\$2:SPNUM\$3)1d %01<sum8>";
-			    in  "\$1 OK %*2x %*i,%*i,%*i,%(\$2:SP\$3ON.VAL)g,%(\$2:SP\$3OFF.VAL)g,%(\$2:SP\$3STATE)i %0<sum8>";
-			    @mismatch { in "\$1 OK %*2x %*i,%*i,%?g,%?g,%*i %0<sum8>";} 
-		    }
+
 
 		  
 setsps      {   out "~ \$1 3D %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>";
@@ -142,11 +138,7 @@ setsps      {   out "~ \$1 3D %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>";
                 @mismatch { in "\$1 OK %*2x %?g %0<sum8>";}
             }
 
-#MPCq		  
-setsps_q    {   out "~ \$1 3B %(F)1d,%(C)1d,%(A)2.2E,%(B)2.02E %01<sum8>";
-                in  "\$1 OK %*2x %0<sum8>";
-                @mismatch { in "\$1 OK %*2x %?g %0<sum8>";}
-            }
+
 
 
 setsize     {   out "~ \$1 12 \$2,%d %01<sum8>";
@@ -175,10 +167,7 @@ tspsta      {   out "~ \$1 DE %01<sum8>";
                 @mismatch { in "\$1 OK %*2x *ERROR: %#*s";}
             }
 
-#MPCq
-tspsta_q    {   out "~ \$1 DE %(\$2:RELAY.VAL)d,0 %01<sum8>";
-                in "\$1 OK %*2x %2x %0<sum8>";
-            }
+
 
 # Purposely eat everything after the status code, as the strung returns may have multiple words and
 # almost impossible to isolate a variable number of word responses. With this technique we lose the checksum
@@ -187,10 +176,6 @@ filsta      {   out "~ \$1 E9 \$2 %01<sum8>";
                 in "\$1 OK %*2x %{1|2|3|4|5|6|*ERROR}: %#*s"; 
             }
 
-#MPCq
-filsta_q    {   out "~ \$1 E9 \$2 %01<sum8>";
-                in "\$1 OK %*2x %{01: NOT INSTALLED|02: INACTIVE|03: NEXT ACTIVE|04: FIRING|05: OPENING|06: LOW LEVEL} %0<sum8>";
-            }
 
 power       {   out "~ \$1 74 %01<sum8>";
                 in "\$1 OK %*2x %?g %*c %0<sum8>";
@@ -202,11 +187,7 @@ fil         {   out "~ \$1 DA %01<sum8>";
                 @mismatch { in "\$1 OK %*2x %?d %0<sum8>";}
             }
 
-#MPCq
-fil_q       {   out "~ \$1 DF %(\$2:RELAY.VAL)d %01<sum8>";
-                in "\$1 OK %*2x %{1|2|3|4} %0<sum8>";
-                @mismatch { in "\$1 OK %*2x %?d %0<sum8>";}
-            }
+
 
 
 left        {   out "~ \$1 2A %01<sum8>"; 
@@ -226,16 +207,7 @@ ctlsrc      {   out "~ \$1 8B %d %01<sum8>";
                 in  "\$1 OK %*2x %0<sum8>";
             }
 
-#MPCq
-ctlsrc_q    {   out "~ \$1 8B %(\$2:RELAY.VAL)d,%d %01<sum8>";
-                in  "\$1 OK %*2x %0<sum8>";
-                @mismatch { in "\$1 ER %*2x %(\$2:ERROR.VAL)#s";}
-            }
 
-#MPCq
-get_ctlsrc_q  {   out "~ \$1 8C %(\$2:RELAY.VAL)d,0 %01<sum8>";
-                in  "\$1 OK %*2x %{0|1|2|3|4} %0<sum8>";
-            }
 
 set_upper_thresh    {   out "~ \$1 EA %(\$2:RELAY.VAL)d,%3.1E %01<sum8>";
                         in  "\$1 OK %*2x %0<sum8>";
@@ -258,18 +230,12 @@ get_lower_thresh    {   out "~ \$1 31 %(\$2:RELAY.VAL)d %01<sum8>";
 setfil      {   out "~ \$1 29 %{1|2|3|4} %01<sum8>";
                 in "\$1 OK %*2x %0<sum8>";
             }
-#MPCq
-setfil_q    {   out "~ \$1 29 %(\$2:RELAY.VAL)d,%{1|2|3|4} %01<sum8>";
-                in "\$1 OK %*2x %0<sum8>";
-            }
+
 
 tspoff      {   out "~ \$1 28 %01<sum8>";
                 in "\$1 OK %*2x %0<sum8>";
             }
-#MPCq
-tspoff_q    {   out "~ \$1 28 %(\$2:RELAY.VAL)d %01<sum8>";
-                in "\$1 OK %*2x %0<sum8>";
-            }
+
 
 clear       {   out "~ \$1 2B %01<sum8>";
                 in "\$1 OK %*2x %0<sum8>";

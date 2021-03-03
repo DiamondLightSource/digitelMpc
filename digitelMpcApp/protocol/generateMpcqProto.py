@@ -1,3 +1,14 @@
+#!/dls_sw/prod/tools/RHEL7-x86_64/defaults/bin/dls-python3.7
+
+# This script generates the digitelMpcq.proto (MPCq) file by taking all functions from digitelMpc.proto (MPCe) as a base function set.
+# It then reads the digitelMpcq.override file and replaces any functions from digitelMpc.proto with the version found in digitelMpcq.override.
+# In addition it also adds any functions that are found in digitelMpcq.override that are not found in digitelMpc.proto.
+# The purpose of this script is to avoid duplicating many of the common functions found in both controller types
+
+# Definitions:
+#   parameter   -   streamDevice parameter, eg replytimeout = 1000
+#   function    -   streamDevice function.
+
 import os
 from collections import OrderedDict
 from subprocess import Popen, PIPE
@@ -37,10 +48,10 @@ def readProtocol(protocolFile):
 
     return functions,parameters
                 
-
+# Read in the digitelMpc.proto file. This will be the basis for the digitelMpcq.proto file.
 baseFunctions,baseParam = readProtocol("digitelMpc.proto")
 
-# Find file  with the string "Override" in them
+# Find file  with the string "override" in them
 overrideFiles = Popen("ls | grep '.override'",shell=True,stdout=PIPE).stdout.read().decode().split('\n')[:-1]
 
 for overrideFile in overrideFiles:
@@ -55,10 +66,17 @@ for overrideFile in overrideFiles:
     outputFileName = overrideFile.replace('.override','.proto')
     outputProto = open(outputFileName,'w')
 
+    outputProto.write(f"# File was generated from {__file__}, do not modify \n")
+
     for parameter in baseParam:
         outputProto.write(parameter)
     for function in baseFunctions:
         outputProto.write(function + baseFunctions[function])
         outputProto.write('\n')
+    for overrideFunction in overrideFunctions:
+        if overrideFunction not in baseFunctions:
+            outputProto.write(overrideFunction + overrideFunctions[overrideFunction])
+            outputProto.write('\n')
+
     outputProto.close()
     os.system('mv %s ../../data'%outputFileName)

@@ -1,5 +1,7 @@
 
-#
+# This file contains all streamDevice functions that are specific to the MPCq controller. These functions will override those found in digitelMpcq.proto
+
+
 # Protection Setpoint Commands
 # Parameter 1) Unit number   2) Device base name    3) Logical setpoint number for this pump (1 | 2).
 # It is important to derive the setpoint set value at iocInit, so consider using @init handler.
@@ -25,7 +27,7 @@ tspsta      {   out "~ \$1 DE %(\$2:RELAY.VAL)d,0 %01<sum8>";
 # Purposely eat everything after the status code, as the strung returns may have multiple words and
 # almost impossible to isolate a variable number of word responses. With this technique we lose the checksum
 # check but get the correct code without error.
-filsta      {   out "~ \$1 E9 %(\$2)d %01<sum8>";
+filsta      {   out "~ \$1 E9 \$2 %01<sum8>";
                 in "\$1 OK %*2x %{01: NOT INSTALLED|02: INACTIVE|03: NEXT ACTIVE|04: FIRING|05: OPENING|06: LOW LEVEL} %0<sum8>";
             }
 
@@ -50,13 +52,3 @@ setfil      {   out "~ \$1 29 %(\$2:RELAY.VAL)d,%{1|2|3|4} %01<sum8>";
 tspoff      {   out "~ \$1 28 %(\$2:RELAY.VAL)d %01<sum8>";
                 in "\$1 OK %*2x %0<sum8>";
             }
-
-
-
-
-
-
-
-
-
-
