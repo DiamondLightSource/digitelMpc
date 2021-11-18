@@ -104,7 +104,7 @@ strap       {   out "~ \$1 20 \$2 %01<sum8>";
             }
 
 status      {   out "~ \$1 0D \$2 %01<sum8>";
-                in  "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}%*s %*2x %0<sum8>";
+                in  "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}%*s %0<sum8>";
                 @mismatch { in "\$1 OK %*2x %{X|W|ST|SA|R|CO|P|H|I|SH|CA}";}
             }
 
