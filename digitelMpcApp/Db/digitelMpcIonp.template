@@ -676,14 +676,37 @@ record(calc, "$(device):SPNUM2")
 
 
 ################################################################################
-# Text string on front panel
+# Text string on front panel if MPC is not the MPC2 
+# MPC2 has no settext command due to the lack of an LCD display
 #
+record(mbbi, "$(device):MPC_MODEL")
+{
+    field(DESC, "Model Number")
+    field(DTYP, "stream")
+    field(INP,  "@$(proto=digitelMpc.proto) model($(unit)) $(port)")
+    field(SCAN, "Passive")
+    field(ZRST, "MPC2")
+    field(ONST, "MPCe")
+    field(TWST, "MPCq")
+    field(THST, "QPC")
+    field(PINI, "YES")
+    field(FLNK, "$(device):SETTEXT_PROC PP")
+}
+
+record(calcout, "$(device):SETTEXT_PROC") {
+    field(DESC, "Prevents SETTEXT if MPC2")
+    field(CALC, "A>0?1:0")
+    field(INPA, "$(device):MPC_MODEL")
+    field(OOPT, "When Non-zero")
+    field(OUT,  "$(device):SETTEXT.PROC PP")
+}
+
 record(stringout, "$(device):SETTEXT") {
     field(DESC, "Text String")
     field(VAL , "$(text=$(device))")
     field(DTYP, "stream")
     field(OUT,  "@$(proto=digitelMpc.proto) settext($(unit),$(pump),$(disptext=$(device))) $(port)")
-    field(PINI, "YES")
+    field(PINI, "NO")
 }
 ################################################################################
 
