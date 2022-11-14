@@ -45,9 +45,10 @@ extrainput   = Ignore;
 #
 # Controller Protocols
 #
+#@mismatch { in "%*42c\$1 OK %*2x DIGITEL %{MPC|MPCe|MPCq|QPC} %14<sum8>";}
 model       {   out "~ \$1 01 %01<sum8>";
-                in  "\$1 OK %*2x DIGITEL %{MPC|MPCe|MPCq|QPC} %0<sum8>";
-                @mismatch { in "%*42c\$1 OK %*2x DIGITEL %{MPC|MPCe|MPCq|QPC} %14<sum8>";}
+                in  "\$1 OK %*2x DIGITEL %#{MPCe=1|MPCq=2|MPC=0|QPC=3} %0<sum8>";
+                @mismatch { in "%*42c\$1 OK %*2x DIGITEL %#{MPCe=1|MPCq=2|MPC=0|QPC=3} %14<sum8>";}
             }
 
 version     {   out "~ \$1 02 %01<sum8>";
