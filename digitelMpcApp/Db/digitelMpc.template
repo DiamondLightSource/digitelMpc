@@ -8,6 +8,10 @@
 #% macro, unit, unit number for multi-drop serial
 #% macro, proto, StreamDevice Protocol definition file. Defaults to digitelMpc.proto
 ################################################################################
+
+# This associates an edm screen with the template
+# % gui, $(name=), edm, digitelMpc.edl, device=$(device)
+
 # Get Model Number
 #
 #% controldesk Model Number readback
