@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 91
-y 239
+x 4012
+y 222
 w 328
 h 468
 font "arial-medium-r-16.0"
@@ -45,7 +45,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 0
 y 0
 w 328
@@ -64,7 +64,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 68
 w 60
@@ -84,7 +84,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 96
 w 42
@@ -104,7 +104,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 152
 w 50
@@ -168,7 +168,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 179
 w 48
@@ -245,7 +245,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 124
 w 72
@@ -265,7 +265,7 @@ object activeBarClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 172
 y 64
 w 140
@@ -303,7 +303,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 40
 w 48
@@ -361,7 +361,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 208
 w 62
@@ -426,7 +426,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
 y 276
 w 69
@@ -446,7 +446,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 104
 y 240
 w 104
@@ -465,7 +465,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 208
 y 240
 w 104
@@ -484,7 +484,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 240
 w 88
@@ -523,7 +523,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
 y 272
@@ -545,6 +545,7 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Static Text)
@@ -552,7 +553,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
 y 360
 w 78
@@ -593,7 +594,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
 y 332
 w 78
@@ -613,7 +614,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 24
 y 304
 w 69
@@ -638,7 +639,7 @@ x 112
 y 356
 w 88
 h 22
-controlPv "$(device):SP2"
+controlPv "$(device):SP2ON"
 displayMode "exp"
 precision 1
 fgColor index 16
@@ -661,7 +662,7 @@ x 112
 y 328
 w 88
 h 22
-controlPv "$(device):SP1"
+controlPv "$(device):SP1ON"
 displayMode "exp"
 precision 1
 fgColor index 16
@@ -678,7 +679,7 @@ endObjectProperties
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
 y 300
@@ -700,19 +701,20 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Text Control)
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
 y 328
 w 88
 h 22
-controlPv "$(device):SETSP1"
+controlPv "$(device):SETSP1ON"
 format "exponential"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -721,7 +723,7 @@ bgColor index 1
 editable
 motifWidget
 limitsFromDb
-nullPv "$(device):SETSP1"
+nullPv "$(device):SETSP1ON"
 nullColor index 18
 nullCondition "disabled"
 fastUpdate
@@ -729,19 +731,20 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Text Control)
 object activeXTextDspClass
 beginObjectProperties
 major 4
-minor 1
+minor 6
 release 0
 x 216
 y 356
 w 88
 h 22
-controlPv "$(device):SETSP2"
+controlPv "$(device):SETSP2OFF"
 format "exponential"
 font "arial-bold-r-14.0"
 fontAlign "center"
@@ -750,7 +753,7 @@ bgColor index 1
 editable
 motifWidget
 limitsFromDb
-nullPv "$(device):SETSP2"
+nullPv "$(device):SETSP2OFF"
 nullColor index 18
 nullCondition "disabled"
 fastUpdate
@@ -758,6 +761,7 @@ autoSelect
 useHexPrefix
 newPos
 objType "controls"
+noExecuteClipMask
 endObjectProperties
 
 # (Rectangle)
@@ -853,7 +857,7 @@ endObjectProperties
 object shellCmdClass
 beginObjectProperties
 major 4
-minor 2
+minor 3
 release 0
 x 256
 y 404
@@ -893,7 +897,7 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 16
 y 428
@@ -919,7 +923,7 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 88
 y 428
@@ -943,7 +947,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 404
 w 56
