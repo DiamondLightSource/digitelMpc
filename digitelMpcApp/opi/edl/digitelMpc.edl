@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 521
-y 135
+x 1862
+y 470
 w 240
 h 246
 font "arial-medium-r-16.0"
@@ -30,7 +30,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 0
 y 0
 w 240
@@ -83,17 +83,17 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
-y 180
-w 24
+y 124
+w 50
 h 16
 font "arial-medium-r-14.0"
 fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Fan"
+  "Comms"
 }
 endObjectProperties
 
@@ -102,7 +102,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 64
 w 40
@@ -141,61 +141,6 @@ major 10
 minor 0
 release 0
 x 112
-y 120
-w 56
-h 22
-controlPv "$(device):V"
-fgColor index 18
-fgAlarm
-bgColor index 10
-font "arial-bold-r-14.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 16
-y 124
-w 27
-h 16
-font "arial-medium-r-14.0"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Line"
-}
-endObjectProperties
-
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 168
-y 120
-w 56
-h 22
-controlPv "$(device):F"
-precision 2
-fgColor index 18
-fgAlarm
-bgColor index 10
-font "arial-bold-r-14.0"
-fontAlign "right"
-endObjectProperties
-
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 112
 y 64
 w 112
 h 22
@@ -207,25 +152,6 @@ font "arial-bold-r-14.0"
 fontAlign "right"
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 16
-y 152
-w 86
-h 16
-font "arial-medium-r-14.0"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Auto Re-start"
-}
-endObjectProperties
-
 # (Textupdate)
 object TextupdateClass
 beginObjectProperties
@@ -233,31 +159,15 @@ major 10
 minor 0
 release 0
 x 112
-y 148
+y 124
 w 112
 h 22
-controlPv "$(device):AUTOST"
+controlPv "$(device):COMMS"
 fgColor index 18
 fgAlarm
 bgColor index 10
 font "arial-bold-r-14.0"
-endObjectProperties
-
-# (Textupdate)
-object TextupdateClass
-beginObjectProperties
-major 10
-minor 0
-release 0
-x 112
-y 176
-w 112
-h 22
-controlPv "$(device):SETFAN"
-fgColor index 18
-fgAlarm
-bgColor index 10
-font "arial-bold-r-14.0"
+fontAlign "right"
 endObjectProperties
 
 # (Static Text)
@@ -265,7 +175,7 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 8
 y 40
 w 48
@@ -297,7 +207,7 @@ endObjectProperties
 object activeMessageButtonClass
 beginObjectProperties
 major 4
-minor 0
+minor 1
 release 0
 x 8
 y 214
