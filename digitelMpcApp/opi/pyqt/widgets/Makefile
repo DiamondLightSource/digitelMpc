@@ -12,7 +12,7 @@ DATA += $(patsubst ../%, %, $(wildcard ../*.py))
 DATA += $(patsubst ../%, %, $(wildcard ../*.svg))
 DATA += $(patsubst ../%, %, $(wildcard ../*.ui))
 
-clean::
+clean:
 	rm -f $(EDL_FROM_V) velocity.log
 
 uninstall:

@@ -12,7 +12,7 @@ DATA += $(patsubst ../%, %, $(wildcard ../*.edl))
 DATA += $(patsubst ../%, %, $(wildcard ../*.gif))
 DATA += $(patsubst ../%, %, $(wildcard ../*.png))
 
-clean::
+clean:
 	rm -f $(EDL_FROM_V) velocity.log
 
 uninstall:

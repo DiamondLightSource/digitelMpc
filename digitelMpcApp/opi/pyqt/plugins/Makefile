@@ -10,7 +10,7 @@ buildInstall: $(EDL_FROM_V)
 
 DATA += $(patsubst ../%, %, $(wildcard ../*.py))
 
-clean::
+clean:
 	rm -f $(EDL_FROM_V) velocity.log
 
 uninstall:

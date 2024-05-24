@@ -6,23 +6,23 @@ include $(TOP)/configure/CONFIG
 DIRS := $(DIRS) $(filter-out $(DIRS), configure)
 #DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *App))
 #DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *app))
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocboot))
+# DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
+# DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocboot))
 DIRS += digitelMpcApp
 
-## Uncomment the following to build the simulation and example apps 
+## Uncomment the following to build the simulation and example apps
 ## (NB make sure configure/RELEASE is updated too)
 #DIRS += exampleApp
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard etc))
+# DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard etc))
 # Comment out the following line to disable building of example iocs
-DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocs))
+# DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocs))
 
 
 include $(TOP)/configure/RULES_TOP
 
 clean:
 	rm -rf $(TOP)/data
-	
+
 else
 
 include $(TOP)/config/CONFIG_APP

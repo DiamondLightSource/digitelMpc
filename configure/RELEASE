@@ -1,5 +1,5 @@
-# The addition of calc support as a dependency now means that 
-# digitelMpc has had to branch to rhel6 and master. This one applies to 
+# The addition of calc support as a dependency now means that
+# digitelMpc has had to branch to rhel6 and master. This one applies to
 # rhel6 and must only reference calc versions under R3.14.12.3
 #
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
@@ -11,3 +11,5 @@ CALC=    $(SUPPORT)/calc/3-7-3
 EPICS_BASE=/dls_sw/epics/R3.14.12.7/base
 
 -include $(TOP)/configure/RELEASE.private
+
+-include $(TOP)/configure/RELEASE.local

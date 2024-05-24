@@ -3,26 +3,41 @@ rga - Pete Owens 24-6-2004
 
 Release 2_0
 PHO 26-7-04 :
-   Initial version for EPICS_3_13_9 
+   Initial version for EPICS_3_13_9
 
 Pre-requisite:
     Stream device version 1.5 or later must be used.
 
 The Application consists of the following files:
     rga.protocol    - Stream device protocol file
-    rga.db          - EPICS database 
-    rga.edl         - EDM panel  
-    rga-symbol.edl  - EDM symbol  
+    rga.db          - EPICS database
+    rga.edl         - EDM panel
+    rga-symbol.edl  - EDM symbol
 
 
 The example directory has files to show the application in action:
     st.cmd         - VxWorks startup script to initialise an IOC
     rga.sub        - substitution files to instantiate the records
-    rga-launch.edl - EDM pannel to launch panels for the RGA 
+    rga-launch.edl - EDM pannel to launch panels for the RGA
     startgui       - script to start off the user interface
 
 Simulation consists of the equivalent files:
     simulation_st.cmd
     simulation_rga.sub
     simulation_rga.db
+
+24-5-2024
+    Giles Knap
+    Open sourced to GitHub - altered to build outside DLS
+    The above changelist is incorrect - presumably this Ion Pump Module
+    was based on an earlier RGA module.
+    Changes for external consumption:
+    - remove etc and ioc from root Makefile
+    - fix 'clean::' issues in Makefiles
+    - add RELEASE.local import to RELEASE
+    - don't cross compile for vxWorks
+    - use python instead of dls-python
+    - remove internal CSS screen generator
+    - add LICENSE
+
 
